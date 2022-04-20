@@ -45,7 +45,7 @@ It is the grid specified above with 5 as the center number.
 3. Find which base number contains specified `Location` and its index (can only be 0/1/2)
 4. Find this number on Original Grid and its associated `Location` using the index to work out the formula `rotation`
 5. Location numbers are generated with number found above as the center, using the `rotation` from above step
-6. Repeat steps 3-5 for `Direction` instead of location to generate direction numbers
+6. Repeat steps 3-5 for `Direction` instead of `Location` to generate direction numbers
 7. Display in `GridView`
 
 ## How it looks
