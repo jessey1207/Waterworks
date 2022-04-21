@@ -14,6 +14,19 @@ enum Constants {
         static let directionText: String = "向"
     }
 
+    enum Grid {
+        enum Arrows {
+            static let size: CGFloat = 15.0
+
+            enum ImageNames {
+                static let up = "arrowtriangle.up.fill"
+                static let left = "arrowtriangle.left.fill"
+                static let right = "arrowtriangle.right.fill"
+                static let down = "arrowtriangle.down.fill"
+            }
+        }
+    }
+
     enum GridItem {
         static let inset: CGFloat = 6.0
         static let minWidth: CGFloat = 0.0

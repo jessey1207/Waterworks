@@ -18,6 +18,9 @@
 		9441905E280ED06900C839C0 /* SnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9441905D280ED06900C839C0 /* SnapshotTests.swift */; };
 		94419066280ED1F300C839C0 /* SnapshotTesting in Frameworks */ = {isa = PBXBuildFile; productRef = 94419065280ED1F300C839C0 /* SnapshotTesting */; };
 		94419068280EE9B300C839C0 /* Array+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94419067280EE9B300C839C0 /* Array+Extensions.swift */; };
+		9441906A280FD17700C839C0 /* ArrowsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94419069280FD17700C839C0 /* ArrowsView.swift */; };
+		9441906F28103C7900C839C0 /* Arrow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9441906E28103C7900C839C0 /* Arrow.swift */; };
+		9441907128103E8800C839C0 /* CardinalPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9441907028103E8800C839C0 /* CardinalPoint.swift */; };
 		94CEE746280C735C00064407 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94CEE745280C735C00064407 /* Constants.swift */; };
 		94CEE748280C747200064407 /* BackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94CEE747280C747200064407 /* BackgroundView.swift */; };
 		94CEE74C280D145400064407 /* OrientationViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94CEE74B280D145400064407 /* OrientationViewModifier.swift */; };
@@ -30,7 +33,7 @@
 		94CEE75F280E2D1900064407 /* OriginalGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94CEE75E280E2D1900064407 /* OriginalGrid.swift */; };
 		94CEE762280E906900064407 /* Luck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94CEE761280E906900064407 /* Luck.swift */; };
 		94CEE764280E907100064407 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94CEE763280E907100064407 /* Location.swift */; };
-		94CEE769280EAFE900064407 /* GridViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94CEE768280EAFE900064407 /* GridViewViewModel.swift */; };
+		94CEE769280EAFE900064407 /* GridViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94CEE768280EAFE900064407 /* GridViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,6 +67,9 @@
 		9441905B280ED06900C839C0 /* 风水Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "风水Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9441905D280ED06900C839C0 /* SnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapshotTests.swift; sourceTree = "<group>"; };
 		94419067280EE9B300C839C0 /* Array+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Extensions.swift"; sourceTree = "<group>"; };
+		94419069280FD17700C839C0 /* ArrowsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrowsView.swift; sourceTree = "<group>"; };
+		9441906E28103C7900C839C0 /* Arrow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Arrow.swift; sourceTree = "<group>"; };
+		9441907028103E8800C839C0 /* CardinalPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardinalPoint.swift; sourceTree = "<group>"; };
 		94CEE745280C735C00064407 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		94CEE747280C747200064407 /* BackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundView.swift; sourceTree = "<group>"; };
 		94CEE74B280D145400064407 /* OrientationViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrientationViewModifier.swift; sourceTree = "<group>"; };
@@ -76,7 +82,7 @@
 		94CEE75E280E2D1900064407 /* OriginalGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OriginalGrid.swift; sourceTree = "<group>"; };
 		94CEE761280E906900064407 /* Luck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Luck.swift; sourceTree = "<group>"; };
 		94CEE763280E907100064407 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
-		94CEE768280EAFE900064407 /* GridViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridViewViewModel.swift; sourceTree = "<group>"; };
+		94CEE768280EAFE900064407 /* GridViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -149,8 +155,10 @@
 		9426E7A8280C506600B34534 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				9441906D28103C2500C839C0 /* View Models */,
 				94CEE767280EAB7200064407 /* Grid */,
 				94CEE760280E905600064407 /* Input */,
+				9441907028103E8800C839C0 /* CardinalPoint.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -173,6 +181,14 @@
 				9441905D280ED06900C839C0 /* SnapshotTests.swift */,
 			);
 			path = "风水Tests";
+			sourceTree = "<group>";
+		};
+		9441906D28103C2500C839C0 /* View Models */ = {
+			isa = PBXGroup;
+			children = (
+				94CEE768280EAFE900064407 /* GridViewModel.swift */,
+			);
+			path = "View Models";
 			sourceTree = "<group>";
 		};
 		94CEE749280D140F00064407 /* Resources */ = {
@@ -199,6 +215,7 @@
 			children = (
 				9426E7AE280C51E300B34534 /* GridView.swift */,
 				94CEE758280D97C200064407 /* GridItemView.swift */,
+				94419069280FD17700C839C0 /* ArrowsView.swift */,
 			);
 			path = Grid;
 			sourceTree = "<group>";
@@ -220,7 +237,7 @@
 				94CEE755280D94E700064407 /* GridFormula.swift */,
 				94CEE75C280DB27800064407 /* GridItemModel.swift */,
 				94CEE75E280E2D1900064407 /* OriginalGrid.swift */,
-				94CEE768280EAFE900064407 /* GridViewViewModel.swift */,
+				9441906E28103C7900C839C0 /* Arrow.swift */,
 			);
 			path = Grid;
 			sourceTree = "<group>";
@@ -369,11 +386,14 @@
 				94CEE754280D240800064407 /* ShareButton.swift in Sources */,
 				94CEE762280E906900064407 /* Luck.swift in Sources */,
 				94CEE756280D94E700064407 /* GridFormula.swift in Sources */,
-				94CEE769280EAFE900064407 /* GridViewViewModel.swift in Sources */,
+				94CEE769280EAFE900064407 /* GridViewModel.swift in Sources */,
 				94419068280EE9B300C839C0 /* Array+Extensions.swift in Sources */,
+				9441906F28103C7900C839C0 /* Arrow.swift in Sources */,
 				9426E7AA280C508300B34534 /* Direction.swift in Sources */,
 				9426E79D280C4BD500B34534 /* ContentView.swift in Sources */,
 				94CEE759280D97C200064407 /* GridItemView.swift in Sources */,
+				9441907128103E8800C839C0 /* CardinalPoint.swift in Sources */,
+				9441906A280FD17700C839C0 /* ArrowsView.swift in Sources */,
 				94CEE75B280D9BEC00064407 /* String+Extensions.swift in Sources */,
 				9426E7AF280C51E300B34534 /* GridView.swift in Sources */,
 				9426E7B3280C629B00B34534 /* UserInput.swift in Sources */,

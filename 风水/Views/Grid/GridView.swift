@@ -16,7 +16,7 @@ struct GridView: View {
     )
 
     var body: some View {
-        let viewModel = GridViewViewModel(userInput: userInput)
+        let viewModel = GridViewModel(userInput: userInput)
         LazyVGrid(columns: layout, spacing: 10) {
             ForEach(0..<9, id: \.self) { index in
                 if !userInput.isInvalid {
@@ -34,7 +34,10 @@ struct GridView: View {
                 }
             }
         }
-        .padding(.horizontal)
+        .padding(30)
+        .overlay(
+            ArrowsView(userInput: userInput)
+        )
     }
 }
 

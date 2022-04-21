@@ -7,7 +7,7 @@
 
 import Foundation
 
-class GridViewViewModel {
+class GridViewModel {
     private let userInput: UserInput
     private let originalGrid = OriginalGrid()
 

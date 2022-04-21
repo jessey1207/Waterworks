@@ -11,6 +11,8 @@ import SwiftUI
 
 @testable import 风水
 
+/// Snapshot tests are run on iPhone 8
+
 class SnapshotTests: XCTestCase {
     
     let userInput = UserInput()

@@ -36,4 +36,27 @@ enum Direction: String, CaseIterable, Identifiable {
             return 0
         }
     }
+
+    var cardinalPoint: CardinalPoint {
+        switch self {
+        case .丙, .午, .丁:
+            return .S
+        case .未, .坤, .申:
+            return .SW
+        case .庚, .酉, .辛:
+            return .W
+        case .成, .乾, .亥:
+            return .NW
+        case .壬, .子, .癸:
+            return .N
+        case .丑, .艮, .寅:
+            return .NE
+        case .甲, .卯, .乙:
+            return .E
+        case .辰, .巽, .巳:
+            return .SE
+        case .unknown:
+            return .unknown
+        }
+    }
 }

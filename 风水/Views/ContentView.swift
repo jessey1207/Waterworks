@@ -17,8 +17,6 @@ struct ContentView: View {
             VStack(spacing: 40) {
                 Spacer()
                 PickerView(userInput: userInput)
-//                Image(systemName: "arrowtriangle.up.fill")
-//                    .font(.system(size: 24))
                 GridView(userInput: userInput)
                 ShareButton(action: showShareSheet)
                     .opacity(hideShareButton ? 0 : 1)

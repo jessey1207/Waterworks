@@ -23,22 +23,22 @@ extension Array where Element == GridItemModel {
 
 private extension Direction {
     var indexModifier: [Int] {
-        switch self {
-        case .丙, .午, .丁: // S
+        switch self.cardinalPoint {
+        case .S:
             return [0, 1, 2, 3, 4, 5, 6, 7, 8]
-        case .未, .坤, .申: // SW
+        case .SW:
             return [1, 2, 5, 0, 4, 8, 3, 6, 7]
-        case .庚, .酉, .辛: // W
+        case .W:
             return [2, 5, 8, 1, 4, 7, 0, 3, 6]
-        case .成, .乾, .亥: // NW
+        case .NW:
             return [5, 8, 7, 2, 4, 6, 1, 0, 3]
-        case .壬, .子, .癸: // N
+        case .N:
             return [8, 7, 6, 5, 4, 3, 2, 1, 0]
-        case .丑, .艮, .寅: // NE
+        case .NE:
             return [7, 6, 3, 8, 4, 0, 5, 2, 1]
-        case .甲, .卯, .乙: // E
+        case .E:
             return [6, 3, 0, 7, 4, 1, 8, 5, 2]
-        case .辰, .巽, .巳: // SE
+        case .SE:
             return [3, 0, 1, 6, 4, 2, 7, 8, 5]
         case .unknown:
             return []
