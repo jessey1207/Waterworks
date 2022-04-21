@@ -41,6 +41,15 @@ class GridViewModel {
         return String(items[index].number)
     }
 
+    /// Retrieves the cardinal character to be displayed.
+    /// There is no cardinal character for the middle grid item (when index is 4).
+    ///
+    /// - Parameter index: Grid index where character is to be displayed in.
+    /// - Returns: The character as a String.
+    func cardinalCharacter(at index: Int) -> String {
+        return cardinalItems[index]
+    }
+
     // MARK: - Private properties
 
     private var baseItems: [GridItemModel] {
@@ -101,5 +110,13 @@ class GridViewModel {
         return direction.rotation == .clockwise
         ? GridFormula.clockwise.generateGridItems(centre: baseNumberContainingDirection)
         : GridFormula.anticlockwise.generateGridItems(centre: baseNumberContainingDirection)
+    }
+
+    private var cardinalItems: [String] {
+        var points = CardinalPoint.allCases
+            .filter({ $0 != .unknown })
+            .map { $0.chineseRepresentation }
+        points.insert("", at: CardinalPoint.allCases.count / 2) // middle item has no cardinal point
+        return points
     }
 }

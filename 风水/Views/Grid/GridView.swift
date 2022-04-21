@@ -23,13 +23,15 @@ struct GridView: View {
                     GridItemView(
                         baseNumber: viewModel.baseNumber(at: index),
                         locationNumber: viewModel.locationNumber(at: index),
-                        directionNumber: viewModel.directionNumber(at: index)
+                        directionNumber: viewModel.directionNumber(at: index),
+                        cardinalCharacter: viewModel.cardinalCharacter(at: index)
                     )
                 } else {
                     GridItemView(
                         baseNumber: Constants.GridItem.unknownText,
                         locationNumber: Constants.GridItem.unknownText,
-                        directionNumber: Constants.GridItem.unknownText
+                        directionNumber: Constants.GridItem.unknownText,
+                        cardinalCharacter: Constants.GridItem.unknownText
                     )
                 }
             }

@@ -7,6 +7,7 @@
 
 import Foundation
 
+// TODO: Refactor
 enum Location: String, CaseIterable, Identifiable {
     case 辰, 巽, 巳, 丙, 午, 丁, 未, 坤, 申, 甲, 卯, 乙, 庚, 酉, 辛, 丑, 艮, 寅, 壬, 子, 癸, 成, 乾, 亥
     case unknown = "?"

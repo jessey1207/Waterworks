@@ -8,19 +8,30 @@
 import SwiftUI
 
 struct GridItemView: View {
-    var baseNumber: String
-    var locationNumber: String
-    var directionNumber: String
+    let baseNumber: String
+    let locationNumber: String
+    let directionNumber: String
+    let cardinalCharacter: String
     
     var body: some View {
-        VStack(spacing: 10) {
-            HStack {
-                Text(locationNumber)
-                Text(directionNumber)
+        VStack {
+            VStack(spacing: 10) {
+                HStack {
+                    Text(locationNumber)
+                    Text(directionNumber)
+                }
+                Text(baseNumber)
             }
-            Text(baseNumber)
+            .multilineTextAlignment(.center)
+            
+            HStack {
+                Spacer()
+                Text(cardinalCharacter)
+                    .font(.system(size: 12))
+                    .foregroundColor(.red)
+            }
+            .padding(.horizontal, Constants.GridItem.inset)
         }
-        .multilineTextAlignment(.center)
         .padding(
             EdgeInsets(
                 top: Constants.GridItem.inset,
@@ -35,13 +46,9 @@ struct GridItemView: View {
             minHeight: Constants.GridItem.minHeight
         )
         .background(
-            .gray.opacity(
-                Constants.GridItem.backgroundOpacity
-            )
+            .gray.opacity(Constants.GridItem.backgroundOpacity)
         )
-        .cornerRadius(
-            Constants.GridItem.cornerRadius
-        )
+        .cornerRadius(Constants.GridItem.cornerRadius)
     }
 }
 
@@ -50,7 +57,8 @@ struct CalculatedGridItemView_Previews: PreviewProvider {
         GridItemView(
             baseNumber: "9".translatedToChinese(),
             locationNumber: "6",
-            directionNumber: "4"
+            directionNumber: "4",
+            cardinalCharacter: "巽"
         )
     }
 }
