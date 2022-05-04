@@ -10,7 +10,6 @@ import SwiftUI
 struct ContentView: View {
     @ObservedObject var userInput = UserInput()
     @State var rotated: Bool = false
-    @State var hideShareButton: Bool = false
 
     var body: some View {
         ZStack {
@@ -20,31 +19,11 @@ struct ContentView: View {
                 PickerView(userInput: userInput)
                 GridView(userInput: userInput, rotated: $rotated)
                 RotateButton(userInput: userInput, rotated: $rotated)
-                ShareButton(action: showShareSheet)
-                    .opacity(hideShareButton ? 0 : 1)
                 Spacer()
             }
             .scrollInLandscapeMode()
             .ignoresSafeArea(.keyboard)
         }
-    }
-    
-    private func showShareSheet() {
-        let image = takeSnapshot()
-        let vc = UIActivityViewController(
-            activityItems: [image],
-            applicationActivities: nil
-        )
-        let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene
-        windowScene?.windows.first?.rootViewController?
-            .present(vc, animated: true, completion: nil)
-    }
-
-    private func takeSnapshot() -> UIImage {
-        hideShareButton = true
-        let image = body.snapshot()
-        hideShareButton = false
-        return image
     }
 }
 

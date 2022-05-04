@@ -27,7 +27,7 @@ class SnapshotTests: XCTestCase {
             Location.allCases.filter({ $0 != .unknown }).forEach { location in
                 userInput.luck = luck
                 userInput.location = location
-                let view = ContentView(userInput: userInput, hideShareButton: false)
+                let view = ContentView(userInput: userInput)
 
                 assertSnapshot(
                     matching: view.snapshot(),
