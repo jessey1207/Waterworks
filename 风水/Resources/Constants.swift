@@ -8,6 +8,15 @@
 import UIKit
 
 enum Constants {
+    enum Icons {
+        static let size: CGFloat = 25.0
+
+        enum ImageNames {
+            static let location = "location.north.circle"
+            static let undo = "arrow.uturn.backward"
+        }
+    }
+
     enum ChinesePicker {
         static let luckText: String = "運"
         static let locationText: String = "坐"
@@ -25,15 +34,15 @@ enum Constants {
                 static let down = "arrowtriangle.down.fill"
             }
         }
-    }
 
-    enum GridItem {
-        static let inset: CGFloat = 6.0
-        static let minWidth: CGFloat = 0.0
-        static let maxWidth: CGFloat = .infinity
-        static let minHeight: CGFloat = 90.0
-        static let backgroundOpacity: CGFloat = 0.4
-        static let cornerRadius: CGFloat = 16.0
-        static let unknownText: String = "﹖"
+        enum Item {
+            static let inset: CGFloat = 6.0
+            static let minWidth: CGFloat = 0.0
+            static let maxWidth: CGFloat = .infinity
+            static let minHeight: CGFloat = 90.0
+            static let backgroundOpacity: CGFloat = 0.4
+            static let cornerRadius: CGFloat = 16.0
+            static let unknownText: String = "﹖"
+        }
     }
 }

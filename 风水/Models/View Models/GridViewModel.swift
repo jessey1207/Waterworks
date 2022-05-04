@@ -10,9 +10,11 @@ import Foundation
 class GridViewModel {
     private let userInput: UserInput
     private let originalGrid = OriginalGrid()
+    private let rotated: Bool
 
-    init(userInput: UserInput) {
+    init(userInput: UserInput, rotated: Bool) {
         self.userInput = userInput
+        self.rotated = rotated
     }
 
     /// Retrieves the base number to be displayed.
@@ -28,7 +30,7 @@ class GridViewModel {
     /// - Parameter index: Grid index where number is to be displayed in.
     /// - Returns: The location number as a String.
     func locationNumber(at index: Int) -> String {
-        guard let items = locationItems else { return Constants.GridItem.unknownText }
+        guard let items = locationItems else { return Constants.Grid.Item.unknownText }
         return String(items[index].number)
     }
 
@@ -37,7 +39,7 @@ class GridViewModel {
     /// - Parameter index: Grid index where number is to be displayed in.
     /// - Returns: The direction number as a String.
     func directionNumber(at index: Int) -> String {
-        guard let items = directionItems else { return Constants.GridItem.unknownText }
+        guard let items = directionItems else { return Constants.Grid.Item.unknownText }
         return String(items[index].number)
     }
 
@@ -53,9 +55,12 @@ class GridViewModel {
     // MARK: - Private properties
 
     private var baseItems: [GridItemModel] {
-        GridFormula.clockwise.generateGridItems(
+        let items = GridFormula.clockwise.generateGridItems(
             centre: userInput.luck.rawValue
         )
+        return rotated
+        ? items.rearranged(for: userInput.direction)
+        : items
     }
 
     private var locationItems: [GridItemModel]? {
@@ -80,9 +85,13 @@ class GridViewModel {
             at: userInput.location.index
         )
 
-        return location.rotation == .clockwise
+        let items = location.rotation == .clockwise
         ? GridFormula.clockwise.generateGridItems(centre: baseNumberContainingLocation)
         : GridFormula.anticlockwise.generateGridItems(centre: baseNumberContainingLocation)
+
+        return rotated
+        ? items.rearranged(for: userInput.direction)
+        : items
     }
 
     private var directionItems: [GridItemModel]? {
@@ -107,16 +116,22 @@ class GridViewModel {
             at: userInput.direction.index
         )
 
-        return direction.rotation == .clockwise
+        let items = direction.rotation == .clockwise
         ? GridFormula.clockwise.generateGridItems(centre: baseNumberContainingDirection)
         : GridFormula.anticlockwise.generateGridItems(centre: baseNumberContainingDirection)
+
+        return rotated
+        ? items.rearranged(for: userInput.direction)
+        : items
     }
 
     private var cardinalItems: [String] {
-        var points = CardinalPoint.allCases
+        var items = CardinalPoint.allCases
             .filter({ $0 != .unknown })
             .map { $0.chineseRepresentation }
-        points.insert("", at: CardinalPoint.allCases.count / 2) // middle item has no cardinal point
-        return points
+        items.insert("", at: CardinalPoint.allCases.count / 2) // middle item has no cardinal point
+        return rotated
+        ? items.rearranged(for: userInput.direction)
+        : items
     }
 }

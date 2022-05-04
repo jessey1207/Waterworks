@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     @ObservedObject var userInput = UserInput()
+    @State var rotated: Bool = false
     @State var hideShareButton: Bool = false
 
     var body: some View {
@@ -17,7 +18,8 @@ struct ContentView: View {
             VStack(spacing: 40) {
                 Spacer()
                 PickerView(userInput: userInput)
-                GridView(userInput: userInput)
+                GridView(userInput: userInput, rotated: $rotated)
+                RotateButton(userInput: userInput, rotated: $rotated)
                 ShareButton(action: showShareSheet)
                     .opacity(hideShareButton ? 0 : 1)
                 Spacer()

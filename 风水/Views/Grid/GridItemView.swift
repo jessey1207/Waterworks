@@ -30,25 +30,25 @@ struct GridItemView: View {
                     .font(.system(size: 12))
                     .foregroundColor(.red)
             }
-            .padding(.horizontal, Constants.GridItem.inset)
+            .padding(.horizontal, Constants.Grid.Item.inset)
         }
         .padding(
             EdgeInsets(
-                top: Constants.GridItem.inset,
-                leading: Constants.GridItem.inset,
-                bottom: Constants.GridItem.inset,
-                trailing: Constants.GridItem.inset
+                top: Constants.Grid.Item.inset,
+                leading: Constants.Grid.Item.inset,
+                bottom: Constants.Grid.Item.inset,
+                trailing: Constants.Grid.Item.inset
             )
         )
         .frame(
-            minWidth: Constants.GridItem.minWidth,
-            maxWidth: Constants.GridItem.maxWidth,
-            minHeight: Constants.GridItem.minHeight
+            minWidth: Constants.Grid.Item.minWidth,
+            maxWidth: Constants.Grid.Item.maxWidth,
+            minHeight: Constants.Grid.Item.minHeight
         )
         .background(
-            .gray.opacity(Constants.GridItem.backgroundOpacity)
+            .gray.opacity(Constants.Grid.Item.backgroundOpacity)
         )
-        .cornerRadius(Constants.GridItem.cornerRadius)
+        .cornerRadius(Constants.Grid.Item.cornerRadius)
     }
 }
 

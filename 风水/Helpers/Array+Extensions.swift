@@ -7,15 +7,15 @@
 
 import Foundation
 
-extension Array where Element == GridItemModel {
+extension Array {
     /// Rearranged array to replicate the action of rotating the grid.
     ///
     /// - Parameter direction: The direction to determine how to rearrange (i.e. how much to rotate).
     func rearranged(for direction: Direction) -> Self {
         guard direction != .unknown else { return self }
-        var new: [GridItemModel?] = .init(repeating: nil, count: 9)
+        var new: [Element?] = .init(repeating: nil, count: 9)
         for index in 0..<9 {
-            new[direction.indexModifier[index]] = self[index]
+            new[index] = self[direction.indexModifier[index]]
         }
         return new.compactMap { $0 }
     }
