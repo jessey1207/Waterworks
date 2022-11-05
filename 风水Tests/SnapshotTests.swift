@@ -42,4 +42,27 @@ class SnapshotTests: XCTestCase {
             }
         }
     }
+
+    func testRotations() {
+        Luck.allCases.filter({ $0 != .unknown }).forEach { luck in
+            Location.allCases.filter({ $0 != .unknown }).forEach { location in
+                userInput.luck = luck
+                userInput.location = location
+                let view = ContentView(userInput: userInput)
+                assertSnapshot(
+                    matching: view.snapshot(),
+                    as: .image,
+                    named: [
+                        String(luck.rawValue),
+                        Constants.ChinesePicker.luckText,
+                        location.rawValue,
+                        Constants.ChinesePicker.locationText,
+                        "rotated"
+                    ].joined(separator: "-")
+                )
+            }
+        }
+    }
 }
+
+

@@ -47,6 +47,9 @@ struct GridView: View {
                 rotated: $rotated
             )
         )
+        .animation(.easeInOut, value: userInput.luck)
+        .animation(.easeInOut, value: userInput.location)
+        .animation(.easeInOut, value: rotated)
     }
 }
 

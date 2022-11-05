@@ -19,6 +19,7 @@ struct ContentView: View {
                 PickerView(userInput: userInput)
                 GridView(userInput: userInput, rotated: $rotated)
                 RotateButton(userInput: userInput, rotated: $rotated)
+                    .disabled(userInput.isInvalid)
                 Spacer()
             }
             .scrollInLandscapeMode()
