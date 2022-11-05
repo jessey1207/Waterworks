@@ -14,9 +14,9 @@ enum GridFormula {
     /// Generates an array of 9 grid item models to fill the 3x3 grid.
     /// The array fills the grid top-down and left-right.
     ///
-    /// - Parameter number: Centre number.
+    /// - Parameter number: Center number.
     /// - Returns: Array of 9 `GridItemModel`.
-    func generateGridItems(centre number: Int) -> [GridItemModel] {
+    func generateGridItems(center number: Int) -> [GridItemModel] {
         modifiers.enumerated().map { index, modifier -> GridItemModel in
             let modified = (number + modifier) % 9
             let n = modified == 0 ? 9 : modified

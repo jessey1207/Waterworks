@@ -8,6 +8,11 @@
 import UIKit
 
 enum Constants {
+    enum Tab {
+        static let directionPickerGrid = "坐向"
+        static let yearPickerGrid = "三煞太歲"
+    }
+
     enum Icons {
         static let size: CGFloat = 25.0
 
@@ -21,6 +26,7 @@ enum Constants {
         static let luckText: String = "運"
         static let locationText: String = "坐"
         static let directionText: String = "向"
+        static let yearText: String = "年"
     }
 
     enum Grid {
@@ -43,6 +49,8 @@ enum Constants {
             static let backgroundOpacity: CGFloat = 0.4
             static let cornerRadius: CGFloat = 16.0
             static let unknownText: String = "﹖"
+            static let evilText: String = "三煞"
+            static let ageText: String = "太歲"
         }
     }
 }

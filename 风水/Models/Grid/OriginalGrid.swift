@@ -9,7 +9,7 @@ import Foundation
 
 /// The Original Grid to refer to when calculating location items and direction items.
 struct OriginalGrid {
-    private let items = GridFormula.clockwise.generateGridItems(centre: 5)
+    private let items = GridFormula.clockwise.generateGridItems(center: 5)
 
     
     /// Retrieves a specific location from the Original Grid.

@@ -24,10 +24,13 @@
 		944190732811454700C839C0 /* RotateButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944190722811454700C839C0 /* RotateButton.swift */; };
 		9448334C2916560B00822D28 /* GridFormulaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9448334B2916560B00822D28 /* GridFormulaTests.swift */; };
 		9448334E29165EC300822D28 /* OriginalGridTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9448334D29165EC300822D28 /* OriginalGridTests.swift */; };
+		9448335229166BF800822D28 /* HeavenStem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9448335129166BF800822D28 /* HeavenStem.swift */; };
+		9448335429166C4000822D28 /* EarthBranch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9448335329166C4000822D28 /* EarthBranch.swift */; };
+		944833562916A4DA00822D28 /* Tab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944833552916A4DA00822D28 /* Tab.swift */; };
+		944833582916BA2F00822D28 /* Year.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944833572916BA2F00822D28 /* Year.swift */; };
 		94CEE746280C735C00064407 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94CEE745280C735C00064407 /* Constants.swift */; };
 		94CEE748280C747200064407 /* BackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94CEE747280C747200064407 /* BackgroundView.swift */; };
 		94CEE74C280D145400064407 /* OrientationViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94CEE74B280D145400064407 /* OrientationViewModifier.swift */; };
-		94CEE750280D1FDD00064407 /* View+Snapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94CEE74F280D1FDD00064407 /* View+Snapshot.swift */; };
 		94CEE754280D240800064407 /* ShareButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94CEE753280D240800064407 /* ShareButton.swift */; };
 		94CEE756280D94E700064407 /* GridFormula.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94CEE755280D94E700064407 /* GridFormula.swift */; };
 		94CEE759280D97C200064407 /* GridItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94CEE758280D97C200064407 /* GridItemView.swift */; };
@@ -36,7 +39,7 @@
 		94CEE75F280E2D1900064407 /* OriginalGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94CEE75E280E2D1900064407 /* OriginalGrid.swift */; };
 		94CEE762280E906900064407 /* Luck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94CEE761280E906900064407 /* Luck.swift */; };
 		94CEE764280E907100064407 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94CEE763280E907100064407 /* Location.swift */; };
-		94CEE769280EAFE900064407 /* GridViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94CEE768280EAFE900064407 /* GridViewModel.swift */; };
+		94CEE769280EAFE900064407 /* GridView.ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94CEE768280EAFE900064407 /* GridView.ViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -76,10 +79,13 @@
 		944190722811454700C839C0 /* RotateButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RotateButton.swift; sourceTree = "<group>"; };
 		9448334B2916560B00822D28 /* GridFormulaTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridFormulaTests.swift; sourceTree = "<group>"; };
 		9448334D29165EC300822D28 /* OriginalGridTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OriginalGridTests.swift; sourceTree = "<group>"; };
+		9448335129166BF800822D28 /* HeavenStem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeavenStem.swift; sourceTree = "<group>"; };
+		9448335329166C4000822D28 /* EarthBranch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EarthBranch.swift; sourceTree = "<group>"; };
+		944833552916A4DA00822D28 /* Tab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tab.swift; sourceTree = "<group>"; };
+		944833572916BA2F00822D28 /* Year.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Year.swift; sourceTree = "<group>"; };
 		94CEE745280C735C00064407 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		94CEE747280C747200064407 /* BackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundView.swift; sourceTree = "<group>"; };
 		94CEE74B280D145400064407 /* OrientationViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrientationViewModifier.swift; sourceTree = "<group>"; };
-		94CEE74F280D1FDD00064407 /* View+Snapshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Snapshot.swift"; sourceTree = "<group>"; };
 		94CEE753280D240800064407 /* ShareButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareButton.swift; sourceTree = "<group>"; };
 		94CEE755280D94E700064407 /* GridFormula.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridFormula.swift; sourceTree = "<group>"; };
 		94CEE758280D97C200064407 /* GridItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridItemView.swift; sourceTree = "<group>"; };
@@ -88,7 +94,7 @@
 		94CEE75E280E2D1900064407 /* OriginalGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OriginalGrid.swift; sourceTree = "<group>"; };
 		94CEE761280E906900064407 /* Luck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Luck.swift; sourceTree = "<group>"; };
 		94CEE763280E907100064407 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
-		94CEE768280EAFE900064407 /* GridViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridViewModel.swift; sourceTree = "<group>"; };
+		94CEE768280EAFE900064407 /* GridView.ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridView.ViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -161,10 +167,12 @@
 		9426E7A8280C506600B34534 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				9441906D28103C2500C839C0 /* View Models */,
 				94CEE767280EAB7200064407 /* Grid */,
 				94CEE760280E905600064407 /* Input */,
 				9441907028103E8800C839C0 /* CardinalPoint.swift */,
+				9448335129166BF800822D28 /* HeavenStem.swift */,
+				9448335329166C4000822D28 /* EarthBranch.swift */,
+				944833552916A4DA00822D28 /* Tab.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -192,14 +200,6 @@
 			path = "风水Tests";
 			sourceTree = "<group>";
 		};
-		9441906D28103C2500C839C0 /* View Models */ = {
-			isa = PBXGroup;
-			children = (
-				94CEE768280EAFE900064407 /* GridViewModel.swift */,
-			);
-			path = "View Models";
-			sourceTree = "<group>";
-		};
 		94CEE749280D140F00064407 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -212,7 +212,6 @@
 			isa = PBXGroup;
 			children = (
 				94CEE74B280D145400064407 /* OrientationViewModifier.swift */,
-				94CEE74F280D1FDD00064407 /* View+Snapshot.swift */,
 				94CEE75A280D9BEC00064407 /* String+Extensions.swift */,
 				94419067280EE9B300C839C0 /* Array+Extensions.swift */,
 			);
@@ -223,6 +222,7 @@
 			isa = PBXGroup;
 			children = (
 				9426E7AE280C51E300B34534 /* GridView.swift */,
+				94CEE768280EAFE900064407 /* GridView.ViewModel.swift */,
 				94CEE758280D97C200064407 /* GridItemView.swift */,
 				94419069280FD17700C839C0 /* ArrowsView.swift */,
 			);
@@ -236,6 +236,7 @@
 				9426E7A9280C508300B34534 /* Direction.swift */,
 				94CEE761280E906900064407 /* Luck.swift */,
 				94CEE763280E907100064407 /* Location.swift */,
+				944833572916BA2F00822D28 /* Year.swift */,
 			);
 			path = Input;
 			sourceTree = "<group>";
@@ -391,12 +392,14 @@
 				94CEE748280C747200064407 /* BackgroundView.swift in Sources */,
 				944190732811454700C839C0 /* RotateButton.swift in Sources */,
 				9426E7AC280C511A00B34534 /* PickerView.swift in Sources */,
+				9448335229166BF800822D28 /* HeavenStem.swift in Sources */,
 				94CEE74C280D145400064407 /* OrientationViewModifier.swift in Sources */,
+				944833582916BA2F00822D28 /* Year.swift in Sources */,
 				94CEE764280E907100064407 /* Location.swift in Sources */,
 				94CEE754280D240800064407 /* ShareButton.swift in Sources */,
 				94CEE762280E906900064407 /* Luck.swift in Sources */,
 				94CEE756280D94E700064407 /* GridFormula.swift in Sources */,
-				94CEE769280EAFE900064407 /* GridViewModel.swift in Sources */,
+				94CEE769280EAFE900064407 /* GridView.ViewModel.swift in Sources */,
 				94419068280EE9B300C839C0 /* Array+Extensions.swift in Sources */,
 				9441906F28103C7900C839C0 /* Arrow.swift in Sources */,
 				9426E7AA280C508300B34534 /* Direction.swift in Sources */,
@@ -407,9 +410,10 @@
 				94CEE75B280D9BEC00064407 /* String+Extensions.swift in Sources */,
 				9426E7AF280C51E300B34534 /* GridView.swift in Sources */,
 				9426E7B3280C629B00B34534 /* UserInput.swift in Sources */,
-				94CEE750280D1FDD00064407 /* View+Snapshot.swift in Sources */,
 				9426E79B280C4BD500B34534 /* __App.swift in Sources */,
 				94CEE75F280E2D1900064407 /* OriginalGrid.swift in Sources */,
+				944833562916A4DA00822D28 /* Tab.swift in Sources */,
+				9448335429166C4000822D28 /* EarthBranch.swift in Sources */,
 				94CEE746280C735C00064407 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

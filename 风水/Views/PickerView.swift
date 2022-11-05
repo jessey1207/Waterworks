@@ -9,20 +9,28 @@ import SwiftUI
 
 struct PickerView: View {
     @ObservedObject var userInput: UserInput
+
+    let selectedTab: Tab
     
     var body: some View {
-        HStack(spacing: 50) {
-            LuckText(userInput: userInput)
-            LocationText(userInput: userInput)
-            DirectionText(userInput: userInput)
+        switch selectedTab {
+        case .directionPickerGrid:
+            HStack(spacing: 50) {
+                luckPicker
+                locationPicker
+                directionText
+            }
+        case .yearPickerGrid:
+            HStack(spacing: 20) {
+                yearPicker
+                heavenEarthText
+            }
         }
     }
-}
 
-private struct LuckText: View {
-    @ObservedObject var userInput: UserInput
-    
-    var body: some View {
+    // MARK: - DirectionPickerGrid
+
+    private var luckPicker: some View {
         HStack {
             Menu {
                 Picker(selection: $userInput.luck) {
@@ -38,12 +46,8 @@ private struct LuckText: View {
                 .font(.title)
         }
     }
-}
 
-private struct LocationText: View {
-    @ObservedObject var userInput: UserInput
-    
-    var body: some View {
+    private var locationPicker: some View {
         HStack {
             Text(Constants.ChinesePicker.locationText)
                 .font(.title)
@@ -59,12 +63,8 @@ private struct LocationText: View {
             }
         }
     }
-}
 
-private struct DirectionText: View {
-    @ObservedObject var userInput: UserInput
-    
-    var body: some View {
+    private var directionText: some View {
         HStack {
             Text(Constants.ChinesePicker.directionText)
                 .font(.title)
@@ -73,10 +73,54 @@ private struct DirectionText: View {
                 .foregroundColor(.gray)
         }
     }
+
+    // MARK: - YearPickerGrid
+
+    private var yearPicker: some View {
+        HStack {
+            Menu {
+                Picker(selection: $userInput.year.number) {
+                    ForEach(getYearRange(), id: \.self) {
+                        Text(String($0))
+                    }
+                } label: {}
+            } label: {
+                Text(String(userInput.year.number))
+                    .font(.title)
+                    .frame(minWidth: 70)
+            }
+            Text(Constants.ChinesePicker.yearText)
+                .font(.title)
+        }
+    }
+
+    private var heavenEarthText: some View {
+        HStack(spacing: 0) {
+            Text(userInput.year.heavenStem.rawValue)
+            Text(userInput.year.earthBranch.rawValue)
+        }
+        .font(.title)
+        .foregroundColor(.gray)
+    }
+
+    // MARK: Helper
+    
+    private func getYearRange() -> ClosedRange<Int> {
+        let currentDate = Date()
+    
+        var dateComponents = DateComponents()
+        dateComponents.year = 200
+        let futureDate = Calendar.current.date(byAdding: dateComponents, to: currentDate) ?? currentDate
+
+        let currentYear = Calendar.current.component(.year, from: currentDate)
+        let futureYear = Calendar.current.component(.year, from: futureDate)
+        return currentYear ... futureYear
+    }
 }
 
 struct PickerView_Previews: PreviewProvider {
     static var previews: some View {
-        PickerView(userInput: UserInput())
+        PickerView(userInput: UserInput(), selectedTab: .directionPickerGrid)
+        PickerView(userInput: UserInput(), selectedTab: .yearPickerGrid)
     }
 }

@@ -27,7 +27,7 @@ final class GridFormulaTests: XCTestCase {
             [8, 4, 6, 7, 9, 2, 3, 5, 1]
         ]
         inputs.forEach { number in
-            let items = GridFormula.clockwise.generateGridItems(centre: number).map { $0.number }
+            let items = GridFormula.clockwise.generateGridItems(center: number).map { $0.number }
             XCTAssertEqual(items, expected[number])
         }
     }
@@ -46,7 +46,7 @@ final class GridFormulaTests: XCTestCase {
             [1, 5, 3, 2, 9, 7, 6, 4, 8]
         ]
         inputs.forEach { number in
-            let items = GridFormula.anticlockwise.generateGridItems(centre: number).map { $0.number }
+            let items = GridFormula.anticlockwise.generateGridItems(center: number).map { $0.number }
             XCTAssertEqual(items, expected[number])
         }
     }

@@ -11,26 +11,32 @@ import SwiftUI
 
 @testable import 风水
 
-/// Snapshot tests are run on iPhone 8
+/// Snapshot tests are run on iPhone 14
 
 class SnapshotTests: XCTestCase {
     
     let userInput = UserInput()
     
-    func testDefaultAppearance() {
-        let view = ContentView()
-        assertSnapshot(matching: view.snapshot(), as: .image)
+    func testDirectionPickerGrid() {
+        let view = ContentView(selectedTab: .directionPickerGrid)
+        assertSnapshot(matching: view, as: .image, named: "default")
     }
+
+    func testYearPickerGrid() {
+        let view = ContentView(selectedTab: .yearPickerGrid)
+        assertSnapshot(matching: view, as: .image, named: "default")
+    }
+    
     
     func testCombinations() {
         Luck.allCases.filter({ $0 != .unknown }).forEach { luck in
             Location.allCases.filter({ $0 != .unknown }).forEach { location in
                 userInput.luck = luck
                 userInput.location = location
-                let view = ContentView(userInput: userInput)
+                let view = ContentView(userInput: userInput, selectedTab: .directionPickerGrid)
 
                 assertSnapshot(
-                    matching: view.snapshot(),
+                    matching: view,
                     as: .image,
                     named: [
                         String(luck.rawValue),
@@ -48,9 +54,9 @@ class SnapshotTests: XCTestCase {
             Location.allCases.filter({ $0 != .unknown }).forEach { location in
                 userInput.luck = luck
                 userInput.location = location
-                let view = ContentView(userInput: userInput)
+                let view = ContentView(userInput: userInput, selectedTab: .directionPickerGrid)
                 assertSnapshot(
-                    matching: view.snapshot(),
+                    matching: view,
                     as: .image,
                     named: [
                         String(luck.rawValue),
@@ -61,6 +67,21 @@ class SnapshotTests: XCTestCase {
                     ].joined(separator: "-")
                 )
             }
+        }
+    }
+
+    func testYears() {
+        (2022 ... 2072).forEach { year in
+            userInput.year = .init(number: year)
+            let view = ContentView(
+                userInput: userInput,
+                selectedTab: .yearPickerGrid
+            )
+            assertSnapshot(
+                matching: view,
+                as: .image,
+                named: String(year)
+            )
         }
     }
 }
