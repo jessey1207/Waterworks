@@ -8,7 +8,7 @@
 import Foundation
 
 /// The model behind every grid item.
-struct GridItemModel {
+struct GridItemModel: Equatable {
 
     /// The number to be displayed in the grid.
     let number: Int

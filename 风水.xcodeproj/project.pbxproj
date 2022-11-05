@@ -22,6 +22,8 @@
 		9441906F28103C7900C839C0 /* Arrow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9441906E28103C7900C839C0 /* Arrow.swift */; };
 		9441907128103E8800C839C0 /* CardinalPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9441907028103E8800C839C0 /* CardinalPoint.swift */; };
 		944190732811454700C839C0 /* RotateButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944190722811454700C839C0 /* RotateButton.swift */; };
+		9448334C2916560B00822D28 /* GridFormulaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9448334B2916560B00822D28 /* GridFormulaTests.swift */; };
+		9448334E29165EC300822D28 /* OriginalGridTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9448334D29165EC300822D28 /* OriginalGridTests.swift */; };
 		94CEE746280C735C00064407 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94CEE745280C735C00064407 /* Constants.swift */; };
 		94CEE748280C747200064407 /* BackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94CEE747280C747200064407 /* BackgroundView.swift */; };
 		94CEE74C280D145400064407 /* OrientationViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94CEE74B280D145400064407 /* OrientationViewModifier.swift */; };
@@ -72,6 +74,8 @@
 		9441906E28103C7900C839C0 /* Arrow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Arrow.swift; sourceTree = "<group>"; };
 		9441907028103E8800C839C0 /* CardinalPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardinalPoint.swift; sourceTree = "<group>"; };
 		944190722811454700C839C0 /* RotateButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RotateButton.swift; sourceTree = "<group>"; };
+		9448334B2916560B00822D28 /* GridFormulaTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridFormulaTests.swift; sourceTree = "<group>"; };
+		9448334D29165EC300822D28 /* OriginalGridTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OriginalGridTests.swift; sourceTree = "<group>"; };
 		94CEE745280C735C00064407 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		94CEE747280C747200064407 /* BackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundView.swift; sourceTree = "<group>"; };
 		94CEE74B280D145400064407 /* OrientationViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrientationViewModifier.swift; sourceTree = "<group>"; };
@@ -182,6 +186,8 @@
 			isa = PBXGroup;
 			children = (
 				9441905D280ED06900C839C0 /* SnapshotTests.swift */,
+				9448334B2916560B00822D28 /* GridFormulaTests.swift */,
+				9448334D29165EC300822D28 /* OriginalGridTests.swift */,
 			);
 			path = "风水Tests";
 			sourceTree = "<group>";
@@ -419,6 +425,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9448334E29165EC300822D28 /* OriginalGridTests.swift in Sources */,
+				9448334C2916560B00822D28 /* GridFormulaTests.swift in Sources */,
 				9441905E280ED06900C839C0 /* SnapshotTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

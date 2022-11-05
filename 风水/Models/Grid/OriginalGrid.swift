@@ -18,7 +18,7 @@ struct OriginalGrid {
     ///   - number: The grid number containing the location.
     ///   - index: The index of the location.
     func getLocation(from number: Int, at index: Int) -> Location {
-        let item = items.first(where: { $0.number == number})
+        let item = items.first(where: { $0.number == number })
         guard let item = item else {
             return .unknown
         }
@@ -31,7 +31,7 @@ struct OriginalGrid {
     ///   - number: The grid number containing the direction.
     ///   - index: The index of the direction.
     func getDirection(from number: Int, at index: Int) -> Direction {
-        let item = items.first(where: { $0.number == number})
+        let item = items.first(where: { $0.number == number })
         guard let item = item else {
             return .unknown
         }
