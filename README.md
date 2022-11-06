@@ -52,7 +52,7 @@ It is the grid specified above with 5 as the center number.
 
 
 ### How it looks
-<img width="375" alt="testCombinations 1-運-丁-坐" src="https://user-images.githubusercontent.com/44921579/164153247-9022994c-3f80-414f-97c9-01e8c91aa092.png">
+<img width="375" src="https://user-images.githubusercontent.com/44921579/200149240-3c0371a4-9884-41f1-8e72-db12c212782e.png">
 
 ## Year Grid (三煞太歲)
 
@@ -149,4 +149,4 @@ The grid consists of a set of base numbers, an Evil test and an Age text.
 6. Display in `GridView`
 
 ### How it looks
-<img width="375" alt="testCombinations 1-運-丁-坐" src="https://user-images.githubusercontent.com/44921579/164153247-9022994c-3f80-414f-97c9-01e8c91aa092.png">
+<img width="375" src="https://user-images.githubusercontent.com/44921579/200149244-59ebb146-163e-46e4-a056-84564ca95bac.png">
