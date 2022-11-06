@@ -33,8 +33,8 @@ class SnapshotTests: XCTestCase {
             Location.allCases.filter({ $0 != .unknown }).forEach { location in
                 userInput.luck = luck
                 userInput.location = location
-                let view = ContentView(userInput: userInput, selectedTab: .directionPickerGrid)
 
+                let view = ContentView(userInput: userInput, selectedTab: .directionPickerGrid)
                 assertSnapshot(
                     matching: view,
                     as: .image,
@@ -54,6 +54,7 @@ class SnapshotTests: XCTestCase {
             Location.allCases.filter({ $0 != .unknown }).forEach { location in
                 userInput.luck = luck
                 userInput.location = location
+    
                 let view = ContentView(userInput: userInput, selectedTab: .directionPickerGrid)
                 assertSnapshot(
                     matching: view,
@@ -73,6 +74,7 @@ class SnapshotTests: XCTestCase {
     func testYears() {
         (2022 ... 2072).forEach { year in
             userInput.year = .init(number: year)
+
             let view = ContentView(
                 userInput: userInput,
                 selectedTab: .yearPickerGrid
