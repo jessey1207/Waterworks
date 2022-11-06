@@ -52,7 +52,7 @@ It is the grid specified above with 5 as the center number.
 
 
 ### How it looks
-![Simulator Screen Shot - iPhone 14 Pro - 2022-11-06 at 12 05 00](https://user-images.githubusercontent.com/44921579/200149240-3c0371a4-9884-41f1-8e72-db12c212782e.png)
+<img width="375" src="https://user-images.githubusercontent.com/44921579/200149240-3c0371a4-9884-41f1-8e72-db12c212782e.png">
 
 ## Year Grid (三煞太歲)
 
@@ -149,4 +149,4 @@ The grid consists of a set of base numbers, an Evil test and an Age text.
 6. Display in `GridView`
 
 ### How it looks
-![Simulator Screen Shot - iPhone 14 Pro - 2022-11-06 at 12 05 07](https://user-images.githubusercontent.com/44921579/200149244-59ebb146-163e-46e4-a056-84564ca95bac.png)
+<img width="375" src="https://user-images.githubusercontent.com/44921579/200149244-59ebb146-163e-46e4-a056-84564ca95bac.png">
