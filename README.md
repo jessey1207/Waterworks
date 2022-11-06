@@ -10,7 +10,6 @@ Each set of numbers in the grid is generated with this formula (clockwise and an
 <img width="416" alt="Screen Shot 2022-04-20 at 2 21 55 pm" src="https://user-images.githubusercontent.com/44921579/164149951-95d449f6-52ff-4c67-8d7a-9c1b3e87cd68.png">
 
 ## Direction Grid (坐向)
-**TODO: Explain cardinal direction (in red)**
 
 ### Locations and Directions
 Location always points to the direct opposite Direction.\
@@ -24,6 +23,7 @@ Each have a gender which determines the formula rotation.
 
 ### Generated Grid
 The grid consists of 3 generated sets of numbers.
+Each grid item also has a Cardinal Point.
 
 1. Base numbers (in Chinese)
     - Center number is the specified Luck number
@@ -36,6 +36,10 @@ The grid consists of 3 generated sets of numbers.
 3. Direction numbers (top right of grid items)
     - Center number is the base number that contains the Direction character
     - Formula is found by referring to the Original Grid
+
+4. Cardinal points (bottom right of grid items in red)
+    - Each grid item represents a direction (N, S, E, W, NE, NW, SE, SW)
+    - Each direction has a chinese character representation which is what is displayed.
 
 ### Original Grid
 A static grid that should be referenced when generating the dynamic grid.\
