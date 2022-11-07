@@ -53,7 +53,7 @@ struct GridItemView: View {
     }
 
     private var bottomTrailingView: some View {
-        HStack {
+        HStack(spacing: 0) {
             Spacer()
             if let cardinalCharacter = cardinalCharacter {
                 Text(cardinalCharacter)

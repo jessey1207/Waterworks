@@ -52,7 +52,7 @@ enum Constants {
                     return min(UIScreen.screenWidth / 4, UIScreen.screenHeight / 4)
                 }
             }
-            static let inset: CGFloat = 12.0
+            static let inset: CGFloat = 6.0
             static let backgroundOpacity: CGFloat = 0.4
             static let cornerRadius: CGFloat = 16.0
             static let unknownText: String = "﹖"
