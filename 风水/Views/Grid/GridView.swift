@@ -25,7 +25,7 @@ struct GridView: View {
     }
     
     var body: some View {
-        LazyVGrid(columns: layout, spacing: 10) {
+        LazyVGrid(columns: layout, spacing: Constants.Grid.spacing) {
             ForEach(0..<9, id: \.self) { index in
                 switch viewModel.selectedTab {
                 case .directionPickerGrid:
@@ -35,6 +35,7 @@ struct GridView: View {
                 }
             }
         }
+        .frame(maxWidth: maxWidth)
         .padding(30)
         .overlay(
             arrowsView
@@ -46,9 +47,15 @@ struct GridView: View {
     }
 
     private let layout = Array(
-        repeating: GridItem(.flexible()),
+        repeating: GridItem(.fixed(Constants.Grid.Item.width), spacing: Constants.Grid.spacing),
         count: 3
     )
+
+    private var maxWidth: CGFloat {
+        let itemsWidth = Constants.Grid.Item.width * CGFloat(layout.count)
+        let spacing = Constants.Grid.spacing * CGFloat(layout.count - 1)
+        return itemsWidth + spacing
+    }
 
     @ViewBuilder
     private func directionPickerItem(index: Int) -> some View {

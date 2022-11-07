@@ -16,64 +16,58 @@ struct GridItemView: View {
     let isVisibleAgeText: Bool
     
     var body: some View {
-        VStack {
-            VStack(spacing: 10) {
-                aboveBaseNumberView
-                Text(baseNumber)
-            }
-            .multilineTextAlignment(.center)
-            belowBaseNumberView
+        ZStack {
+            centerNumbersView
+                .frame(
+                    maxWidth: .infinity,
+                    maxHeight: .infinity,
+                    alignment: .center
+                )
+            bottomTrailingView
+                .frame(
+                    maxWidth: .infinity,
+                    maxHeight: .infinity,
+                    alignment: .bottomTrailing
+                )
         }
-        .padding(
-            EdgeInsets(
-                top: Constants.Grid.Item.inset,
-                leading: Constants.Grid.Item.inset,
-                bottom: Constants.Grid.Item.inset,
-                trailing: Constants.Grid.Item.inset
-            )
-        )
-        .frame(
-            minWidth: Constants.Grid.Item.minWidth,
-            maxWidth: Constants.Grid.Item.maxWidth,
-            minHeight: Constants.Grid.Item.minHeight
-        )
+        .aspectRatio(1.0, contentMode: .fit)
+        .padding(Constants.Grid.Item.inset)
         .background(
             .gray.opacity(Constants.Grid.Item.backgroundOpacity)
         )
         .cornerRadius(Constants.Grid.Item.cornerRadius)
     }
 
-    private var aboveBaseNumberView: some View {
-        HStack {
-            if let locationNumber = locationNumber,
-               let directionNumber = directionNumber {
-                Text(locationNumber)
-                Text(directionNumber)
-            } else {
-                Spacer()
-                Text(Constants.Grid.Item.evilText)
-                    .font(.system(size: 12))
-                    .foregroundColor(.red)
-                    .opacity(isVisibleEvilText ? 1 : 0)
+    private var centerNumbersView: some View {
+        VStack(spacing: 10) {
+            HStack {
+                if let locationNumber = locationNumber,
+                   let directionNumber = directionNumber {
+                    Text(locationNumber)
+                    Text(directionNumber)
+                }
             }
+            Text(baseNumber)
         }
-        .padding(.horizontal, Constants.Grid.Item.inset)
+        .multilineTextAlignment(.center)
     }
 
-    private var belowBaseNumberView: some View {
+    private var bottomTrailingView: some View {
         HStack {
             Spacer()
             if let cardinalCharacter = cardinalCharacter {
                 Text(cardinalCharacter)
+                    .foregroundColor(.red)
             } else {
-                Text(Constants.Grid.Item.ageText)
-                    .padding(.top, 0.5)
-                    .opacity(isVisibleAgeText ? 1 : 0)
+                if isVisibleEvilText {
+                    Text(Constants.Grid.Item.evilTextIcon)
+                }
+                if isVisibleAgeText {
+                    Text(Constants.Grid.Item.ageTextIcon)
+                }
             }
         }
-        .font(.system(size: 12))
-        .foregroundColor(.red)
-        .padding(.horizontal, Constants.Grid.Item.inset)
+        .font(.caption)
     }
 }
 

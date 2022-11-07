@@ -30,6 +30,8 @@ enum Constants {
     }
 
     enum Grid {
+        static let spacing: CGFloat = 10.0
+
         enum Arrows {
             static let size: CGFloat = 15.0
 
@@ -42,15 +44,22 @@ enum Constants {
         }
 
         enum Item {
-            static let inset: CGFloat = 6.0
-            static let minWidth: CGFloat = 0.0
-            static let maxWidth: CGFloat = .infinity
-            static let minHeight: CGFloat = 90.0
+            static var width: CGFloat {
+                switch UIDevice.current.userInterfaceIdiom {
+                case .pad:
+                    return min(UIScreen.screenWidth / 6, UIScreen.screenHeight / 6)
+                default:
+                    return min(UIScreen.screenWidth / 4, UIScreen.screenHeight / 4)
+                }
+            }
+            static let inset: CGFloat = 12.0
             static let backgroundOpacity: CGFloat = 0.4
             static let cornerRadius: CGFloat = 16.0
             static let unknownText: String = "﹖"
             static let evilText: String = "三煞"
+            static let evilTextIcon: String = "🔴"
             static let ageText: String = "太歲"
+            static let ageTextIcon: String = "🔵"
         }
     }
 }

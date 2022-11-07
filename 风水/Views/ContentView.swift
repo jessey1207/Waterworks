@@ -18,7 +18,7 @@ struct ContentView: View {
     ) {
         self.userInput = userInput
         self.selectedTab = selectedTab
-        UITabBar.appearance().backgroundColor = UIColor.lightGray
+        UITabBar.appearance().backgroundColor = UIColor.white
         UITabBarItem.appearance().setTitleTextAttributes(
             [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 20)],
             for: .normal
@@ -48,7 +48,8 @@ struct ContentView: View {
         ZStack {
             BackgroundView()
             VStack(spacing: 40) {
-                Spacer()
+                Color.clear
+                    .frame(height: 15)
                 PickerView(
                     userInput: userInput,
                     selectedTab: .directionPickerGrid
@@ -63,10 +64,8 @@ struct ContentView: View {
                     rotated: $rotated
                 )
                 .disabled(userInput.isInvalid)
-                Spacer()
             }
             .scrollInLandscapeMode()
-            .ignoresSafeArea(.keyboard)
         }
     }
     
@@ -74,7 +73,8 @@ struct ContentView: View {
         ZStack {
             BackgroundView()
             VStack(spacing: 40) {
-                Spacer()
+                Color.clear
+                    .frame(height: 15)
                 PickerView(
                     userInput: userInput,
                     selectedTab: .yearPickerGrid
@@ -84,10 +84,13 @@ struct ContentView: View {
                     rotated: $rotated,
                     selectedTab: .yearPickerGrid
                 )
-                Spacer()
+                HStack(spacing: 55) {
+                    Text("\(Constants.Grid.Item.evilTextIcon) \(Constants.Grid.Item.evilText)")
+                    Text("\(Constants.Grid.Item.ageTextIcon) \(Constants.Grid.Item.ageText)")
+                }
+                .font(.callout)
             }
             .scrollInLandscapeMode()
-            .ignoresSafeArea(.keyboard)
         }
     }
 }
