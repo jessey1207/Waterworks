@@ -18,7 +18,7 @@ struct ContentView: View {
     ) {
         self.userInput = userInput
         self.selectedTab = selectedTab
-        UITabBar.appearance().backgroundColor = UIColor.white
+        UITabBar.appearance().backgroundColor = UIColor.systemBackground
         UITabBarItem.appearance().setTitleTextAttributes(
             [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 20)],
             for: .normal
