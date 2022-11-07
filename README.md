@@ -1,4 +1,4 @@
-# FengShuiApp
+# Waterworks
 
 This app has 2 main purposes, both based off of user input:
   1. Generate a grid based on Luck and Location
