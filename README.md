@@ -56,7 +56,7 @@ It is the grid specified above with 5 as the center number.
 
 
 ### How it looks
-<img width="375" src="https://user-images.githubusercontent.com/44921579/200149240-3c0371a4-9884-41f1-8e72-db12c212782e.png">
+<img width="375" src="https://user-images.githubusercontent.com/44921579/200208978-f885d159-7473-40cf-8d6b-69792e5c475d.png">
 
 ## Year Grid (三煞太歲)
 
@@ -132,16 +132,16 @@ The Age position can be found by using the number of the earth branch that is re
 - 9 = 午
 
 ### Generated Grid
-The grid consists of a set of base numbers, an Evil test and an Age text.
+The grid consists of a set of base numbers, an Evil icon and an Age icon.
 
 1. Base numbers (in Chinese)
     - Center number is the Year number
     - Formula is always clockwise
 
-2. Evil text
+2. Evil icon (Red circle)
     - Found by method explained above and shows in the bottom right corner of the grid item.
 
-3. Age text
+3. Age icon (Blue circle)
     - Found by method explained above and shows in the bottom right corner of the grid item.
 
 ### How it works
@@ -153,4 +153,4 @@ The grid consists of a set of base numbers, an Evil test and an Age text.
 6. Display in `GridView`
 
 ### How it looks
-<img width="375" src="https://user-images.githubusercontent.com/44921579/200149244-59ebb146-163e-46e4-a056-84564ca95bac.png">
+<img width="375" src="https://user-images.githubusercontent.com/44921579/200209337-111a6edb-2862-45c0-a51d-8694e678d8ad.png">
