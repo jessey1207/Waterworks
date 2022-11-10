@@ -12,13 +12,20 @@ struct OrientationViewModifier: ViewModifier {
 
     func body(content: Content) -> some View {
         content
+            .onAppear {
+                checkOrientation()
+            }
             .onReceive(
                 NotificationCenter.default.publisher(for: UIDevice.orientationDidChangeNotification)
             ) { _ in
-                guard let scene = UIApplication.shared.connectedScenes.first as? UIWindowScene else { return }
-                self.isPortrait = scene.interfaceOrientation.isPortrait
+                checkOrientation()
             }
             .wrappedInScrollView(when: !isPortrait)
+    }
+
+    private func checkOrientation() {
+        guard let scene = UIApplication.shared.connectedScenes.first as? UIWindowScene else { return }
+        self.isPortrait = scene.interfaceOrientation.isPortrait
     }
 }
 
@@ -29,6 +36,7 @@ extension View {
             ScrollView(.vertical, showsIndicators: false) {
                 self
             }
+            .padding(50)
         } else {
             self
         }

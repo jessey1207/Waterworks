@@ -45,11 +45,9 @@ struct ContentView: View {
     }
     
     private var directionPickerTab: some View {
-        ZStack {
+        ZStack(alignment: .center) {
             BackgroundView()
             VStack(spacing: 40) {
-                Color.clear
-                    .frame(height: 15)
                 PickerView(
                     userInput: userInput,
                     selectedTab: .directionPickerGrid
@@ -70,11 +68,9 @@ struct ContentView: View {
     }
     
     private var yearPickerTab: some View {
-        ZStack {
+        ZStack(alignment: .center) {
             BackgroundView()
             VStack(spacing: 40) {
-                Color.clear
-                    .frame(height: 15)
                 PickerView(
                     userInput: userInput,
                     selectedTab: .yearPickerGrid
