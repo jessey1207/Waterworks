@@ -64,6 +64,14 @@ struct ContentView: View {
                 .disabled(userInput.isInvalid)
             }
             .scrollInLandscapeMode()
+            Image("Compass")
+                .resizable()
+                .scaledToFit()
+                .frame(width: 80, height: 80)
+                .background(Color.white.opacity(0.5))
+                .padding(.leading, 10)
+                .padding(.bottom, 10)
+                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottomLeading)
         }
     }
     
