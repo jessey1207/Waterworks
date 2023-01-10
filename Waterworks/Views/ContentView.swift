@@ -8,54 +8,17 @@
 import SwiftUI
 
 struct ContentView: View {
-    @ObservedObject private var userInput: UserInput
-    @State private var selectedTab: Tab
+    @ObservedObject private var userInput: UserInput = .init()
     @State private var rotated: Bool = false
-
-    init(
-        userInput: UserInput = .init(),
-        selectedTab: Tab = .directionPickerGrid
-    ) {
-        self.userInput = userInput
-        self.selectedTab = selectedTab
-        UITabBar.appearance().backgroundColor = UIColor.systemBackground
-        UITabBarItem.appearance().setTitleTextAttributes(
-            [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 20)],
-            for: .normal
-        )
-    }
     
     var body: some View {
-        tabView
-    }
-
-    private var tabView: some View {
-        TabView(selection: $selectedTab) {
-            directionPickerTab
-                .tabItem {
-                    Text(Tab.directionPickerGrid.tabTitle)
-                }
-                .tag(Tab.directionPickerGrid)
-            yearPickerTab
-                .tabItem {
-                    Text(Tab.yearPickerGrid.tabTitle)
-                }
-                .tag(Tab.yearPickerGrid)
-        }
-    }
-    
-    private var directionPickerTab: some View {
         ZStack(alignment: .center) {
             BackgroundView()
             VStack(spacing: 40) {
-                PickerView(
-                    userInput: userInput,
-                    selectedTab: .directionPickerGrid
-                )
+                PickerView(userInput: userInput)
                 GridView(
                     userInput: userInput,
-                    rotated: $rotated,
-                    selectedTab: .directionPickerGrid
+                    rotated: $rotated
                 )
                 RotateButton(
                     userInput: userInput,
@@ -67,43 +30,38 @@ struct ContentView: View {
         }
     }
     
-    private var yearPickerTab: some View {
-        ZStack(alignment: .center) {
-            BackgroundView()
-            VStack(spacing: 40) {
-                PickerView(
-                    userInput: userInput,
-                    selectedTab: .yearPickerGrid
-                )
-                GridView(
-                    userInput: userInput,
-                    rotated: $rotated,
-                    selectedTab: .yearPickerGrid
-                )
-                HStack(spacing: 55) {
-                    Text("\(Constants.Grid.Item.evilTextIcon) \(Constants.Grid.Item.evilText)")
-                    Text("\(Constants.Grid.Item.ageTextIcon) \(Constants.Grid.Item.ageText)")
-                }
-                .font(.callout)
-            }
-            .scrollInLandscapeMode()
-        }
-    }
+    // TODO: Integrate this view into original one
+//    private var yearPickerTab: some View {
+//        ZStack(alignment: .center) {
+//            BackgroundView()
+//            VStack(spacing: 40) {
+//                PickerView(
+//                    userInput: userInput,
+//                    selectedTab: .yearPickerGrid
+//                )
+//                GridView(
+//                    userInput: userInput,
+//                    rotated: $rotated,
+//                    selectedTab: .yearPickerGrid
+//                )
+//                HStack(spacing: 55) {
+//                    Text("\(Constants.Grid.Item.evilTextIcon) \(Constants.Grid.Item.evilText)")
+//                    Text("\(Constants.Grid.Item.ageTextIcon) \(Constants.Grid.Item.ageText)")
+//                }
+//                .font(.callout)
+//            }
+//            .scrollInLandscapeMode()
+//        }
+//    }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView(selectedTab: .directionPickerGrid)
+        ContentView()
             .previewLayout(.fixed(width: 568, height: 320))
-            .previewDisplayName("DirectionPickerGrid")
-        ContentView(selectedTab: .directionPickerGrid)
+            .previewDisplayName("Grid-light")
+        ContentView()
             .preferredColorScheme(.dark)
-            .previewDisplayName("DirectionPickerGrid-dark")
-        ContentView(selectedTab: .yearPickerGrid)
-            .previewLayout(.fixed(width: 568, height: 320))
-            .previewDisplayName("YearPickerGrid")
-        ContentView(selectedTab: .yearPickerGrid)
-            .preferredColorScheme(.dark)
-            .previewDisplayName("YearPickerGrid-dark")
+            .previewDisplayName("Grid-dark")
     }
 }

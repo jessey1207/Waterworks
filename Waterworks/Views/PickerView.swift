@@ -9,23 +9,18 @@ import SwiftUI
 
 struct PickerView: View {
     @ObservedObject var userInput: UserInput
-
-    let selectedTab: Tab
     
     var body: some View {
-        switch selectedTab {
-        case .directionPickerGrid:
-            HStack(spacing: 50) {
-                luckPicker
-                locationPicker
-                directionText
-            }
-        case .yearPickerGrid:
-            HStack(spacing: 20) {
-                yearPicker
-                heavenEarthText
-            }
+        HStack(spacing: 50) {
+            luckPicker
+            locationPicker
+            directionText
         }
+        // TODO: Add this to picker area
+//        HStack(spacing: 20) {
+//            yearPicker
+//            heavenEarthText
+//        }
     }
 
     // MARK: - DirectionPickerGrid
@@ -120,7 +115,6 @@ struct PickerView: View {
 
 struct PickerView_Previews: PreviewProvider {
     static var previews: some View {
-        PickerView(userInput: UserInput(), selectedTab: .directionPickerGrid)
-        PickerView(userInput: UserInput(), selectedTab: .yearPickerGrid)
+        PickerView(userInput: .init())
     }
 }

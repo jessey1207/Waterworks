@@ -13,13 +13,11 @@ struct GridView: View {
 
     init(
         userInput: UserInput,
-        rotated: Binding<Bool>,
-        selectedTab: Tab
+        rotated: Binding<Bool>
     ) {
         viewModel = .init(
             userInput: userInput,
-            rotated: rotated.wrappedValue,
-            selectedTab: selectedTab
+            rotated: rotated.wrappedValue
         )
         self._rotated = rotated
     }
@@ -27,12 +25,9 @@ struct GridView: View {
     var body: some View {
         LazyVGrid(columns: layout, spacing: Constants.Grid.spacing) {
             ForEach(0..<9, id: \.self) { index in
-                switch viewModel.selectedTab {
-                case .directionPickerGrid:
-                    directionPickerItem(index: index)
-                case .yearPickerGrid:
-                    yearPickerGrid(index: index)
-                }
+                directionPickerItem(index: index)
+                // TODO: Integrate
+//                yearPickerGrid(index: index)
             }
         }
         .frame(maxWidth: maxWidth)
@@ -80,17 +75,18 @@ struct GridView: View {
         }
     }
 
-    @ViewBuilder
-    private func yearPickerGrid(index: Int) -> some View {
-        GridItemView(
-            baseNumber: viewModel.baseNumber(at: index),
-            locationNumber: nil,
-            directionNumber: nil,
-            cardinalCharacter: nil,
-            isVisibleEvilText: viewModel.isVisibleEvilText(at: index),
-            isVisibleAgeText: viewModel.isVisibleAgeText(at: index)
-        )
-    }
+    // TODO: Integrate
+//    @ViewBuilder
+//    private func yearPickerGrid(index: Int) -> some View {
+//        GridItemView(
+//            baseNumber: viewModel.baseNumber(at: index),
+//            locationNumber: nil,
+//            directionNumber: nil,
+//            cardinalCharacter: nil,
+//            isVisibleEvilText: viewModel.isVisibleEvilText(at: index),
+//            isVisibleAgeText: viewModel.isVisibleAgeText(at: index)
+//        )
+//    }
 
     @ViewBuilder
     private var arrowsView: some View {
@@ -98,7 +94,6 @@ struct GridView: View {
             userInput: viewModel.userInput,
             rotated: $rotated
         )
-        .opacity(viewModel.selectedTab == .directionPickerGrid ? 1 : 0)
     }
 }
 
@@ -107,46 +102,21 @@ struct GridView_Previews: PreviewProvider {
         Group {
             GridView(
                 userInput: UserInput(),
-                rotated: .constant(false),
-                selectedTab: .directionPickerGrid
+                rotated: .constant(false)
             )
-                .previewDisplayName("DirectionPicker")
+            .previewDisplayName("Picker")
             GridView(
                 userInput: UserInput(),
-                rotated: .constant(true),
-                selectedTab: .directionPickerGrid
+                rotated: .constant(true)
             )
-                .previewDisplayName("DirectionPicker-rotated")
+            .previewDisplayName("Picker-rotated")
             GridView(
                 userInput: UserInput(),
-                rotated: .constant(false),
-                selectedTab: .directionPickerGrid)
-            
-                .preferredColorScheme(.dark)
-                .previewLayout(.fixed(width: 568, height: 320))
-                .previewDisplayName("DirectionPicker-dark")
-        }
-        Group {
-            GridView(
-                userInput: UserInput(),
-                rotated: .constant(false),
-                selectedTab: .yearPickerGrid
+                rotated: .constant(false)
             )
-                .previewDisplayName("YearPicker")
-            GridView(
-                userInput: UserInput(),
-                rotated: .constant(true),
-                selectedTab: .yearPickerGrid
-            )
-                .previewDisplayName("YearPicker-rotated")
-            GridView(
-                userInput: UserInput(),
-                rotated: .constant(false),
-                selectedTab: .yearPickerGrid
-            )
-                .preferredColorScheme(.dark)
-                .previewLayout(.fixed(width: 568, height: 320))
-                .previewDisplayName("YearPicker-dark")
+            .preferredColorScheme(.dark)
+            .previewLayout(.fixed(width: 568, height: 320))
+            .previewDisplayName("Picker-dark")
         }
     }
 }
