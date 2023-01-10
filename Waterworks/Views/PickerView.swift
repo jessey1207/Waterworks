@@ -11,19 +11,28 @@ struct PickerView: View {
     @ObservedObject var userInput: UserInput
     
     var body: some View {
+        VStack(spacing: 25) {
+            directionPickers
+            yearPickers
+        }
+    }
+    
+    private var directionPickers: some View {
         HStack(spacing: 50) {
             luckPicker
             locationPicker
             directionText
         }
-        // TODO: Add this to picker area
-//        HStack(spacing: 20) {
-//            yearPicker
-//            heavenEarthText
-//        }
+    }
+    
+    private var yearPickers: some View {
+        HStack(spacing: 20) {
+            yearPicker
+            heavenEarthText
+        }
     }
 
-    // MARK: - DirectionPickerGrid
+    // MARK: - Direction pickers
 
     private var luckPicker: some View {
         HStack {
@@ -69,7 +78,7 @@ struct PickerView: View {
         }
     }
 
-    // MARK: - YearPickerGrid
+    // MARK: - Year pickers
 
     private var yearPicker: some View {
         HStack {
@@ -98,7 +107,7 @@ struct PickerView: View {
         .foregroundColor(.gray)
     }
 
-    // MARK: Helper
+    // MARK: - Helpers
     
     private func getYearRange() -> ClosedRange<Int> {
         let currentDate = Date()

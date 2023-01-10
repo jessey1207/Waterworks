@@ -56,14 +56,26 @@ extension GridView {
         func cardinalCharacter(at index: Int) -> String {
             cardinalItems[index]
         }
+        
+        /// Retrieves the year number to be displayed.
+        ///
+        /// - Parameter index: Grid index where text is to be displayed in.
+        /// - Returns: The number as a String.
+        func yearNumber(at index: Int) -> String {
+            String(yearItems[index].number)
+        }
 
         /// Indicates whether the evil text should be visible.
         ///
         /// - Parameter index: Grid index where text is to be displayed in.
         /// - Returns: The Boolean.
         func isVisibleEvilText(at index: Int) -> Bool {
-            // TODO: Check this logic
-            index == userInput.year.earthBranch.cardinalPoint.gridIndex
+            guard let evilIndex = userInput.year.earthBranch.cardinalPoint.gridIndex else { return false }
+            let originalYearItems = GridFormula.clockwise.generateGridItems(
+                center: userInput.year.gridNumber
+            )
+            let evilYearNumber = originalYearItems[evilIndex].number
+            return yearItems[index].number == evilYearNumber
         }
 
         /// Indicates whether the age text should be visible.
@@ -71,11 +83,19 @@ extension GridView {
         /// - Parameter index: Grid index where text is to be displayed in.
         /// - Returns: The Boolean.
         func isVisibleAgeText(at index: Int) -> Bool {
-            // TODO: Check this logic
             baseItems[index].number == userInput.year.earthBranch.number
         }
         
         // MARK: - Private properties
+        
+        private var yearItems: [GridItemModel] {
+            let items = GridFormula.clockwise.generateGridItems(
+                center: userInput.year.gridNumber
+            )
+            return rotated
+            ? items.rearranged(for: userInput.direction)
+            : items
+        }
         
         private var baseItems: [GridItemModel] {
             let items = GridFormula.clockwise.generateGridItems(
@@ -84,11 +104,6 @@ extension GridView {
             return rotated
             ? items.rearranged(for: userInput.direction)
             : items
-            // TODO: Need these numbers to appear somewhere as they are year picker base numbers
-//            let items = GridFormula.clockwise.generateGridItems(
-//                center: userInput.year.gridNumber
-//            )
-//            return items
         }
         
         private var locationItems: [GridItemModel]? {

@@ -25,9 +25,7 @@ struct GridView: View {
     var body: some View {
         LazyVGrid(columns: layout, spacing: Constants.Grid.spacing) {
             ForEach(0..<9, id: \.self) { index in
-                directionPickerItem(index: index)
-                // TODO: Integrate
-//                yearPickerGrid(index: index)
+                gridItem(index: index)
             }
         }
         .frame(maxWidth: maxWidth)
@@ -53,40 +51,29 @@ struct GridView: View {
     }
 
     @ViewBuilder
-    private func directionPickerItem(index: Int) -> some View {
-        if !viewModel.userInput.isInvalid {
-            GridItemView(
-                baseNumber: viewModel.baseNumber(at: index),
-                locationNumber: viewModel.locationNumber(at: index),
-                directionNumber: viewModel.directionNumber(at: index),
-                cardinalCharacter: viewModel.cardinalCharacter(at: index),
-                isVisibleEvilText: viewModel.isVisibleEvilText(at: index),
-                isVisibleAgeText: viewModel.isVisibleAgeText(at: index)
-            )
-        } else {
+    private func gridItem(index: Int) -> some View {
+        if viewModel.userInput.isInvalid {
             GridItemView(
                 baseNumber: Constants.Grid.Item.unknownText,
                 locationNumber: Constants.Grid.Item.unknownText,
                 directionNumber: Constants.Grid.Item.unknownText,
                 cardinalCharacter: Constants.Grid.Item.unknownText,
-                isVisibleEvilText: viewModel.isVisibleEvilText(at: index),
-                isVisibleAgeText: viewModel.isVisibleAgeText(at: index)
+                yearNumber: viewModel.yearNumber(at: index),
+                isVisibleEvilIcon: viewModel.isVisibleEvilText(at: index),
+                isVisibleAgeIcon: viewModel.isVisibleAgeText(at: index)
+            )
+        } else {
+            GridItemView(
+                baseNumber: viewModel.baseNumber(at: index),
+                locationNumber: viewModel.locationNumber(at: index),
+                directionNumber: viewModel.directionNumber(at: index),
+                cardinalCharacter: viewModel.cardinalCharacter(at: index),
+                yearNumber: viewModel.yearNumber(at: index),
+                isVisibleEvilIcon: viewModel.isVisibleEvilText(at: index),
+                isVisibleAgeIcon: viewModel.isVisibleAgeText(at: index)
             )
         }
     }
-
-    // TODO: Integrate
-//    @ViewBuilder
-//    private func yearPickerGrid(index: Int) -> some View {
-//        GridItemView(
-//            baseNumber: viewModel.baseNumber(at: index),
-//            locationNumber: nil,
-//            directionNumber: nil,
-//            cardinalCharacter: nil,
-//            isVisibleEvilText: viewModel.isVisibleEvilText(at: index),
-//            isVisibleAgeText: viewModel.isVisibleAgeText(at: index)
-//        )
-//    }
 
     @ViewBuilder
     private var arrowsView: some View {

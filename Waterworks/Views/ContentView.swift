@@ -25,34 +25,15 @@ struct ContentView: View {
                     rotated: $rotated
                 )
                 .disabled(userInput.isInvalid)
+                HStack(spacing: 55) {
+                    Text("\(Constants.Grid.Item.evilTextIcon) \(Constants.Grid.Item.evilText)")
+                    Text("\(Constants.Grid.Item.ageTextIcon) \(Constants.Grid.Item.ageText)")
+                }
+                .font(.callout)
             }
             .scrollInLandscapeMode()
         }
     }
-    
-    // TODO: Integrate this view into original one
-//    private var yearPickerTab: some View {
-//        ZStack(alignment: .center) {
-//            BackgroundView()
-//            VStack(spacing: 40) {
-//                PickerView(
-//                    userInput: userInput,
-//                    selectedTab: .yearPickerGrid
-//                )
-//                GridView(
-//                    userInput: userInput,
-//                    rotated: $rotated,
-//                    selectedTab: .yearPickerGrid
-//                )
-//                HStack(spacing: 55) {
-//                    Text("\(Constants.Grid.Item.evilTextIcon) \(Constants.Grid.Item.evilText)")
-//                    Text("\(Constants.Grid.Item.ageTextIcon) \(Constants.Grid.Item.ageText)")
-//                }
-//                .font(.callout)
-//            }
-//            .scrollInLandscapeMode()
-//        }
-//    }
 }
 
 struct ContentView_Previews: PreviewProvider {
