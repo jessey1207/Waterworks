@@ -13,20 +13,16 @@ import SwiftUI
 
 /// Snapshot tests are run on iPhone 14
 
+// TODO: Change these into algorithm tests. Snapshots will keep changing
+
 class SnapshotTests: XCTestCase {
     
     let userInput = UserInput()
     
-    func testDirectionPickerGrid() {
-        let view = ContentView(selectedTab: .directionPickerGrid)
+    func testGrid() {
+        let view = ContentView().frame(width: 400, height: 800)
         assertSnapshot(matching: view, as: .image, named: "default")
     }
-
-    func testYearPickerGrid() {
-        let view = ContentView(selectedTab: .yearPickerGrid)
-        assertSnapshot(matching: view, as: .image, named: "default")
-    }
-    
     
     func testCombinations() {
         Luck.allCases.filter({ $0 != .unknown }).forEach { luck in
@@ -34,7 +30,9 @@ class SnapshotTests: XCTestCase {
                 userInput.luck = luck
                 userInput.location = location
 
-                let view = ContentView(userInput: userInput, selectedTab: .directionPickerGrid)
+                let view = ContentView(userInput: userInput)
+                    .frame(width: 400, height: 800)
+                
                 assertSnapshot(
                     matching: view,
                     as: .image,
@@ -54,8 +52,10 @@ class SnapshotTests: XCTestCase {
             Location.allCases.filter({ $0 != .unknown }).forEach { location in
                 userInput.luck = luck
                 userInput.location = location
-    
-                let view = ContentView(userInput: userInput, selectedTab: .directionPickerGrid)
+                
+                let view = ContentView(userInput: userInput)
+                    .frame(width: 400, height: 800)
+                
                 assertSnapshot(
                     matching: view,
                     as: .image,
@@ -73,12 +73,11 @@ class SnapshotTests: XCTestCase {
 
     func testYears() {
         (2022 ... 2072).forEach { year in
-            userInput.year = .init(number: year)
-
-            let view = ContentView(
-                userInput: userInput,
-                selectedTab: .yearPickerGrid
-            )
+            userInput.year = .init(number: Int(year))
+            
+            let view = ContentView(userInput: userInput)
+                .frame(width: 400, height: 800)
+            
             assertSnapshot(
                 matching: view,
                 as: .image,

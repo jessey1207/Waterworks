@@ -8,8 +8,13 @@
 import SwiftUI
 
 struct ContentView: View {
-    @ObservedObject private var userInput: UserInput = .init()
-    @State private var rotated: Bool = false
+    @ObservedObject private var userInput: UserInput
+    @State private var rotated: Bool
+    
+    init(userInput: UserInput = .init(), rotated: Bool = false) {
+        self.userInput = userInput
+        self.rotated = rotated
+    }
     
     var body: some View {
         ZStack(alignment: .center) {

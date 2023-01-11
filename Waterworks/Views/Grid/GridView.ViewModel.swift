@@ -83,7 +83,7 @@ extension GridView {
         /// - Parameter index: Grid index where text is to be displayed in.
         /// - Returns: The Boolean.
         func isVisibleAgeText(at index: Int) -> Bool {
-            baseItems[index].number == userInput.year.earthBranch.number
+            yearItems[index].number == userInput.year.earthBranch.number
         }
         
         // MARK: - Private properties
