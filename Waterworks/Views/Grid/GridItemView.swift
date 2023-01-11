@@ -9,11 +9,13 @@ import SwiftUI
 
 struct GridItemView: View {
     let baseNumber: String
-    let locationNumber: String?
-    let directionNumber: String?
-    let cardinalCharacter: String?
-    let isVisibleEvilText: Bool
-    let isVisibleAgeText: Bool
+    let locationNumber: String
+    let directionNumber: String
+    let cardinalCharacter: String
+    
+    let yearNumber: String
+    let isVisibleEvilIcon: Bool
+    let isVisibleAgeIcon: Bool
     
     var body: some View {
         ZStack {
@@ -21,13 +23,13 @@ struct GridItemView: View {
                 .frame(
                     maxWidth: .infinity,
                     maxHeight: .infinity,
-                    alignment: .center
+                    alignment: .top
                 )
-            bottomTrailingView
+            bottomView
                 .frame(
                     maxWidth: .infinity,
                     maxHeight: .infinity,
-                    alignment: .bottomTrailing
+                    alignment: .bottom
                 )
         }
         .aspectRatio(1.0, contentMode: .fit)
@@ -41,31 +43,27 @@ struct GridItemView: View {
     private var centerNumbersView: some View {
         VStack(spacing: 10) {
             HStack {
-                if let locationNumber = locationNumber,
-                   let directionNumber = directionNumber {
-                    Text(locationNumber)
-                    Text(directionNumber)
-                }
+                Text(locationNumber)
+                Text(directionNumber)
             }
             Text(baseNumber)
         }
         .multilineTextAlignment(.center)
+        .padding(.top, 6)
     }
-
-    private var bottomTrailingView: some View {
-        HStack(spacing: 0) {
-            Spacer()
-            if let cardinalCharacter = cardinalCharacter {
-                Text(cardinalCharacter)
-                    .foregroundColor(.red)
-            } else {
-                if isVisibleEvilText {
-                    Text(Constants.Grid.Item.evilTextIcon)
-                }
-                if isVisibleAgeText {
-                    Text(Constants.Grid.Item.ageTextIcon)
-                }
+    
+    private var bottomView: some View {
+        HStack(spacing: 5) {
+            Text(yearNumber)
+            if isVisibleEvilIcon {
+                Text(Constants.Grid.Item.evilTextIcon)
             }
+            if isVisibleAgeIcon {
+                Text(Constants.Grid.Item.ageTextIcon)
+            }
+            Spacer()
+            Text(cardinalCharacter)
+                .foregroundColor(.red)
         }
         .font(.caption)
     }
@@ -78,18 +76,10 @@ struct CalculatedGridItemView_Previews: PreviewProvider {
             locationNumber: "6",
             directionNumber: "4",
             cardinalCharacter: "巽",
-            isVisibleEvilText: false,
-            isVisibleAgeText: false
+            yearNumber: "6",
+            isVisibleEvilIcon: true,
+            isVisibleAgeIcon: true
         )
-        .previewDisplayName("DirectionPickerGridItem")
-        GridItemView(
-            baseNumber: "9".translatedToChinese(),
-            locationNumber: nil,
-            directionNumber: nil,
-            cardinalCharacter: nil,
-            isVisibleEvilText: true,
-            isVisibleAgeText: true
-        )
-        .previewDisplayName("YearPickerGridItem")
+        .previewDisplayName("GridItem")
     }
 }

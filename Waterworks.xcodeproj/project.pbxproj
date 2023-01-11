@@ -25,7 +25,6 @@
 		9448334E29165EC300822D28 /* OriginalGridTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9448334D29165EC300822D28 /* OriginalGridTests.swift */; };
 		9448335229166BF800822D28 /* HeavenStem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9448335129166BF800822D28 /* HeavenStem.swift */; };
 		9448335429166C4000822D28 /* EarthBranch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9448335329166C4000822D28 /* EarthBranch.swift */; };
-		944833562916A4DA00822D28 /* Tab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944833552916A4DA00822D28 /* Tab.swift */; };
 		944833582916BA2F00822D28 /* Year.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944833572916BA2F00822D28 /* Year.swift */; };
 		9484E5792917A17800F50B0A /* YearTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9484E5782917A17800F50B0A /* YearTests.swift */; };
 		9484E57D29187F3E00F50B0A /* UIScreen+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9484E57C29187F3E00F50B0A /* UIScreen+Extensions.swift */; };
@@ -81,7 +80,6 @@
 		9448334D29165EC300822D28 /* OriginalGridTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OriginalGridTests.swift; sourceTree = "<group>"; };
 		9448335129166BF800822D28 /* HeavenStem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeavenStem.swift; sourceTree = "<group>"; };
 		9448335329166C4000822D28 /* EarthBranch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EarthBranch.swift; sourceTree = "<group>"; };
-		944833552916A4DA00822D28 /* Tab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tab.swift; sourceTree = "<group>"; };
 		944833572916BA2F00822D28 /* Year.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Year.swift; sourceTree = "<group>"; };
 		9484E5782917A17800F50B0A /* YearTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YearTests.swift; sourceTree = "<group>"; };
 		9484E57C29187F3E00F50B0A /* UIScreen+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScreen+Extensions.swift"; sourceTree = "<group>"; };
@@ -165,7 +163,6 @@
 				9441907028103E8800C839C0 /* CardinalPoint.swift */,
 				9448335129166BF800822D28 /* HeavenStem.swift */,
 				9448335329166C4000822D28 /* EarthBranch.swift */,
-				944833552916A4DA00822D28 /* Tab.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -407,7 +404,6 @@
 				9426E7B3280C629B00B34534 /* UserInput.swift in Sources */,
 				9426E79B280C4BD500B34534 /* __App.swift in Sources */,
 				94CEE75F280E2D1900064407 /* OriginalGrid.swift in Sources */,
-				944833562916A4DA00822D28 /* Tab.swift in Sources */,
 				9448335429166C4000822D28 /* EarthBranch.swift in Sources */,
 				94CEE746280C735C00064407 /* Constants.swift in Sources */,
 			);
@@ -669,6 +665,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = P9CGM6HXJH;
 				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.funghi.--Tests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -687,6 +684,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = P9CGM6HXJH;
 				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.funghi.--Tests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
