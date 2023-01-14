@@ -18,21 +18,11 @@ struct GridItemView: View {
     let isVisibleAgeIcon: Bool
     
     var body: some View {
-        ZStack {
+        VStack(spacing: 10) {
             centerNumbersView
-                .frame(
-                    maxWidth: .infinity,
-                    maxHeight: .infinity,
-                    alignment: .top
-                )
+                .padding(.top, 7)
             bottomView
-                .frame(
-                    maxWidth: .infinity,
-                    maxHeight: .infinity,
-                    alignment: .bottom
-                )
         }
-        .aspectRatio(1.0, contentMode: .fit)
         .padding(Constants.Grid.Item.inset)
         .background(
             .gray.opacity(Constants.Grid.Item.backgroundOpacity)
@@ -49,7 +39,6 @@ struct GridItemView: View {
             Text(baseNumber)
         }
         .multilineTextAlignment(.center)
-        .padding(.top, 6)
     }
     
     private var bottomView: some View {
@@ -80,6 +69,7 @@ struct CalculatedGridItemView_Previews: PreviewProvider {
             isVisibleEvilIcon: true,
             isVisibleAgeIcon: true
         )
+        .frame(width: 120, height: 120)
         .previewDisplayName("GridItem")
     }
 }
