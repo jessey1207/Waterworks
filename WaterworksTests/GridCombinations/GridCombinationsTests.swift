@@ -23,6 +23,7 @@ class GridCombinationsTests: XCTestCase {
     private var yearNumbers: [String] = []
     private var isVisibleEvilTexts: [Bool] = []
     private var isVisibleAgeTexts: [Bool] = []
+    private var isVisibleStrength: [Bool] = []
     
     func testDefaultGrid() {
         setupGrid(userInput: .init())
@@ -33,6 +34,7 @@ class GridCombinationsTests: XCTestCase {
         XCTAssertEqual(yearNumbers, ["3", "8", "1", "2", "4", "6", "7", "9", "5"])
         XCTAssertEqual(isVisibleEvilTexts, [false, false, false, false, false, true, false, false, false])
         XCTAssertEqual(isVisibleAgeTexts, [true, false, false, false, false, false, false, false, false])
+        XCTAssertEqual(isVisibleStrength, [true, false, false, false, false, false, false, false, false])
     }
     
     func testCombinations() {
@@ -94,6 +96,7 @@ class GridCombinationsTests: XCTestCase {
             XCTAssertEqual(yearNumbers, Years(rawValue: index)!.numbers)
             XCTAssertEqual(isVisibleEvilTexts, Years(rawValue: index)!.isVisibleEvilTexts)
             XCTAssertEqual(isVisibleAgeTexts, Years(rawValue: index)!.isVisibleAgeTexts)
+            XCTAssertEqual(isVisibleStrength, Years(rawValue: index)!.isVisibleStrength)
             
             // Reset
             resetGrid()
@@ -112,6 +115,7 @@ class GridCombinationsTests: XCTestCase {
             yearNumbers.append(sut.yearNumber(at: index))
             isVisibleEvilTexts.append(sut.isVisibleEvilText(at: index))
             isVisibleAgeTexts.append(sut.isVisibleAgeText(at: index))
+            isVisibleStrength.append(sut.isVisibleStrength(at: index))
         }
     }
     
@@ -123,5 +127,6 @@ class GridCombinationsTests: XCTestCase {
         yearNumbers = []
         isVisibleEvilTexts = []
         isVisibleAgeTexts = []
+        isVisibleStrength = []
     }
 }

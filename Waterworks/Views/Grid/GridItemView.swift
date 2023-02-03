@@ -16,6 +16,7 @@ struct GridItemView: View {
     let yearNumber: String
     let isVisibleEvilIcon: Bool
     let isVisibleAgeIcon: Bool
+    let isVisibleStrengthIcon: Bool
     
     var body: some View {
         VStack(spacing: 10) {
@@ -50,6 +51,9 @@ struct GridItemView: View {
             if isVisibleAgeIcon {
                 Text(Constants.Grid.Item.ageTextIcon)
             }
+            if isVisibleStrengthIcon {
+                Text(Constants.Grid.Item.strengthIcon)
+            }
             Spacer()
             Text(cardinalCharacter)
                 .foregroundColor(.red)
@@ -67,7 +71,8 @@ struct CalculatedGridItemView_Previews: PreviewProvider {
             cardinalCharacter: "巽",
             yearNumber: "6",
             isVisibleEvilIcon: true,
-            isVisibleAgeIcon: true
+            isVisibleAgeIcon: true,
+            isVisibleStrengthIcon: true
         )
         .frame(width: 120, height: 120)
         .previewDisplayName("GridItem")

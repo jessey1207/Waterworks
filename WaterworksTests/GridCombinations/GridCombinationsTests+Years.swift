@@ -54,6 +54,7 @@ extension GridCombinationsTests {
                 return [false, false, false, false, false, true, false, false, false]
             }
         }
+        
         var isVisibleAgeTexts: [Bool] {
             switch self {
             case .y2020, .y2022, .y2028, .y2041, .y2042, .y2056, .y2058, .y2064:
@@ -74,6 +75,19 @@ extension GridCombinationsTests {
                 return [false, true, false, false, false, false, false, false, false]
             case .y2048, .y2055:
                 return [false, false, false, true, false, false, false, false, false]
+            }
+        }
+        
+        var isVisibleStrength: [Bool] {
+            switch self {
+            case .y2022, .y2023, .y2024, .y2034, .y2035, .y2036, .y2046, .y2047, .y2048, .y2058, .y2059, .y2060:
+                return [true, false, false, false, false, false, false, false, false]
+            case .y2025, .y2026, .y2027, .y2037, .y2038, .y2039, .y2049, .y2050, .y2051, .y2061, .y2062, .y2063:
+                return [false, false, true, false, false, false, false, false, false]
+            case .y2028, .y2029, .y2030, .y2040, .y2041, .y2042, .y2052, .y2053, .y2054, .y2064, .y2065, .y2066:
+                return [false, false, false, false, false, false, false, false, true]
+            case .y2020, .y2021, .y2031, .y2032, .y2033, .y2043, .y2044, .y2045, .y2055, .y2056, .y2057, .y2067, .y2068, .y2069:
+                return [false, false, false, false, false, false, true, false, false]
             }
         }
     }
