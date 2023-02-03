@@ -60,7 +60,8 @@ struct GridView: View {
                 cardinalCharacter: Constants.Grid.Item.unknownText,
                 yearNumber: viewModel.yearNumber(at: index),
                 isVisibleEvilIcon: viewModel.isVisibleEvilText(at: index),
-                isVisibleAgeIcon: viewModel.isVisibleAgeText(at: index)
+                isVisibleAgeIcon: viewModel.isVisibleAgeText(at: index),
+                isVisibleStrengthIcon: viewModel.isVisibleStrength(at: index)
             )
         } else {
             GridItemView(
@@ -70,7 +71,8 @@ struct GridView: View {
                 cardinalCharacter: viewModel.cardinalCharacter(at: index),
                 yearNumber: viewModel.yearNumber(at: index),
                 isVisibleEvilIcon: viewModel.isVisibleEvilText(at: index),
-                isVisibleAgeIcon: viewModel.isVisibleAgeText(at: index)
+                isVisibleAgeIcon: viewModel.isVisibleAgeText(at: index),
+                isVisibleStrengthIcon: viewModel.isVisibleStrength(at: index)
             )
         }
     }

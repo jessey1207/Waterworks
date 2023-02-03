@@ -56,5 +56,4 @@ final class OriginalGridTests: XCTestCase {
             XCTAssertEqual(grid.getDirection(from: number, at: 2), expected[number].2)
         }
     }
-
 }

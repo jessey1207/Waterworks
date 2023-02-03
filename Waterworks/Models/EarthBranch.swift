@@ -43,4 +43,17 @@ enum EarthBranch: String, CaseIterable {
             return .E
         }
     }
+    
+    var strength: Strength {
+        switch self {
+        case .亥, .子, .丑:
+            return .寅
+        case .寅, .卯, .辰:
+            return .巳
+        case .巳, .午, .未:
+            return .申
+        case .申, .酉, .戌:
+            return .亥
+        }
+    }
 }

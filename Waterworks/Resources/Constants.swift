@@ -60,6 +60,7 @@ enum Constants {
             static let evilTextIcon: String = "🔴"
             static let ageText: String = "太歲"
             static let ageTextIcon: String = "🔵"
+            static let strengthIcon: String = "💪"
         }
     }
 }

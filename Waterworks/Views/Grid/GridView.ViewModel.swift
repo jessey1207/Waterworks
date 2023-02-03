@@ -65,10 +65,6 @@ extension GridView {
             String(yearItems[index].number)
         }
 
-        /// Indicates whether the evil text should be visible.
-        ///
-        /// - Parameter index: Grid index where text is to be displayed in.
-        /// - Returns: The Boolean.
         func isVisibleEvilText(at index: Int) -> Bool {
             guard let evilIndex = userInput.year.earthBranch.cardinalPoint.gridIndex else { return false }
             let originalYearItems = GridFormula.clockwise.generateGridItems(
@@ -78,12 +74,17 @@ extension GridView {
             return yearItems[index].number == evilYearNumber
         }
 
-        /// Indicates whether the age text should be visible.
-        ///
-        /// - Parameter index: Grid index where text is to be displayed in.
-        /// - Returns: The Boolean.
         func isVisibleAgeText(at index: Int) -> Bool {
             yearItems[index].number == userInput.year.earthBranch.number
+        }
+        
+        func isVisibleStrength(at index: Int) -> Bool {
+            guard let gridIndex = userInput.year.earthBranch.strength.cardinalPoint.gridIndex else { return false }
+            let originalBaseItems = GridFormula.clockwise.generateGridItems(
+                center: userInput.luck.rawValue
+            )
+            let associatedBaseNumber = originalBaseItems[gridIndex].number
+            return baseItems[index].number == associatedBaseNumber
         }
         
         // MARK: - Private properties
