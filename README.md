@@ -131,6 +131,19 @@ The Age position can be found by using the number of the earth branch that is re
 - 8 = 寅, 丑
 - 9 = 午
 
+### Strength (力)
+Each earth branch has a strength character. And each strength character has a direction.
+This means that strength will only ever be located in the corners.
+
+- 寅 = NE = 亥, 子, 丑
+- 巳 = SE = 寅, 卯, 辰 
+- 申 = SW = 巳, 午, 未 
+- 亥 = NW = 申, 酉, 戌 
+
+1. Find the year's earth branch, then the strength of the earth branch
+2. Find the strength character in the Original Grid, then get the direction of that section
+3. This is the direction in which the Strength should appear
+
 ### Generated Grid
 The grid consists of a set of base numbers, an Evil icon and an Age icon.
 
