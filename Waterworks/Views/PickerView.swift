@@ -11,7 +11,7 @@ struct PickerView: View {
     @ObservedObject var userInput: UserInput
     
     var body: some View {
-        VStack(spacing: 25) {
+        VStack(spacing: 16) {
             directionPickers
             yearPickers
         }
@@ -44,17 +44,19 @@ struct PickerView: View {
                 } label: {}
             } label: {
                 Text(String(userInput.luck.rawValue))
-                    .font(.title)
+                    .font(.titlePrimary)
             }
             Text(Constants.ChinesePicker.luckText)
-                .font(.title)
+                .font(.titlePrimary)
+                .foregroundColor(.brownPrimary)
         }
     }
 
     private var locationPicker: some View {
         HStack {
             Text(Constants.ChinesePicker.locationText)
-                .font(.title)
+                .font(.titlePrimary)
+                .foregroundColor(.brownPrimary)
             Menu {
                 Picker(selection: $userInput.location) {
                     ForEach(Location.allCases) {
@@ -63,7 +65,7 @@ struct PickerView: View {
                 } label: {}
             } label: {
                 Text(String(userInput.location.rawValue))
-                    .font(.title)
+                    .font(.titlePrimary)
             }
         }
     }
@@ -71,9 +73,10 @@ struct PickerView: View {
     private var directionText: some View {
         HStack {
             Text(Constants.ChinesePicker.directionText)
-                .font(.title)
+                .font(.titlePrimary)
+                .foregroundColor(.brownPrimary)
             Text(userInput.direction.rawValue)
-                .font(.title)
+                .font(.titlePrimary)
                 .foregroundColor(.gray)
         }
     }
@@ -90,11 +93,12 @@ struct PickerView: View {
                 } label: {}
             } label: {
                 Text(String(userInput.year.number))
-                    .font(.title)
+                    .font(.titlePrimary)
                     .frame(minWidth: 70)
             }
             Text(Constants.ChinesePicker.yearText)
-                .font(.title)
+                .font(.titlePrimary)
+                .foregroundColor(.brownPrimary)
         }
     }
 
@@ -103,7 +107,7 @@ struct PickerView: View {
             Text(userInput.year.heavenStem.rawValue)
             Text(userInput.year.earthBranch.rawValue)
         }
-        .font(.title)
+        .font(.titlePrimary)
         .foregroundColor(.gray)
     }
 

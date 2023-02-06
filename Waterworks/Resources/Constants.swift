@@ -7,11 +7,9 @@
 
 import UIKit
 
+private let isPad = UIDevice.current.userInterfaceIdiom == .pad
+
 enum Constants {
-    enum Tab {
-        static let directionPickerGrid = "坐向"
-        static let yearPickerGrid = "三煞太歲"
-    }
 
     enum Icons {
         static let size: CGFloat = 25.0
@@ -20,6 +18,10 @@ enum Constants {
             static let location = "location.north.circle"
             static let undo = "arrow.uturn.backward"
         }
+    }
+    
+    enum Compass {
+        static let size: CGFloat = isPad ? 100.0 : 65.0
     }
 
     enum ChinesePicker {
@@ -31,9 +33,10 @@ enum Constants {
 
     enum Grid {
         static let spacing: CGFloat = 10.0
+        static let padding: CGFloat = isPad ? 40.0 : 30.0
 
         enum Arrows {
-            static let size: CGFloat = 15.0
+            static let size: CGFloat = isPad ? 25.0 : 15.0
 
             enum ImageNames {
                 static let up = "arrowtriangle.up.fill"
@@ -44,23 +47,20 @@ enum Constants {
         }
 
         enum Item {
-            static var width: CGFloat {
-                switch UIDevice.current.userInterfaceIdiom {
-                case .pad:
-                    return min(UIScreen.screenWidth / 6, UIScreen.screenHeight / 6)
-                default:
-                    return min(UIScreen.screenWidth / 4, UIScreen.screenHeight / 4)
-                }
-            }
+            static let size = isPad
+            ? min(UIScreen.screenWidth / 5, UIScreen.screenHeight / 5)
+            : min(UIScreen.screenWidth / 4, UIScreen.screenHeight / 4)
             static let inset: CGFloat = 6.0
-            static let backgroundOpacity: CGFloat = 0.4
+            static let backgroundOpacity: CGFloat = 0.8
             static let cornerRadius: CGFloat = 16.0
             static let unknownText: String = "﹖"
+            static let yearText: String = "年"
             static let evilText: String = "三煞"
-            static let evilTextIcon: String = "🔴"
+            static let evilTextIcon: String = "🟠"
             static let ageText: String = "太歲"
-            static let ageTextIcon: String = "🔵"
-            static let strengthIcon: String = "💪"
+            static let ageTextIcon: String = "🟢"
+            static let strengthText: String = "力"
+            static let strengthIcon: String = "🔵"
         }
     }
 }

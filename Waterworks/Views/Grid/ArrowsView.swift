@@ -56,42 +56,33 @@ private extension Arrow {
 
         switch self {
         case .topLeft:
-            Image(systemName: Constants.Grid.Arrows.ImageNames.up)
-                .font(.system(size: Constants.Grid.Arrows.size))
+            makeArrowImage(name: Constants.Grid.Arrows.ImageNames.up, isVisible: isVisible)
                 .rotationEffect(.degrees(-45), anchor: .topTrailing)
-                .opacity(isVisible ? 1 : 0)
         case .top:
-            Image(systemName: Constants.Grid.Arrows.ImageNames.up)
-                .font(.system(size: Constants.Grid.Arrows.size))
-                .opacity(isVisible ? 1 : 0)
+            makeArrowImage(name: Constants.Grid.Arrows.ImageNames.up, isVisible: isVisible)
         case .topRight:
-            Image(systemName: Constants.Grid.Arrows.ImageNames.up)
-                .font(.system(size: Constants.Grid.Arrows.size))
+            makeArrowImage(name: Constants.Grid.Arrows.ImageNames.up, isVisible: isVisible)
                 .rotationEffect(.degrees(45), anchor: .topLeading)
-                .opacity(isVisible ? 1 : 0)
         case .left:
-            Image(systemName: Constants.Grid.Arrows.ImageNames.left)
-                .font(.system(size: Constants.Grid.Arrows.size))
-                .opacity(isVisible ? 1 : 0)
+            makeArrowImage(name: Constants.Grid.Arrows.ImageNames.left, isVisible: isVisible)
         case .right:
-            Image(systemName: Constants.Grid.Arrows.ImageNames.right)
-                .font(.system(size: Constants.Grid.Arrows.size))
-                .opacity(isVisible ? 1 : 0)
+            makeArrowImage(name: Constants.Grid.Arrows.ImageNames.right, isVisible: isVisible)
         case .bottomLeft:
-            Image(systemName: Constants.Grid.Arrows.ImageNames.down)
-                .font(.system(size: Constants.Grid.Arrows.size))
+            makeArrowImage(name: Constants.Grid.Arrows.ImageNames.down, isVisible: isVisible)
                 .rotationEffect(.degrees(45), anchor: .bottomTrailing)
-                .opacity(isVisible ? 1 : 0)
         case .bottom:
-            Image(systemName: Constants.Grid.Arrows.ImageNames.down)
-                .font(.system(size: Constants.Grid.Arrows.size))
-                .opacity(isVisible ? 1 : 0)
+            makeArrowImage(name: Constants.Grid.Arrows.ImageNames.down, isVisible: isVisible)
         case .bottomRight:
-            Image(systemName: Constants.Grid.Arrows.ImageNames.down)
-                .font(.system(size: Constants.Grid.Arrows.size))
+            makeArrowImage(name: Constants.Grid.Arrows.ImageNames.down, isVisible: isVisible)
                 .rotationEffect(.degrees(-45), anchor: .bottomLeading)
-                .opacity(isVisible ? 1 : 0)
         }
+    }
+    
+    func makeArrowImage(name: String, isVisible: Bool) -> some View {
+        Image(systemName: name)
+            .foregroundColor(.brownPrimary)
+            .font(.system(size: Constants.Grid.Arrows.size))
+            .opacity(isVisible ? 1 : 0)
     }
 }
 

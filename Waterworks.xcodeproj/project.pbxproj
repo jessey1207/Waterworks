@@ -29,6 +29,8 @@
 		9484E5792917A17800F50B0A /* YearTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9484E5782917A17800F50B0A /* YearTests.swift */; };
 		9484E57D29187F3E00F50B0A /* UIScreen+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9484E57C29187F3E00F50B0A /* UIScreen+Extensions.swift */; };
 		94C9E052298CF4E4009351C1 /* Strength.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94C9E051298CF4E4009351C1 /* Strength.swift */; };
+		94C9E054298D325D009351C1 /* ColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94C9E053298D325D009351C1 /* ColorExtensions.swift */; };
+		94C9E057298DBDA5009351C1 /* FontExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94C9E056298DBDA5009351C1 /* FontExtensions.swift */; };
 		94CEE746280C735C00064407 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94CEE745280C735C00064407 /* Constants.swift */; };
 		94CEE748280C747200064407 /* BackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94CEE747280C747200064407 /* BackgroundView.swift */; };
 		94CEE74C280D145400064407 /* OrientationViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94CEE74B280D145400064407 /* OrientationViewModifier.swift */; };
@@ -87,6 +89,8 @@
 		9484E5782917A17800F50B0A /* YearTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YearTests.swift; sourceTree = "<group>"; };
 		9484E57C29187F3E00F50B0A /* UIScreen+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScreen+Extensions.swift"; sourceTree = "<group>"; };
 		94C9E051298CF4E4009351C1 /* Strength.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Strength.swift; sourceTree = "<group>"; };
+		94C9E053298D325D009351C1 /* ColorExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtensions.swift; sourceTree = "<group>"; };
+		94C9E056298DBDA5009351C1 /* FontExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontExtensions.swift; sourceTree = "<group>"; };
 		94CEE745280C735C00064407 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		94CEE747280C747200064407 /* BackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundView.swift; sourceTree = "<group>"; };
 		94CEE74B280D145400064407 /* OrientationViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrientationViewModifier.swift; sourceTree = "<group>"; };
@@ -151,6 +155,7 @@
 		9426E799280C4BD500B34534 /* Waterworks */ = {
 			isa = PBXGroup;
 			children = (
+				94C9E055298D3263009351C1 /* Extensions */,
 				94CEE74A280D144300064407 /* Helpers */,
 				94CEE749280D140F00064407 /* Resources */,
 				9426E7AD280C512100B34534 /* Views */,
@@ -196,6 +201,15 @@
 				9484E5782917A17800F50B0A /* YearTests.swift */,
 			);
 			path = WaterworksTests;
+			sourceTree = "<group>";
+		};
+		94C9E055298D3263009351C1 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				94C9E053298D325D009351C1 /* ColorExtensions.swift */,
+				94C9E056298DBDA5009351C1 /* FontExtensions.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		94CEE749280D140F00064407 /* Resources */ = {
@@ -398,6 +412,7 @@
 			files = (
 				94CEE75D280DB27800064407 /* GridItemModel.swift in Sources */,
 				94CEE748280C747200064407 /* BackgroundView.swift in Sources */,
+				94C9E057298DBDA5009351C1 /* FontExtensions.swift in Sources */,
 				944190732811454700C839C0 /* RotateButton.swift in Sources */,
 				9426E7AC280C511A00B34534 /* PickerView.swift in Sources */,
 				9448335229166BF800822D28 /* HeavenStem.swift in Sources */,
@@ -417,6 +432,7 @@
 				94CEE759280D97C200064407 /* GridItemView.swift in Sources */,
 				9441907128103E8800C839C0 /* CardinalPoint.swift in Sources */,
 				9441906A280FD17700C839C0 /* ArrowsView.swift in Sources */,
+				94C9E054298D325D009351C1 /* ColorExtensions.swift in Sources */,
 				94CEE75B280D9BEC00064407 /* String+Extensions.swift in Sources */,
 				9426E7AF280C51E300B34534 /* GridView.swift in Sources */,
 				9426E7B3280C629B00B34534 /* UserInput.swift in Sources */,
