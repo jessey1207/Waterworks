@@ -11,15 +11,15 @@ struct BackgroundView: View {
     var body: some View {
         LinearGradient(
             colors: [
-                .brown.opacity(0.5),
-                .brown.opacity(0.4),
-                .brown.opacity(0.3),
-                .brown.opacity(0.4),
-                .brown.opacity(0.5),
-                .brown.opacity(0.4),
-                .brown.opacity(0.3),
-                .brown.opacity(0.4),
-                .brown.opacity(0.5)
+                .bronze.opacity(0.4),
+                .bronze.opacity(0.5),
+                .bronze.opacity(0.5),
+                .bronze.opacity(0.6),
+                .bronze.opacity(0.6),
+                .bronze.opacity(0.6),
+                .bronze.opacity(0.5),
+                .bronze.opacity(0.5),
+                .bronze.opacity(0.4)
             ],
             startPoint: .topLeading,
             endPoint: .bottomTrailing

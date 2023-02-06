@@ -19,15 +19,16 @@ struct GridItemView: View {
     let isVisibleStrengthIcon: Bool
     
     var body: some View {
-        VStack(spacing: 10) {
+        ZStack {
             centerNumbersView
-                .padding(.top, 7)
+                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
+                .padding(.bottom, 10)
             bottomView
+                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottomLeading)
         }
         .padding(Constants.Grid.Item.inset)
-        .background(
-            .gray.opacity(Constants.Grid.Item.backgroundOpacity)
-        )
+        .frame(width:  Constants.Grid.Item.size, height:  Constants.Grid.Item.size)
+        .background(Color.gold.opacity(Constants.Grid.Item.backgroundOpacity))
         .cornerRadius(Constants.Grid.Item.cornerRadius)
     }
 
@@ -37,28 +38,35 @@ struct GridItemView: View {
                 Text(locationNumber)
                 Text(directionNumber)
             }
+            .font(.bodySecondaryBold)
+            .foregroundColor(.brownSecondary)
             Text(baseNumber)
+                .font(.bodyPrimaryHeavy)
+                .foregroundColor(.brownPrimary)
         }
         .multilineTextAlignment(.center)
     }
     
     private var bottomView: some View {
-        HStack(spacing: 5) {
+        HStack(spacing: 4) {
             Text(yearNumber)
             if isVisibleEvilIcon {
                 Text(Constants.Grid.Item.evilTextIcon)
+                    .font(.control)
             }
             if isVisibleAgeIcon {
                 Text(Constants.Grid.Item.ageTextIcon)
+                    .font(.control)
             }
             if isVisibleStrengthIcon {
                 Text(Constants.Grid.Item.strengthIcon)
+                    .font(.control)
             }
             Spacer()
             Text(cardinalCharacter)
-                .foregroundColor(.red)
+                .foregroundColor(.darkRed)
         }
-        .font(.caption)
+        .font(.captionRegular)
     }
 }
 

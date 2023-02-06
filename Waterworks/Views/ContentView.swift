@@ -19,7 +19,7 @@ struct ContentView: View {
     var body: some View {
         ZStack(alignment: .center) {
             BackgroundView()
-            VStack(spacing: 25) {
+            VStack(spacing: 20) {
                 PickerView(userInput: userInput)
                 GridView(
                     userInput: userInput,
@@ -30,21 +30,39 @@ struct ContentView: View {
                     rotated: $rotated
                 )
                 .disabled(userInput.isInvalid)
-                HStack(spacing: 25) {
-                    Text("\(Constants.Grid.Item.evilTextIcon) \(Constants.Grid.Item.evilText)")
-                    Text("\(Constants.Grid.Item.ageTextIcon) \(Constants.Grid.Item.ageText)")
-                }
-                .font(.callout)
+                legendView
+                    .padding(.top, 20)
             }
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
             .scrollInLandscapeMode()
             Image("Compass")
                 .resizable()
                 .scaledToFit()
-                .frame(width: 80, height: 80)
+                .frame(width: Constants.Compass.size, height: Constants.Compass.size)
                 .background(Color.white.opacity(0.5))
                 .padding(.leading, 10)
                 .padding(.bottom, 10)
                 .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottomLeading)
+        }
+    }
+    
+    private var legendView: some View {
+        HStack(spacing: 25) {
+            Text(Constants.Grid.Item.yearText)
+                .foregroundColor(.black)
+            legendItem(icon: Constants.Grid.Item.evilTextIcon, text: Constants.Grid.Item.evilText)
+            legendItem(icon: Constants.Grid.Item.ageTextIcon, text: Constants.Grid.Item.ageText)
+            legendItem(icon: Constants.Grid.Item.strengthIcon, text: Constants.Grid.Item.strengthText)
+        }
+        .font(.bodySecondary)
+        .foregroundColor(.brownPrimary)
+    }
+    
+    private func legendItem(icon: String, text: String) -> some View {
+        HStack(spacing: 4) {
+            Text(icon)
+                .font(.control)
+            Text(text)
         }
     }
 }
