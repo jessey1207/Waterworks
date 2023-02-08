@@ -103,7 +103,29 @@ class GridCombinationsTests: XCTestCase {
         }
     }
     
-    // MARK: Helpers
+    func testAdded() {
+        let userInput: UserInput = .init()
+        userInput.isAdding = true
+        
+        // Find all combinations
+        Luck.allCases.filter({ $0 != .unknown }).forEach { luck in
+            Location.allCases.filter({ $0 != .unknown }).forEach { location in
+                // Set up grid
+                userInput.luck = luck
+                userInput.location = location
+                setupGrid(userInput: userInput)
+                
+                // Assert location and direction items
+                XCTAssertEqual(locationNumbers, Combinations(rawValue: "\(luck)\(location)")!.locationNumbersAdded)
+                XCTAssertEqual(directionNumbers, Combinations(rawValue: "\(luck)\(location)")!.directionNumbersAdded)
+                
+                // Reset
+                resetGrid()
+            }
+        }
+    }
+    
+    // MARK: - Helpers
     
     private func setupGrid(userInput: UserInput, rotated: Bool = false) {
         sut = .init(userInput: userInput, rotated: rotated)

@@ -25,17 +25,13 @@ struct ContentView: View {
                     userInput: userInput,
                     rotated: $rotated
                 )
-                RotateButton(
-                    userInput: userInput,
-                    rotated: $rotated
-                )
-                .disabled(userInput.isInvalid)
+                actionButtons
                 legendView
                     .padding(.top, 20)
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .scrollInLandscapeMode()
-            Image("Compass")
+            Image(Constants.Compass.imageName)
                 .resizable()
                 .scaledToFit()
                 .frame(width: Constants.Compass.size, height: Constants.Compass.size)
@@ -44,6 +40,23 @@ struct ContentView: View {
                 .padding(.bottom, 10)
                 .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottomLeading)
         }
+    }
+    
+    private var actionButtons: some View {
+        HStack(spacing: 40) {
+            RotateButton(
+                userInput: userInput,
+                rotated: $rotated
+            )
+            Button(action: {
+                userInput.isAdding.toggle()
+            }) {
+                Text(userInput.isAdding ? Constants.Buttons.doNotAdd : Constants.Buttons.add)
+                    .font(.title)
+            }
+        }
+        .disabled(userInput.isInvalid)
+        .animation(.linear(duration: 0.2), value: userInput.isAdding)
     }
     
     private var legendView: some View {

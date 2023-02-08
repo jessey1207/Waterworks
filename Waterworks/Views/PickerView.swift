@@ -94,7 +94,7 @@ struct PickerView: View {
             } label: {
                 Text(String(userInput.year.number))
                     .font(.titlePrimary)
-                    .frame(minWidth: 70)
+                    .frame(minWidth: 45)
             }
             Text(Constants.ChinesePicker.yearText)
                 .font(.titlePrimary)

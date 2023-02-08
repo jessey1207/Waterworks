@@ -37,6 +37,23 @@ enum Location: String, CaseIterable, Identifiable {
             return 0
         }
     }
+    
+    var addNumber: Int {
+        switch self {
+        case .子, .癸, .甲, .申:
+            return 1
+        case .壬, .卯, .乙, .未, .坤:
+            return 2
+        case .辰, .巽, .巳, .乾, .亥, .成:
+            return 6
+        case .寅, .午, .庚, .丁:
+            return 9
+        case .辛, .酉, .丑, .艮, .丙:
+            return 7
+        case .unknown:
+            return 0
+        }
+    }
 
     var direction: Direction {
         switch self {
