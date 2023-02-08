@@ -129,6 +129,10 @@ extension GridView {
                 at: userInput.location.index
             )
             
+            if userInput.isAdding, baseNumberContainingLocation != 5 {
+                return addedItems(center: baseNumberContainingLocation, original: location)
+            }
+            
             let items = location.rotation == .clockwise
             ? GridFormula.clockwise.generateGridItems(center: baseNumberContainingLocation)
             : GridFormula.anticlockwise.generateGridItems(center: baseNumberContainingLocation)
@@ -160,6 +164,10 @@ extension GridView {
                 at: userInput.direction.index
             )
             
+            if userInput.isAdding, baseNumberContainingDirection != 5 {
+                return addedItems(center: baseNumberContainingDirection, original: direction)
+            }
+            
             let items = direction.rotation == .clockwise
             ? GridFormula.clockwise.generateGridItems(center: baseNumberContainingDirection)
             : GridFormula.anticlockwise.generateGridItems(center: baseNumberContainingDirection)
@@ -174,6 +182,51 @@ extension GridView {
                 .filter({ $0 != .unknown })
                 .map { $0.chineseRepresentation }
             items.insert("", at: CardinalPoint.allCases.count / 2) // middle item has no cardinal point
+            return rotated
+            ? items.rearranged(for: userInput.direction)
+            : items
+        }
+        
+        // MARK: Helpers
+        
+        private var centerDirection: Direction {
+            guard let baseNumberContainingDirection = baseItems
+                .first(where: { $0.directions.contains(userInput.direction) })?
+                .number
+            else { return .unknown }
+            
+            var numberToMatchOnOriginal: Int? {
+                guard baseNumberContainingDirection == 5 else {
+                    return baseNumberContainingDirection
+                }
+                return baseItems.first { item in
+                    item.number == userInput.luck.rawValue
+                }?.number
+            }
+            
+            guard let numberToMatchOnOriginal = numberToMatchOnOriginal else { return .unknown }
+            
+            return originalGrid.getDirection(
+                from: numberToMatchOnOriginal,
+                at: userInput.direction.index
+            )
+        }
+        
+        private func addedItems(center: Int, original: Location) -> [GridItemModel]? {
+            let addingLocation = originalGrid.getLocation(from: center, at: centerDirection.index)
+            let items = original.rotation == .clockwise
+            ? GridFormula.clockwise.generateGridItems(center: addingLocation.addNumber)
+            : GridFormula.anticlockwise.generateGridItems(center: addingLocation.addNumber)
+            return rotated
+            ? items.rearranged(for: userInput.direction)
+            : items
+        }
+        
+        private func addedItems(center: Int, original: Direction) -> [GridItemModel]? {
+            let addingDirection = originalGrid.getDirection(from: center, at: centerDirection.index)
+            let items = original.rotation == .clockwise
+            ? GridFormula.clockwise.generateGridItems(center: addingDirection.addNumber)
+            : GridFormula.anticlockwise.generateGridItems(center: addingDirection.addNumber)
             return rotated
             ? items.rearranged(for: userInput.direction)
             : items

@@ -22,4 +22,6 @@ class UserInput: ObservableObject {
     var isInvalid: Bool {
         return luck == .unknown || location == .unknown || direction == .unknown
     }
+    
+    @Published var isAdding: Bool = false
 }

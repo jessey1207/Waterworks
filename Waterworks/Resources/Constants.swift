@@ -10,9 +10,14 @@ import UIKit
 private let isPad = UIDevice.current.userInterfaceIdiom == .pad
 
 enum Constants {
+    
+    enum Buttons {
+        static let add: String = "兼"
+        static let doNotAdd: String = "不兼"
+    }
 
     enum Icons {
-        static let size: CGFloat = 25.0
+        static let size: CGFloat = 28.0
 
         enum ImageNames {
             static let location = "location.north.circle"
@@ -21,6 +26,7 @@ enum Constants {
     }
     
     enum Compass {
+        static let imageName: String = "Compass"
         static let size: CGFloat = isPad ? 100.0 : 65.0
     }
 

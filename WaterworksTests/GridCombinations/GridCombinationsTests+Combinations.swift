@@ -385,6 +385,35 @@ extension GridCombinationsTests {
             }
         }
         
+        var locationNumbersAdded: [String] {
+            switch self {
+            case .one辰, .one卯, .two坤, .two甲, .three未, .three子, .four午, .four壬, .five丙, .five艮, .six酉, .six丑, .seven庚, .seven乾, .eight成, .nine巽:
+                return ["6", "2", "4", "5", "7", "9", "1", "3", "8"]
+            case .one巽, .one巳, .two卯, .two乙, .three坤, .three申, .four子, .four癸, .five午, .five丁, .six艮, .six寅, .seven酉, .seven辛, .eight乾, .eight亥:
+                return ["1", "5", "3", "2", "9", "7", "6", "4", "8"]
+            case .one丙, .two艮, .two寅, .three庚, .four乾, .four亥, .six巽, .six巳, .seven甲, .eight坤, .eight申, .nine壬:
+                return ["4", "9", "2", "3", "5", "7", "8", "1", "6"]
+            case .one午, .one丁, .two丑, .three酉, .three辛, .four成, .six辰, .seven卯, .seven乙, .eight未, .nine子, .nine癸:
+                return ["6", "1", "8", "7", "5", "3", "2", "9", "4"]
+            case .one未, .one乙, .two申, .two壬, .three丙, .three癸, .four丁, .four丑, .five庚, .five寅, .six辛, .six成, .seven亥, .eight辰, .nine巳, .nine甲:
+                return ["8", "4", "6", "7", "9", "2", "3", "5", "1"]
+            case .one坤, .one申, .one甲, .two未, .two子, .two癸, .three午, .three丁, .three壬, .four丙, .four艮, .four寅, .five酉, .five辛, .five丑, .six庚, .six乾, .six亥, .seven成, .eight巽, .eight巳, .nine辰, .nine卯, .nine乙:
+                return ["8", "3", "1", "9", "7", "5", "4", "2", "6"]
+            case .one庚, .one亥, .two成, .three巳, .four辰, .four乙, .five申, .five甲, .six未, .six癸, .seven丁, .seven壬, .eight丙, .eight寅, .nine辛, .nine丑:
+                return ["9", "5", "7", "8", "1", "3", "4", "6", "2"]
+            case .one酉, .one辛, .one成, .two乾, .two亥, .three辰, .four巽, .four巳, .four甲, .five未, .five卯, .five乙, .six坤, .six申, .six壬, .seven丙, .seven子, .seven癸, .eight午, .eight丁, .eight丑, .nine庚, .nine艮, .nine寅:
+                return ["3", "7", "5", "4", "2", "9", "8", "6", "1"]
+            case .one丑, .one壬, .two丙, .two庚, .three丑, .three成, .four庚, .five辰, .five成, .six甲, .seven辰, .seven未, .eight甲, .eight壬, .nine丙, .nine未:
+                return ["7", "2", "9", "8", "6", "4", "3", "1", "5"]
+            case .one艮, .one寅, .one子, .one癸, .two午, .two丁, .two酉, .two辛, .three艮, .three寅, .three乾, .three亥, .four酉, .four辛, .five巽, .five巳, .five乾, .five亥, .six卯, .six乙, .seven巽, .seven巳, .seven坤, .seven申, .eight卯, .eight乙, .eight子, .eight癸, .nine午, .nine丁, .nine坤, .nine申:
+                return ["5", "1", "3", "4", "6", "8", "9", "2", "7"]
+            case .one乾, .two辰, .three巽, .three甲, .four未, .four卯, .five坤, .five壬, .six丙, .six子, .seven午, .seven丑, .eight庚, .eight艮, .nine酉, .nine成:
+                return ["1", "6", "8", "9", "2", "4", "5", "7", "3"]
+            case .two巽, .two巳, .three卯, .three乙, .four坤, .four申, .five子, .five癸, .six午, .six丁, .seven艮, .seven寅, .eight酉, .eight辛, .nine乾, .nine亥:
+                return ["2", "6", "4", "3", "1", "8", "7", "5", "9"]
+            }
+        }
+        
         // MARK: - Direction numbers
         
         var directionNumbers: [String] {
@@ -576,6 +605,36 @@ extension GridCombinationsTests {
                 return ["3", "8", "1", "2", "4", "6", "7", "9", "5"]
             case .eight午, .eight丁, .nine壬:
                 return ["5", "9", "7", "6", "4", "2", "1", "8", "3"]
+            }
+        }
+        
+        var directionNumbersAdded: [String] {
+            switch self {
+            case .one辰, .one卯, .one乙, .two巽, .two巳, .three成, .four庚, .four乾, .four亥, .five酉, .five辛, .five丑, .six丙, .six艮, .six寅, .seven午, .seven丁, .seven壬, .eight未, .eight子, .eight癸, .nine坤, .nine申, .nine甲:
+                return ["3", "7", "5", "4", "2", "9", "8", "6", "1"]
+            case .one巽, .two成, .three庚, .three乾, .four酉, .four丑, .five丙, .five艮, .six午, .six壬, .seven未, .seven子, .eight坤, .eight甲, .nine辰, .nine卯:
+                return ["1", "6", "8", "9", "2", "4", "5", "7", "3"]
+            case .one巳, .one甲, .two辰, .three亥, .four辛, .four成, .five庚, .five寅, .six丁, .six丑, .seven丙, .seven癸, .eight申, .eight壬, .nine未, .nine乙:
+                return ["9", "5", "7", "8", "1", "3", "4", "6", "2"]
+            case .one丙, .one未, .two甲, .two壬, .three辰, .three未, .four甲, .five辰, .five成, .six庚, .seven丑, .seven成, .eight丙, .eight庚, .nine丑, .nine壬:
+                return ["7", "2", "9", "8", "6", "4", "3", "1", "5"]
+            case .one午, .one丁, .one坤, .one申, .two卯, .two乙, .two子, .two癸, .three巽, .three巳, .three坤, .three申, .four卯, .four乙, .five巽, .five巳, .five乾, .five亥, .six酉, .six辛, .seven艮, .seven寅, .seven乾, .seven亥, .eight午, .eight丁, .eight酉, .eight辛, .nine艮, .nine寅, .nine子, .nine癸:
+                return ["5", "1", "3", "4", "6", "8", "9", "2", "7"]
+            case .one庚, .one艮, .one寅, .two午, .two丁, .two丑, .three丙, .three子, .three癸, .four坤, .four申, .four壬, .five未, .five卯, .five乙, .six巽, .six巳, .six甲, .seven辰, .eight乾, .eight亥, .nine酉, .nine辛, .nine成:
+                return ["8", "3", "1", "9", "7", "5", "4", "2", "6"]
+            case .one酉, .one成, .two庚, .two艮, .three午, .three丑, .four丙, .four子, .five坤, .five壬, .six未, .six卯, .seven巽, .seven甲, .eight辰, .nine乾:
+                return ["6", "2", "4", "5", "7", "9", "1", "3", "8"]
+            case .one辛, .one丑, .two丙, .two寅, .three丁, .three壬, .four未, .four癸, .five申, .five甲, .six辰, .six乙, .seven巳, .eight成, .nine庚, .nine亥:
+                return ["8", "4", "6", "7", "9", "2", "3", "5", "1"]
+            case .one子, .one癸, .two未, .three卯, .three乙, .four辰, .six成, .seven酉, .seven辛, .eight丑, .nine午, .nine丁:
+                return ["6", "1", "8", "7", "5", "3", "2", "9", "4"]
+                
+            case .one壬, .two坤, .two申, .three甲, .four巽, .four巳, .six乾, .six亥, .seven庚, .eight艮, .eight寅, .nine丙:
+                return ["4", "9", "2", "3", "5", "7", "8", "1", "6"]
+            case .one乾, .one亥, .two酉, .two辛, .three艮, .three寅, .four午, .four丁, .five子, .five癸, .six坤, .six申, .seven卯, .seven乙, .eight巽, .eight巳:
+                return ["1", "5", "3", "2", "9", "7", "6", "4", "8"]
+            case .two乾, .two亥, .three酉, .three辛, .four艮, .four寅, .five午, .five丁, .six子, .six癸, .seven坤, .seven申, .eight卯, .eight乙, .nine巽, .nine巳:
+                return ["2", "6", "4", "3", "1", "8", "7", "5", "9"]
             }
         }
         
