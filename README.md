@@ -144,6 +144,26 @@ This means that strength will only ever be located in the corners.
 2. Find the strength character in the Original Grid, then get the direction of that section
 3. This is the direction in which the Strength should appear
 
+### Adding (兼)
+Adding affects the location and direction numbers in the grid.
+Each location/direction has an associated number that defines what the original number should change to.
+
+- Change to 1: 子, 癸, 甲, 申
+- Change to 2: 壬, 卯, 乙, 未, 坤
+- Change to 6: 辰, 巽, 巳, 乾, 亥, 成
+- Change to 7: 辛, 酉, 丑, 艮, 丙
+- Change to 9: 寅, 午, 庚, 丁
+
+The formula for generating the new sets of location and direction numbers:
+1. Get the direction character from user input
+2. Find the location index of that character from the Original Grid (0,1,2)
+3. Find the center location/direction number of the current generated grid
+4. Find that number in the Original Grid base (center) numbers
+5. Find the character positioned in the location index (from Step 2) of that number
+6. Find the associated add number of that character (as defined in the list above)
+7. The new number of the center location/direction number should be that number (it could stay the same)
+8. Generate the location/direction number sets again, keeping the same rotation as before
+
 ### Generated Grid
 The grid consists of a set of base numbers, an Evil icon and an Age icon.
 
