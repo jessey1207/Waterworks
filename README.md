@@ -186,5 +186,5 @@ The grid consists of a set of base numbers, an Evil icon and an Age icon.
 6. Display in `GridView`
 
 ### How it looks
-<img width="200" src="https://user-images.githubusercontent.com/44921579/217537248-d01387f9-5005-4bb2-949d-1ae3fb40ba89.png">
+<img width="300" src="https://user-images.githubusercontent.com/44921579/217537248-d01387f9-5005-4bb2-949d-1ae3fb40ba89.png">
 <img width="300" src="https://user-images.githubusercontent.com/44921579/217537288-50a85b14-9f0e-4648-b224-353ddcc3eef6.png">
