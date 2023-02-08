@@ -56,7 +56,7 @@ It is the grid specified above with 5 as the center number.
 
 
 ### How it looks
-<img width="375" src="https://user-images.githubusercontent.com/44921579/200208978-f885d159-7473-40cf-8d6b-69792e5c475d.png">
+<img width="300" src="https://user-images.githubusercontent.com/44921579/217536883-4d3a186e-68c2-4224-ab59-6b5637e0915b.png">
 
 ## Year Grid (三煞太歲)
 
@@ -186,4 +186,5 @@ The grid consists of a set of base numbers, an Evil icon and an Age icon.
 6. Display in `GridView`
 
 ### How it looks
-<img width="375" src="https://user-images.githubusercontent.com/44921579/200209337-111a6edb-2862-45c0-a51d-8694e678d8ad.png">
+<img width="200" src="https://user-images.githubusercontent.com/44921579/217537248-d01387f9-5005-4bb2-949d-1ae3fb40ba89.png">
+<img width="300" src="https://user-images.githubusercontent.com/44921579/217537288-50a85b14-9f0e-4648-b224-353ddcc3eef6.png">
