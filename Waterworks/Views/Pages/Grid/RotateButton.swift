@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct RotateButton: View {
-    @ObservedObject var userInput: UserInput
+    @ObservedObject var userInput: GridUserInput
     @Binding var rotated: Bool
 
     private var isDisabled: Bool {
@@ -44,7 +44,7 @@ struct RotateButton: View {
 
 struct RotateButton_Previews: PreviewProvider {
     static var previews: some View {
-        RotateButton(userInput: UserInput(), rotated: .constant(false))
+        RotateButton(userInput: GridUserInput(), rotated: .constant(false))
     }
 }
 

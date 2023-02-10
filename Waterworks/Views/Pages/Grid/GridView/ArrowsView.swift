@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ArrowsView: View {
-    @ObservedObject var userInput: UserInput
+    @ObservedObject var userInput: GridUserInput
     @Binding var rotated: Bool
 
     private let arrows: [Arrow] = [
@@ -88,7 +88,7 @@ private extension Arrow {
 
 struct ArrowsView_Previews: PreviewProvider {
     static var previews: some View {
-        let input = UserInput()
+        let input = GridUserInput()
         input.luck = .eight
         input.location = .子
 

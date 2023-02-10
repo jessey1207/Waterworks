@@ -12,7 +12,7 @@ struct GridView: View {
     @Binding var rotated: Bool
 
     init(
-        userInput: UserInput,
+        userInput: GridUserInput,
         rotated: Binding<Bool>
     ) {
         viewModel = .init(
@@ -90,17 +90,17 @@ struct GridView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             GridView(
-                userInput: UserInput(),
+                userInput: GridUserInput(),
                 rotated: .constant(false)
             )
             .previewDisplayName("Picker")
             GridView(
-                userInput: UserInput(),
+                userInput: GridUserInput(),
                 rotated: .constant(true)
             )
             .previewDisplayName("Picker-rotated")
             GridView(
-                userInput: UserInput(),
+                userInput: GridUserInput(),
                 rotated: .constant(false)
             )
             .preferredColorScheme(.dark)

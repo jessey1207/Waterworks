@@ -26,7 +26,12 @@ class GridCombinationsTests: XCTestCase {
     private var isVisibleStrength: [Bool] = []
     
     func testDefaultGrid() {
-        setupGrid(userInput: .init())
+        let userInput: GridUserInput = .init()
+        userInput.luck = .unknown
+        userInput.location = .unknown
+        userInput.year = .init(number: 2023)
+        
+        setupGrid(userInput: userInput)
         XCTAssertEqual(baseNumbers, ["八", "四", "六", "七", "九", "二", "三", "五", "一"])
         XCTAssertEqual(locationNumbers, ["﹖", "﹖", "﹖", "﹖", "﹖", "﹖", "﹖", "﹖", "﹖"])
         XCTAssertEqual(directionNumbers, ["﹖", "﹖", "﹖", "﹖", "﹖", "﹖", "﹖", "﹖", "﹖"])
@@ -38,7 +43,7 @@ class GridCombinationsTests: XCTestCase {
     }
     
     func testCombinations() {
-        let userInput: UserInput = .init()
+        let userInput: GridUserInput = .init()
         
         // Find all combinations
         Luck.allCases.filter({ $0 != .unknown }).forEach { luck in
@@ -61,7 +66,7 @@ class GridCombinationsTests: XCTestCase {
     }
 
     func testRotations() {
-        let userInput: UserInput = .init()
+        let userInput: GridUserInput = .init()
         
         // Find all combinations
         Luck.allCases.filter({ $0 != .unknown }).forEach { luck in
@@ -84,7 +89,7 @@ class GridCombinationsTests: XCTestCase {
     }
 
     func testYears() {
-        let userInput: UserInput = .init()
+        let userInput: GridUserInput = .init()
         
         // For defined (hard-coded) testing years
         Years.allCases.enumerated().forEach { index, year in
@@ -104,7 +109,7 @@ class GridCombinationsTests: XCTestCase {
     }
     
     func testAdded() {
-        let userInput: UserInput = .init()
+        let userInput: GridUserInput = .init()
         userInput.isAdding = true
         
         // Find all combinations
@@ -127,7 +132,7 @@ class GridCombinationsTests: XCTestCase {
     
     // MARK: - Helpers
     
-    private func setupGrid(userInput: UserInput, rotated: Bool = false) {
+    private func setupGrid(userInput: GridUserInput, rotated: Bool = false) {
         sut = .init(userInput: userInput, rotated: rotated)
         gridIndices.forEach { index in
             baseNumbers.append(sut.baseNumber(at: index))
