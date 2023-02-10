@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct PickerView: View {
-    @ObservedObject var userInput: UserInput
+    @ObservedObject var userInput: GridUserInput
     
     var body: some View {
         VStack(spacing: 16) {

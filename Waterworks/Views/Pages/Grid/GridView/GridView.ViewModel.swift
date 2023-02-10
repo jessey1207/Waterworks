@@ -9,13 +9,13 @@ import Foundation
 
 extension GridView {
     class ViewModel: ObservableObject {
-        @Published var userInput: UserInput
+        @Published var userInput: GridUserInput
 
         private let rotated: Bool
         private let originalGrid = OriginalGrid()
         
         init(
-            userInput: UserInput,
+            userInput: GridUserInput,
             rotated: Bool
         ) {
             self.userInput = userInput

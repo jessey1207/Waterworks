@@ -13,4 +13,5 @@ extension Color {
     static let brownPrimary = Color("DarkBrown")
     static let brownSecondary = Color("LightBrown")
     static let darkRed = Color("DarkRed")
+    static let waterBlue = Color("WaterBlue")
 }

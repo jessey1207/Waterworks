@@ -69,4 +69,18 @@ enum Constants {
             static let strengthIcon: String = "🔵"
         }
     }
+    
+    enum HamburgerMenu {
+        enum Button {
+            static let size: CGFloat = isPad ? 32.0 : 26.0
+            static let padding: CGFloat = isPad ? 14.0 : 10.0
+            static let inactiveImageName: String = "line.horizontal.3"
+            static let activeImageName: String = "arrow.left"
+        }
+        
+        enum ItemButton {
+            static let size: CGFloat = 55.0
+            static let cornerRadius: CGFloat = 12.0
+        }
+    }
 }
