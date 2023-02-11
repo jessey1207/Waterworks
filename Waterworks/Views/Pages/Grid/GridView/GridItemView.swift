@@ -28,7 +28,7 @@ struct GridItemView: View {
         }
         .padding(Constants.Grid.Item.inset)
         .frame(width:  Constants.Grid.Item.size, height:  Constants.Grid.Item.size)
-        .background(Color.gold.opacity(Constants.Grid.Item.backgroundOpacity))
+        .background(Color.custom(.bronze).opacity(Constants.Grid.Item.backgroundOpacity))
         .cornerRadius(Constants.Grid.Item.cornerRadius)
     }
 
@@ -38,11 +38,11 @@ struct GridItemView: View {
                 Text(locationNumber)
                 Text(directionNumber)
             }
-            .font(.bodySecondaryBold)
-            .foregroundColor(.brownSecondary)
+            .font(.custom(.bodySecondaryBold))
+            .foregroundColor(.custom(.brownSecondary))
             Text(baseNumber)
-                .font(.bodyPrimaryHeavy)
-                .foregroundColor(.brownPrimary)
+                .font(.custom(.bodyPrimaryBold))
+                .foregroundColor(.custom(.brownPrimary))
         }
         .multilineTextAlignment(.center)
     }
@@ -52,21 +52,21 @@ struct GridItemView: View {
             Text(yearNumber)
             if isVisibleEvilIcon {
                 Text(Constants.Grid.Item.evilTextIcon)
-                    .font(.control)
+                    .font(.custom(.control))
             }
             if isVisibleAgeIcon {
                 Text(Constants.Grid.Item.ageTextIcon)
-                    .font(.control)
+                    .font(.custom(.control))
             }
             if isVisibleStrengthIcon {
                 Text(Constants.Grid.Item.strengthIcon)
-                    .font(.control)
+                    .font(.custom(.control))
             }
             Spacer()
             Text(cardinalCharacter)
-                .foregroundColor(.darkRed)
+                .foregroundColor(.custom(.red))
         }
-        .font(.captionRegular)
+        .font(.custom(.caption))
     }
 }
 

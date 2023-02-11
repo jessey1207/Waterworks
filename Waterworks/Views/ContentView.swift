@@ -15,16 +15,15 @@ struct ContentView: View {
         NavigationView {
             ZStack {
                 PageView(currentPage: currentPage)
-                    .edgesIgnoringSafeArea(.top)
                 HamburgerMenuView(currentPage: $currentPage, isVisible: $isVisibleHamburgerMenu)
             }
             .navigationBarTitle("", displayMode: .inline)
-            .navigationBarItems(leading: navBarButton)
+            .navigationBarItems(leading: hamburgerButton)
         }
         .navigationViewStyle(StackNavigationViewStyle())
     }
     
-    private var navBarButton: some View {
+    private var hamburgerButton: some View {
         Button {
             withAnimation{
                 isVisibleHamburgerMenu.toggle()
