@@ -21,7 +21,7 @@ struct MenuView: View {
             Spacer()
         }
         .padding(35)
-        .background(Color.white.opacity(0.9))
+        .background(Color.white)
         .edgesIgnoringSafeArea(.bottom)
     }
     
@@ -34,13 +34,13 @@ struct MenuView: View {
         } label: {
             VStack(spacing: 8) {
                 page.buttonImage
-                    .foregroundColor(.brownPrimary)
+                    .foregroundColor(page.textColor)
                     .padding(12)
-                    .background(Color.bronze.opacity(0.2))
+                    .background(page.backgroundColor)
                     .cornerRadius(Constants.HamburgerMenu.ItemButton.cornerRadius)
-                Text(page.name)
-                    .foregroundColor(.brownPrimary)
-                    .font(.captionRegular)
+                Text(page.buttonTitle)
+                    .foregroundColor(.custom(.grayBlue))
+                    .font(.custom(.caption))
             }
         }
         .frame(height: Constants.HamburgerMenu.ItemButton.size)

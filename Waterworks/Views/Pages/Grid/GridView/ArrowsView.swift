@@ -80,7 +80,7 @@ private extension Arrow {
     
     func makeArrowImage(name: String, isVisible: Bool) -> some View {
         Image(systemName: name)
-            .foregroundColor(.brownPrimary)
+            .foregroundColor(.custom(.brownPrimary))
             .font(.system(size: Constants.Grid.Arrows.size))
             .opacity(isVisible ? 1 : 0)
     }

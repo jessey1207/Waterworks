@@ -18,7 +18,8 @@ struct GridContentView: View {
     
     var body: some View {
         ZStack(alignment: .center) {
-            BackgroundView()
+            Color.custom(.bronzeBackground).opacity(0.25)
+                .edgesIgnoringSafeArea(.bottom)
             VStack(spacing: 20) {
                 PickerView(userInput: userInput)
                 GridView(
@@ -67,14 +68,14 @@ struct GridContentView: View {
             legendItem(icon: Constants.Grid.Item.ageTextIcon, text: Constants.Grid.Item.ageText)
             legendItem(icon: Constants.Grid.Item.strengthIcon, text: Constants.Grid.Item.strengthText)
         }
-        .font(.bodySecondary)
-        .foregroundColor(.brownPrimary)
+        .font(.custom(.bodySecondary))
+        .foregroundColor(.custom(.brownPrimary))
     }
     
     private func legendItem(icon: String, text: String) -> some View {
         HStack(spacing: 4) {
             Text(icon)
-                .font(.control)
+                .font(.custom(.control))
             Text(text)
         }
     }
