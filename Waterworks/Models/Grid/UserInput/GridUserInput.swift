@@ -28,21 +28,35 @@ class GridUserInput: ObservableObject {
     
     private var bag = Set<AnyCancellable>()
     
-    init() {
-        self.luck = LocalStorage.luck
-        self.location = LocalStorage.location
-        self.year = LocalStorage.year
+    init(
+        luck: Luck = LocalStorage.luck,
+        location: Location = LocalStorage.location,
+        year: Year = LocalStorage.year
+    ) {
+        self.luck = luck
+        self.location = location
+        self.year = year
         
+        setupSubscribers()
+    }
+    
+    private func setupSubscribers() {
         $luck
             .sink { LocalStorage.luck =  $0 }
             .store(in: &bag)
-        
         $location
             .sink { LocalStorage.location = $0 }
             .store(in: &bag)
-        
         $year
             .sink { LocalStorage.year = $0 }
             .store(in: &bag)
+    }
+}
+
+// MARK: - Equatable
+
+extension GridUserInput: Equatable {
+    static func == (lhs: GridUserInput, rhs: GridUserInput) -> Bool {
+        lhs.luck == rhs.luck && lhs.location == rhs.location && lhs.year.number == rhs.year.number
     }
 }

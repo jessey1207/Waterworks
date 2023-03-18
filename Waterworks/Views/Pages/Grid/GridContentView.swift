@@ -9,11 +9,19 @@ import SwiftUI
 
 struct GridContentView: View {
     @ObservedObject var userInput: GridUserInput
-    @State private var rotated: Bool
+    @StateObject var viewModel: ViewModel
     
-    init(userInput: GridUserInput = .init(), rotated: Bool = false) {
+    init(
+        userInput: GridUserInput = .init(),
+        isRotated: Bool = false
+    ) {
         self.userInput = userInput
-        self.rotated = rotated
+        self._viewModel = .init(
+            wrappedValue: .init(
+                userInput: userInput,
+                isRotated: isRotated
+            )
+        )
     }
     
     var body: some View {
@@ -24,7 +32,7 @@ struct GridContentView: View {
                 PickerView(userInput: userInput)
                 GridView(
                     userInput: userInput,
-                    rotated: $rotated
+                    rotated: $viewModel.isRotated
                 )
                 actionButtons
                 legendView
@@ -41,13 +49,37 @@ struct GridContentView: View {
                 .padding(.bottom, 10)
                 .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottomLeading)
         }
+        .navigationBarItems(trailing: saveButton)
+        .onChange(of: userInput.location) { _ in
+            viewModel.didUpdateUserInput(userInput)
+        }
+        .onChange(of: userInput.luck) { _ in
+            viewModel.didUpdateUserInput(userInput)
+        }
+        .onChange(of: userInput.year.number) { _ in
+            viewModel.didUpdateUserInput(userInput)
+        }
+    }
+    
+    private var saveButton: some View {
+        Button {
+            withAnimation{
+                viewModel.didTapSaveButton(userInput: userInput)
+            }
+        } label: {
+            Image(systemName: viewModel.saveButtonImageName)
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .frame(width: Constants.Save.Button.size, height: Constants.Save.Button.size)
+                .padding(.top, Constants.Save.Button.padding)
+        }
     }
     
     private var actionButtons: some View {
         HStack(spacing: 40) {
             RotateButton(
                 userInput: userInput,
-                rotated: $rotated
+                rotated: $viewModel.isRotated
             )
             Button(action: {
                 userInput.isAdding.toggle()
