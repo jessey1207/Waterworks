@@ -50,6 +50,6 @@ struct HamburgerMenuView: View {
 
 struct HamburgerMenuView_Previews: PreviewProvider {
     static var previews: some View {
-        HamburgerMenuView(currentPage: .constant(.home), isVisible: .constant(true))
+        HamburgerMenuView(currentPage: .constant(.calculator), isVisible: .constant(true))
     }
 }

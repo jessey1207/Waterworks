@@ -12,6 +12,7 @@ class LocalStorage {
         static let userInputLuck: String = "userInput_luck"
         static let userInputLocation: String = "userInput_location"
         static let userInputYear: String = "userInput_year"
+        static let savedGridUserInputs: String = "saved_grid_user_inputs"
     }
     
     static var luck: Luck {
@@ -43,6 +44,39 @@ class LocalStorage {
         }
         set {
             UserDefaults.standard.set(newValue.number, forKey: Keys.userInputYear)
+        }
+    }
+    
+    static var savedUserInputs: [GridUserInput] {
+        get {
+            guard let data = UserDefaults.standard.data(forKey: Keys.savedGridUserInputs) else { return [] }
+            let decodedData = try? JSONDecoder().decode([GridUserInputItem].self, from: data)
+            return decodedData?.map {
+                .init(
+                    luck: Luck(rawValue: $0.luck) ?? .unknown,
+                    location: Location(rawValue: $0.location) ?? .unknown,
+                    year: Year(number: $0.year)
+                )
+            } ?? []
+        }
+        set {
+            let items: [GridUserInputItem] = newValue.map { .init(from: $0) }
+            let encoded = try? JSONEncoder().encode(items)
+            UserDefaults.standard.set(encoded, forKey: Keys.savedGridUserInputs)
+        }
+    }
+    
+    // MARK: - Codable
+    
+    private struct GridUserInputItem: Codable {
+        let luck: Int
+        let location: String
+        let year: Int
+        
+        init(from userInput: GridUserInput) {
+            self.luck = userInput.luck.rawValue
+            self.location = userInput.location.rawValue
+            self.year = userInput.year.number
         }
     }
 }

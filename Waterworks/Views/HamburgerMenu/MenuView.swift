@@ -49,6 +49,6 @@ struct MenuView: View {
 
 struct MenuView_Previews: PreviewProvider {
     static var previews: some View {
-        MenuView(isVisible: .constant(true), currentPage: .constant(.home))
+        MenuView(isVisible: .constant(true), currentPage: .constant(.calculator))
     }
 }

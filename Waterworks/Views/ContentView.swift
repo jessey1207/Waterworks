@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State var currentPage: Page = .home
+    @State var currentPage: Page = .calculator
     @State var isVisibleHamburgerMenu: Bool = false
     
     var body: some View {
@@ -34,11 +34,11 @@ struct ContentView: View {
                 ?  Constants.HamburgerMenu.Button.activeImageName
                 : Constants.HamburgerMenu.Button.inactiveImageName
             )
-                .resizable()
-                .aspectRatio(contentMode: .fit)
-                .frame(width: Constants.HamburgerMenu.Button.size, height: Constants.HamburgerMenu.Button.size)
-                .padding(.top, Constants.HamburgerMenu.Button.padding)
-                .padding(.leading, Constants.HamburgerMenu.Button.padding)
+            .resizable()
+            .aspectRatio(contentMode: .fit)
+            .frame(width: Constants.HamburgerMenu.Button.size, height: Constants.HamburgerMenu.Button.size)
+            .padding(.top, Constants.HamburgerMenu.Button.padding)
+            .padding(.leading, Constants.HamburgerMenu.Button.padding)
         }
     }
 }

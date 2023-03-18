@@ -83,4 +83,13 @@ enum Constants {
             static let cornerRadius: CGFloat = 12.0
         }
     }
+    
+    enum Save {
+        enum Button {
+            static let size: CGFloat = isPad ? 28.0 : 24.0
+            static let padding: CGFloat = isPad ? 14.0 : 10.0
+            static let savedImageName: String = "suit.heart.fill"
+            static let unsavedImageName: String = "suit.heart"
+        }
+    }
 }
