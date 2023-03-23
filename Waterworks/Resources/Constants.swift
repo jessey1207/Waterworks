@@ -11,6 +11,27 @@ private let isPad = UIDevice.current.userInterfaceIdiom == .pad
 
 enum Constants {
     
+    enum SearchLocation {
+        static let findLocation: String = "Find a location"
+        static let searchLocation: String = "Search location"
+        static let useCurrentLocation: String = "Use current location"
+        
+        enum Map {
+            static let annotationTitle: String = "Here"
+            static let radius: Double = 1000
+            static let confirmLocation: String = "Confirm Location"
+        }
+        
+        enum ErrorAlert {
+            static let title: String = "Something went wrong."
+            static let okGotIt: String = "OK, got it."
+            static let enableLocationServices: String = "You may need to enable location services to continue."
+            static let noPlaces: String = "Could not find any places from your search."
+            static let noPlace: String = "Failed to find the place for this location."
+            static let tryAgain: String = "Please try again."
+        }
+    }
+    
     enum Buttons {
         static let add: String = "兼"
         static let doNotAdd: String = "不兼"
@@ -85,6 +106,13 @@ enum Constants {
     }
     
     enum Save {
+        enum Modal {
+            static let addLocation: String = "Add location"
+            static let editLocation: String = "Edit location"
+            static let remove: String = "Remove"
+            static let save: String = "Save"
+        }
+        
         enum Button {
             static let size: CGFloat = isPad ? 28.0 : 24.0
             static let padding: CGFloat = isPad ? 14.0 : 10.0
