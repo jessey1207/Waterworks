@@ -24,7 +24,7 @@ struct PageView: View {
         case .saved, .favourites:
             List(savedCalculations) { calculation in
                 NavigationLink {
-                    SavedCalculationDetailView(viewModel: calculation)
+                    // TODO: detail view
                 } label: {
                     Text(calculation.name)
                 }

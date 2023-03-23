@@ -11,6 +11,13 @@ extension GridContentView {
     class ViewModel: ObservableObject {
         @Published var isRotated: Bool
         @Published var isSaved: Bool
+        @Published var sheet: Sheet?
+        
+        enum Sheet: String, Identifiable {
+            case save
+            
+            var id: String { rawValue }
+        }
         
         init(
             userInput: GridUserInput,
@@ -34,14 +41,18 @@ extension GridContentView.ViewModel {
     }
     
     func didTapSaveButton(userInput: GridUserInput) {
-        // TODO: Modal
         if isSaved {
-            // Remove from local storage
             LocalStorage.savedUserInputs.removeAll(where: { $0 == userInput })
+            isSaved = false
+            // TODO: Alert
         } else {
-            // Add to local storage
-            LocalStorage.savedUserInputs.append(userInput)
+            sheet = .save
         }
-        isSaved.toggle()
+    }
+    
+    func save(userInput: GridUserInput) {
+        LocalStorage.savedUserInputs.append(userInput)
+        isSaved = true
+        sheet = nil
     }
 }

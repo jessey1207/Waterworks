@@ -50,21 +50,26 @@ struct GridContentView: View {
                 .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottomLeading)
         }
         .navigationBarItems(trailing: saveButton)
-        .onChange(of: userInput.location) { _ in
-            viewModel.didUpdateUserInput(userInput)
+        .onChange(of: userInput.location) { [weak viewModel] _ in
+            viewModel?.didUpdateUserInput(userInput)
         }
-        .onChange(of: userInput.luck) { _ in
-            viewModel.didUpdateUserInput(userInput)
+        .onChange(of: userInput.luck) { [weak viewModel] _ in
+            viewModel?.didUpdateUserInput(userInput)
         }
-        .onChange(of: userInput.year.number) { _ in
-            viewModel.didUpdateUserInput(userInput)
+        .onChange(of: userInput.year.number) { [weak viewModel] _ in
+            viewModel?.didUpdateUserInput(userInput)
+        }
+        .sheet(item: $viewModel.sheet) {
+            sheet($0)
         }
     }
-    
-    private var saveButton: some View {
+}
+
+private extension GridContentView {
+    var saveButton: some View {
         Button {
-            withAnimation{
-                viewModel.didTapSaveButton(userInput: userInput)
+            withAnimation { [weak viewModel] in
+                viewModel?.didTapSaveButton(userInput: userInput)
             }
         } label: {
             Image(systemName: viewModel.saveButtonImageName)
@@ -75,7 +80,7 @@ struct GridContentView: View {
         }
     }
     
-    private var actionButtons: some View {
+    var actionButtons: some View {
         HStack(spacing: 40) {
             RotateButton(
                 userInput: userInput,
@@ -92,7 +97,7 @@ struct GridContentView: View {
         .animation(.linear(duration: 0.2), value: userInput.isAdding)
     }
     
-    private var legendView: some View {
+    var legendView: some View {
         HStack(spacing: 25) {
             Text(Constants.Grid.Item.yearText)
                 .foregroundColor(.black)
@@ -104,13 +109,24 @@ struct GridContentView: View {
         .foregroundColor(.custom(.brownPrimary))
     }
     
-    private func legendItem(icon: String, text: String) -> some View {
+    func legendItem(icon: String, text: String) -> some View {
         HStack(spacing: 4) {
             Text(icon)
                 .font(.custom(.control))
             Text(text)
         }
     }
+    
+    @ViewBuilder
+    private func sheet(_ sheet: ViewModel.Sheet) -> some View {
+        switch sheet {
+        case .save:
+            SaveGridContentModal() { [weak viewModel] in
+                viewModel?.save(userInput: userInput)
+            }
+        }
+    }
+    
 }
 
 struct GridContentView_Previews: PreviewProvider {
