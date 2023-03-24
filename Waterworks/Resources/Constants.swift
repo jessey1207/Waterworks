@@ -107,10 +107,33 @@ enum Constants {
     
     enum Save {
         enum Modal {
-            static let addLocation: String = "Add location"
-            static let editLocation: String = "Edit location"
-            static let remove: String = "Remove"
+            static let navigationTitle: String = "Save configuration"
+            
+            enum Fields {
+                enum Name {
+                    static let title: String = "Name"
+                    static let imageName: String = "square.grid.3x3.fill"
+                    static let placeholder: String = "Name this configuration"
+                    static let errorMessage: String = "Please add a name"
+                }
+                
+                enum Notes {
+                    static let title: String = "Notes"
+                    static let imageName: String = "note.text"
+                    static let placeholder: String = "Add some notes about it"
+                }
+                
+                enum Location {
+                    static let title: String = "Location"
+                    static let imageName: String = "location.fill"
+                    static let add: String = "Add location"
+                    static let edit: String = "Edit"
+                    static let remove: String = "Remove"
+                }
+            }
+            static let done: String = "Done"
             static let save: String = "Save"
+            static let cancel: String = "Cancel"
         }
         
         enum Button {

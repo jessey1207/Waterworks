@@ -121,9 +121,14 @@ private extension GridContentView {
     private func sheet(_ sheet: ViewModel.Sheet) -> some View {
         switch sheet {
         case .save:
-            SaveGridContentModal() { [weak viewModel] in
-                viewModel?.save(userInput: userInput)
-            }
+            SaveGridContentModal(
+                onSaveAction: { [weak viewModel] in
+                    viewModel?.save(userInput: userInput)
+                },
+                onDismissAction: { [weak viewModel] in
+                    viewModel?.sheet = nil
+                }
+            )
         }
     }
     
