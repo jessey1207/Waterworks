@@ -24,7 +24,7 @@ extension GridContentView {
             isRotated: Bool
         ) {
             self.isRotated = isRotated
-            self.isSaved = LocalStorage.savedUserInputs.contains(where: { $0 == userInput })
+            self.isSaved = LocalStorage.savedConfigurations.contains(where: { $0.userInput == userInput })
         }
     }
 }
@@ -37,12 +37,12 @@ extension GridContentView.ViewModel {
     }
     
     func didUpdateUserInput(_ userInput: GridUserInput) {
-        isSaved = LocalStorage.savedUserInputs.contains(where: { $0 == userInput })
+        isSaved = LocalStorage.savedConfigurations.contains(where: { $0.userInput == userInput })
     }
     
     func didTapSaveButton(userInput: GridUserInput) {
         if isSaved {
-            LocalStorage.savedUserInputs.removeAll(where: { $0 == userInput })
+            LocalStorage.savedConfigurations.removeAll(where: { $0.userInput == userInput })
             isSaved = false
             // TODO: Alert
         } else {
@@ -50,8 +50,8 @@ extension GridContentView.ViewModel {
         }
     }
     
-    func save(userInput: GridUserInput) {
-        LocalStorage.savedUserInputs.append(userInput)
+    func save(configuration: SavedConfiguration) {
+        LocalStorage.savedConfigurations.append(configuration)
         isSaved = true
         sheet = nil
     }

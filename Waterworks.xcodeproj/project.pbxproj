@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		94260DA729C52BA20050001C /* SavedCalculation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94260DA629C52BA20050001C /* SavedCalculation.swift */; };
+		94260DA729C52BA20050001C /* SavedConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94260DA629C52BA20050001C /* SavedConfiguration.swift */; };
 		94260DAD29C530730050001C /* PageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94260DAC29C530730050001C /* PageView.swift */; };
 		94260DAF29C5A8560050001C /* GridContentView.ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94260DAE29C5A8560050001C /* GridContentView.ViewModel.swift */; };
 		94260DB129C5B1E20050001C /* SaveGridContentModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94260DB029C5B1E20050001C /* SaveGridContentModal.swift */; };
@@ -82,7 +82,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		94260DA629C52BA20050001C /* SavedCalculation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedCalculation.swift; sourceTree = "<group>"; };
+		94260DA629C52BA20050001C /* SavedConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedConfiguration.swift; sourceTree = "<group>"; };
 		94260DAC29C530730050001C /* PageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageView.swift; sourceTree = "<group>"; };
 		94260DAE29C5A8560050001C /* GridContentView.ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridContentView.ViewModel.swift; sourceTree = "<group>"; };
 		94260DB029C5B1E20050001C /* SaveGridContentModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveGridContentModal.swift; sourceTree = "<group>"; };
@@ -222,7 +222,7 @@
 			isa = PBXGroup;
 			children = (
 				94CEE767280EAB7200064407 /* Grid */,
-				94260DA629C52BA20050001C /* SavedCalculation.swift */,
+				94260DA629C52BA20050001C /* SavedConfiguration.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -524,7 +524,7 @@
 				94C9E06E299768B7009351C1 /* Color+Custom.swift in Sources */,
 				94C9E05C2996E2B2009351C1 /* MenuView.swift in Sources */,
 				94260DAD29C530730050001C /* PageView.swift in Sources */,
-				94260DA729C52BA20050001C /* SavedCalculation.swift in Sources */,
+				94260DA729C52BA20050001C /* SavedConfiguration.swift in Sources */,
 				9441907128103E8800C839C0 /* CardinalPoint.swift in Sources */,
 				9441906A280FD17700C839C0 /* ArrowsView.swift in Sources */,
 				94CEE75B280D9BEC00064407 /* String+Extensions.swift in Sources */,

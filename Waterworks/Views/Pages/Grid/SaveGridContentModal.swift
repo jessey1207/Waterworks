@@ -6,9 +6,10 @@
 //
 
 import SwiftUI
+import MapKit
 
 struct SaveGridContentModal: View {
-    let onSaveAction: () -> Void
+    let onSaveAction: (String, CLLocation?, String) -> Void
     let onDismissAction: () -> Void
     
     @StateObject var manager: SearchLocationManager = .init()
@@ -62,7 +63,7 @@ private extension SaveGridContentModal {
                     focusedField = nil
                     isVisibleInputError = true
                 } else {
-                    onSaveAction()
+                    onSaveAction(name, manager.pickedPlacemark?.location, notes)
                 }
             }
         }
@@ -216,7 +217,10 @@ extension SaveGridContentModal {
 
 struct SaveGridContentModal_Previews: PreviewProvider {
     static var previews: some View {
-        SaveGridContentModal(onSaveAction: {}, onDismissAction: {})
+        SaveGridContentModal(
+            onSaveAction: { _, _, _ in },
+            onDismissAction: {}
+        )
     }
 }
 
