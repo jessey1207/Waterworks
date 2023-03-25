@@ -6,13 +6,14 @@
 //
 
 import Foundation
+import MapKit
 
 class LocalStorage {
     enum Keys {
         static let userInputLuck: String = "userInput_luck"
         static let userInputLocation: String = "userInput_location"
         static let userInputYear: String = "userInput_year"
-        static let savedGridUserInputs: String = "saved_grid_user_inputs"
+        static let savedConfigurations: String = "saved_configurations"
     }
     
     static var luck: Luck {
@@ -47,36 +48,60 @@ class LocalStorage {
         }
     }
     
-    static var savedUserInputs: [GridUserInput] {
+    static var savedConfigurations: [SavedConfiguration] {
         get {
-            guard let data = UserDefaults.standard.data(forKey: Keys.savedGridUserInputs) else { return [] }
-            let decodedData = try? JSONDecoder().decode([GridUserInputItem].self, from: data)
+            guard let data = UserDefaults.standard.data(forKey: Keys.savedConfigurations) else { return [] }
+            let decodedData = try? JSONDecoder().decode([SavedConfigurationItem].self, from: data)
             return decodedData?.map {
-                .init(
-                    luck: Luck(rawValue: $0.luck) ?? .unknown,
-                    location: Location(rawValue: $0.location) ?? .unknown,
-                    year: Year(number: $0.year)
-                )
+                .init(from: $0)
             } ?? []
         }
         set {
-            let items: [GridUserInputItem] = newValue.map { .init(from: $0) }
+            let items: [SavedConfigurationItem] = newValue.map { .init(from: $0) }
             let encoded = try? JSONEncoder().encode(items)
-            UserDefaults.standard.set(encoded, forKey: Keys.savedGridUserInputs)
+            UserDefaults.standard.set(encoded, forKey: Keys.savedConfigurations)
         }
     }
     
     // MARK: - Codable
     
-    private struct GridUserInputItem: Codable {
-        let luck: Int
-        let location: String
-        let year: Int
+    struct SavedConfigurationItem: Codable {
+        let name: String
+        let userInput: GridUserInputItem
+        let location: LocationItem?
+        let notes: String
         
-        init(from userInput: GridUserInput) {
-            self.luck = userInput.luck.rawValue
-            self.location = userInput.location.rawValue
-            self.year = userInput.year.number
+        init(from savedConfiguration: SavedConfiguration) {
+            self.name = savedConfiguration.name
+            self.userInput = .init(from: savedConfiguration.userInput)
+            self.location = .init(
+                latitude: savedConfiguration.location?.coordinate.latitude,
+                longitude: savedConfiguration.location?.coordinate.longitude
+            )
+            self.notes = savedConfiguration.notes
+        }
+        
+        struct GridUserInputItem: Codable {
+            let luck: Int
+            let location: String
+            let year: Int
+            
+            init(from userInput: GridUserInput) {
+                self.luck = userInput.luck.rawValue
+                self.location = userInput.location.rawValue
+                self.year = userInput.year.number
+            }
+        }
+        
+        struct LocationItem: Codable {
+            let latitude: Double
+            let longitude: Double
+            
+            init?(latitude: Double?, longitude: Double?) {
+                guard let latitude, let longitude else { return nil }
+                self.latitude = latitude
+                self.longitude = longitude
+            }
         }
     }
 }

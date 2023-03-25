@@ -10,11 +10,7 @@ import SwiftUI
 struct PageView: View {
     var currentPage: ContentView.Page
     
-    let savedCalculations: [SavedCalculation] = [
-        .init(name: "A", userInput: .init()),
-        .init(name: "B", userInput: .init()),
-        .init(name: "C", userInput: .init())
-    ]
+    let savedConfigurations: [SavedConfiguration] = LocalStorage.savedConfigurations
     
     var body: some View {
         switch currentPage {
@@ -22,11 +18,11 @@ struct PageView: View {
             GridContentView()
                 .edgesIgnoringSafeArea(.top)
         case .saved, .favourites:
-            List(savedCalculations) { calculation in
+            List(savedConfigurations) { configuration in
                 NavigationLink {
                     // TODO: detail view
                 } label: {
-                    Text(calculation.name)
+                    Text(configuration.name)
                 }
                 .listStyle(.insetGrouped)
                 .background(currentPage.backgroundColor.opacity(0.25))
