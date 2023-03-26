@@ -12,8 +12,11 @@ extension GridContentView {
         @Published var isRotated: Bool
         @Published var isSaved: Bool
         @Published var sheet: Sheet?
+        @Published var isPresentedUnsaveAlert: Bool = false
         
         let mode: Mode
+        
+        private let userInput: GridUserInput
         
         init(
             userInput: GridUserInput,
@@ -23,11 +26,24 @@ extension GridContentView {
             self.isRotated = isRotated
             self.isSaved = LocalStorage.savedConfigurations.contains(where: { $0.userInput == userInput })
             self.mode = mode
+            self.userInput = userInput
         }
     }
 }
 
 extension GridContentView.ViewModel {
+    var unsaveAlertMessage: String {
+        var string = Constants.Save.Alert.messagePrefix
+        let savedConfigurationsNames = LocalStorage.savedConfigurations
+            .filter { $0.userInput == userInput }
+            .map { $0.name }
+        savedConfigurationsNames.forEach { name in
+            string.append(Constants.Save.Alert.listItem(name: name))
+        }
+        string.append(Constants.Save.Alert.messageSuffix)
+        return string
+    }
+    
     var saveButtonImageName: String {
         return isSaved
         ? Constants.Save.Button.savedImageName
@@ -40,12 +56,15 @@ extension GridContentView.ViewModel {
     
     func didTapSaveButton(userInput: GridUserInput) {
         if isSaved {
-            LocalStorage.savedConfigurations.removeAll(where: { $0.userInput == userInput })
-            isSaved = false
-            // TODO: Alert
+            isPresentedUnsaveAlert = true
         } else {
             sheet = .save
         }
+    }
+    
+    func unsave() {
+        LocalStorage.savedConfigurations.removeAll(where: { $0.userInput == userInput })
+        isSaved = false
     }
     
     func save(configuration: SavedConfiguration) {

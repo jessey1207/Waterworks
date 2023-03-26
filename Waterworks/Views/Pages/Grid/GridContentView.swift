@@ -47,6 +47,16 @@ struct GridContentView: View {
             .sheet(item: $viewModel.sheet) {
                 sheet($0)
             }
+            .alert(isPresented: $viewModel.isPresentedUnsaveAlert) {
+                Alert(
+                    title: Text(Constants.Save.Alert.title),
+                    message:  Text(viewModel.unsaveAlertMessage),
+                    primaryButton: .cancel(Text(Constants.Save.Alert.Buttons.no)),
+                    secondaryButton: .destructive(Text(Constants.Save.Alert.Buttons.yes)) {
+                        viewModel.unsave()
+                    }
+                )
+            }
         case .view:
             gridContent
         }
