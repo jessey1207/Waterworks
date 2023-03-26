@@ -114,7 +114,8 @@ enum Constants {
                     static let title: String = "Name"
                     static let imageName: String = "square.grid.3x3.fill"
                     static let placeholder: String = "Name this configuration"
-                    static let errorMessage: String = "Please add a name"
+                    static let emptyNameError: String = "Please add a name."
+                    static let nameExistsError: String = "Name already exists. Please choose another name."
                 }
                 
                 enum Notes {
@@ -131,6 +132,7 @@ enum Constants {
                     static let remove: String = "Remove"
                 }
             }
+            static let edit: String = "Edit"
             static let done: String = "Done"
             static let save: String = "Save"
             static let cancel: String = "Cancel"

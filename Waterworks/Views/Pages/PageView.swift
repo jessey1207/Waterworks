@@ -8,24 +8,67 @@
 import SwiftUI
 
 struct PageView: View {
-    var currentPage: ContentView.Page
+    @ObservedObject private var viewModel: ViewModel
     
-    let savedConfigurations: [SavedConfiguration] = LocalStorage.savedConfigurations
+    init(viewModel: ViewModel) {
+        self.viewModel = viewModel
+    }
     
     var body: some View {
-        switch currentPage {
+        switch viewModel.currentPage {
         case .calculator:
             GridContentView()
                 .edgesIgnoringSafeArea(.top)
-        case .saved, .favourites:
-            List(savedConfigurations) { configuration in
-                NavigationLink {
-                    // TODO: detail view
-                } label: {
-                    Text(configuration.name)
+        case .saved:
+            List {
+                // MARK: Favourites
+                Section {
+                    // TODO: -
+                } header: {
+                    savedListHeaderView(title: "Favourites")
                 }
-                .listStyle(.insetGrouped)
-                .background(currentPage.backgroundColor.opacity(0.25))
+                
+                // MARK: Others
+                Section {
+                    ForEach(viewModel.savedConfigurations) { configuration in
+                        NavigationLink {
+                            SavedConfigurationDetailView(configuration: configuration)
+                        } label: {
+                            savedListRowView(for: configuration)
+                        }
+                    }
+                } header: {
+                    savedListHeaderView(title: "Others")
+                }
+            }
+            .listStyle(.insetGrouped)
+            .background(viewModel.currentPage.backgroundColor.opacity(0.25))
+            .onAppear {
+                viewModel.onAppearSavedPage()
+            }
+        case .favourites:
+            EmptyView()
+        }
+    }
+}
+
+private extension PageView {
+    func savedListHeaderView(title: String) -> some View {
+        Text(title)
+            .font(.subheadline)
+            .fontWeight(.semibold)
+    }
+    
+    func savedListRowView(for configuration: SavedConfiguration) -> some View {
+        VStack(alignment: .leading, spacing: 4) {
+            Text(configuration.name)
+            if let placeName = configuration.placeName {
+                HStack(spacing: 4) {
+                    Image(systemName: "location.fill")
+                    Text(placeName)
+                }
+                .foregroundColor(.gray)
+                .font(.caption)
             }
         }
     }
@@ -33,6 +76,6 @@ struct PageView: View {
 
 struct PageView_Previews: PreviewProvider {
     static var previews: some View {
-        PageView(currentPage: .calculator)
+        PageView(viewModel: .init(currentPage: .saved))
     }
 }

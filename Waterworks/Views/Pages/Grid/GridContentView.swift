@@ -13,59 +13,73 @@ struct GridContentView: View {
     
     init(
         userInput: GridUserInput = .init(),
-        isRotated: Bool = false
+        isRotated: Bool = false,
+        mode: ViewModel.Mode = .edit
     ) {
         self.userInput = userInput
         self._viewModel = .init(
             wrappedValue: .init(
                 userInput: userInput,
-                isRotated: isRotated
+                isRotated: isRotated,
+                mode: mode
             )
         )
     }
     
     var body: some View {
-        ZStack(alignment: .center) {
-            Color.custom(.bronzeBackground).opacity(0.25)
-                .edgesIgnoringSafeArea(.bottom)
-            VStack(spacing: 20) {
-                PickerView(userInput: userInput)
-                GridView(
-                    userInput: userInput,
-                    rotated: $viewModel.isRotated
-                )
-                actionButtons
-                legendView
-                    .padding(.top, 20)
+        switch viewModel.mode {
+        case .edit:
+            ZStack(alignment: .center) {
+                Color.custom(.bronzeBackground).opacity(0.25)
+                    .edgesIgnoringSafeArea(.bottom)
+                gridContent
             }
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .scrollInLandscapeMode()
-            Image(Constants.Compass.imageName)
-                .resizable()
-                .scaledToFit()
-                .frame(width: Constants.Compass.size, height: Constants.Compass.size)
-                .background(Color.white.opacity(0.5))
-                .padding(.leading, 10)
-                .padding(.bottom, 10)
-                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottomLeading)
-        }
-        .navigationBarItems(trailing: saveButton)
-        .onChange(of: userInput.location) { [weak viewModel] _ in
-            viewModel?.didUpdateUserInput(userInput)
-        }
-        .onChange(of: userInput.luck) { [weak viewModel] _ in
-            viewModel?.didUpdateUserInput(userInput)
-        }
-        .onChange(of: userInput.year.number) { [weak viewModel] _ in
-            viewModel?.didUpdateUserInput(userInput)
-        }
-        .sheet(item: $viewModel.sheet) {
-            sheet($0)
+            .navigationBarItems(trailing: saveButton)
+            .onChange(of: userInput.location) { [weak viewModel] _ in
+                viewModel?.didUpdateUserInput(userInput)
+            }
+            .onChange(of: userInput.luck) { [weak viewModel] _ in
+                viewModel?.didUpdateUserInput(userInput)
+            }
+            .onChange(of: userInput.year.number) { [weak viewModel] _ in
+                viewModel?.didUpdateUserInput(userInput)
+            }
+            .sheet(item: $viewModel.sheet) {
+                sheet($0)
+            }
+        case .view:
+            gridContent
         }
     }
 }
 
 private extension GridContentView {
+    @ViewBuilder
+    var gridContent: some View {
+        VStack(spacing: 20) {
+            PickerView(userInput: userInput)
+                .disabled(viewModel.mode != .edit)
+            GridView(
+                userInput: userInput,
+                rotated: $viewModel.isRotated
+            )
+            actionButtons
+            legendView
+                .padding(.top, 20)
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .scrollInLandscapeMode()
+        Image(Constants.Compass.imageName)
+            .resizable()
+            .scaledToFit()
+            .frame(width: Constants.Compass.size, height: Constants.Compass.size)
+            .background(Color.white.opacity(0.5))
+            .padding(.leading, 10)
+            .padding(.bottom, 10)
+            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottomLeading)
+    }
+    
+    @ViewBuilder
     var saveButton: some View {
         Button {
             withAnimation { [weak viewModel] in
@@ -122,12 +136,14 @@ private extension GridContentView {
         switch sheet {
         case .save:
             SaveGridContentModal(
-                onSaveAction: { [weak viewModel] name, location, notes in
+                gridUserInput: userInput,
+                onSaveAction: { [weak viewModel] name, location, placeName, notes, gridUserInput in
                     viewModel?.save(
                         configuration: .init(
                             name: name,
-                            userInput: userInput,
+                            userInput: gridUserInput,
                             location: location,
+                            placeName: placeName,
                             notes: notes
                         )
                     )
@@ -138,7 +154,6 @@ private extension GridContentView {
             )
         }
     }
-    
 }
 
 struct GridContentView_Previews: PreviewProvider {

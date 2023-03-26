@@ -9,42 +9,68 @@ import SwiftUI
 import MapKit
 
 struct SaveGridContentModal: View {
-    let onSaveAction: (String, CLLocation?, String) -> Void
+    /// Save action with parameters: name, location, place name, notes, grid user input
+    typealias OnSaveCompletion = (String, CLLocation?, String?, String, GridUserInput) -> Void
+    
+    let onSaveAction: OnSaveCompletion
     let onDismissAction: () -> Void
     
-    @StateObject var manager: SearchLocationManager = .init()
-    
-    @FocusState private var focusedField: Field?
+    @StateObject private var manager: SearchLocationManager
     @State private var navigationPath: [Path] = []
+    @State private var inputError: InputError?
+    
+    // Inputs
+    @ObservedObject private var gridUserInput: GridUserInput
+    @FocusState private var focusedField: Field?
+    @State private var isVisibleGridUserInputFields: Bool
     @State private var name: String = ""
     @State private var notes: String = ""
-    @State private var isVisibleInputError: Bool = false
+    
+    init(
+        manager: SearchLocationManager = .init(),
+        isVisibleGridUserInputFields: Bool = false,
+        gridUserInput: GridUserInput,
+        name: String = "",
+        notes: String = "",
+        onSaveAction: @escaping OnSaveCompletion,
+        onDismissAction: @escaping () -> Void
+    ) {
+        self._manager = .init(wrappedValue: manager)
+        self.isVisibleGridUserInputFields = isVisibleGridUserInputFields
+        self.gridUserInput = gridUserInput
+        self.name = name
+        self.notes = notes
+        self.onSaveAction = onSaveAction
+        self.onDismissAction = onDismissAction
+    }
     
     var body: some View {
         NavigationStack(path: $navigationPath) {
-            inputFields
-                .interactiveDismissDisabled()
-                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
-                .padding(20)
-                .toolbar {
-                    toolbarContent
-                }
-                .navigationTitle(Constants.Save.Modal.navigationTitle)
-                .navigationBarTitleDisplayMode(.large)
-                .navigationDestination(for: Path.self) { path in
-                    switch path {
-                    case .searchLocation:
-                        SearchLocationView(navigationPath: $navigationPath)
-                            .environmentObject(manager)
-                            .navigationBarTitleDisplayMode(.inline)
-                    case .mapDetail:
-                        MapDetailView(navigationPath: $navigationPath)
-                            .environmentObject(manager)
+            ScrollView {
+                fields
+                    .interactiveDismissDisabled()
+                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
+                    .padding(20)
+                    .toolbar {
+                        toolbarContent
                     }
-                }
-                .onChange(of: name) { _ in
-                    isVisibleInputError = false
-                }
+                    .navigationTitle(Constants.Save.Modal.navigationTitle)
+                    .navigationBarTitleDisplayMode(.large)
+                    .navigationDestination(for: Path.self) { path in
+                        switch path {
+                        case .searchLocation:
+                            SearchLocationView(navigationPath: $navigationPath)
+                                .environmentObject(manager)
+                                .navigationBarTitleDisplayMode(.inline)
+                        case .mapDetail:
+                            MapDetailView(navigationPath: $navigationPath)
+                                .environmentObject(manager)
+                        }
+                    }
+                    .onChange(of: name) { _ in
+                        inputError = nil
+                    }
+            }
         }
     }
 }
@@ -61,9 +87,20 @@ private extension SaveGridContentModal {
             Button(Constants.Save.Modal.save) {
                 if name.isEmpty {
                     focusedField = nil
-                    isVisibleInputError = true
+                    inputError = .emptyName
+                } else if !isVisibleGridUserInputFields,
+                            LocalStorage.savedConfigurations.contains(where: { $0.name == name }) {
+                    // Only check when saving a new config i.e grid user input fields not visible
+                    focusedField = nil
+                    inputError = .nameAlreadyExists
                 } else {
-                    onSaveAction(name, manager.pickedPlacemark?.location, notes)
+                    onSaveAction(
+                        name,
+                        manager.confirmedPlacemark?.location,
+                        manager.confirmedPlacemark?.name,
+                        notes,
+                        gridUserInput
+                    )
                 }
             }
         }
@@ -75,10 +112,10 @@ private extension SaveGridContentModal {
         }
     }
     
-    var inputFields: some View {
+    var fields: some View {
         VStack(alignment: .leading, spacing: 20) {
             // MARK: Name
-            inputField(field: .name, text: $name)
+            textField(for: .name, text: $name)
             
             // MARK: Location
             VStack(alignment: .leading, spacing: 10) {
@@ -99,13 +136,49 @@ private extension SaveGridContentModal {
             }
             
             // MARK: Notes
-            inputField(field: .notes, text: $notes)
+            textField(for: .notes, text: $notes)
+            
+            // MARK: Grid
+            gridRelatedFields
+        }
+    }
+    
+    @ViewBuilder
+    var gridRelatedFields: some View {
+        if isVisibleGridUserInputFields {
+            pickerField(
+                for: .gridLuck,
+                binding: $gridUserInput.luck,
+                labelString: String(gridUserInput.luck.rawValue)
+            ) {
+                ForEach(Luck.allCases) {
+                    Text(String($0.rawValue))
+                }
+            }
+            pickerField(
+                for: .gridLocation,
+                binding: $gridUserInput.location,
+                labelString: String(gridUserInput.location.rawValue)
+            ) {
+                ForEach(Location.allCases) {
+                    Text(String($0.rawValue))
+                }
+            }
+            pickerField(
+                for: .gridYear,
+                binding: $gridUserInput.year.number,
+                labelString: String(gridUserInput.year.number)
+            ) {
+                ForEach(Array(Field.gridYear.getYearRange()), id: \.self) {
+                    Text(String($0))
+                }
+            }
         }
     }
     
     @ViewBuilder
     var locationFieldTextView: some View {
-        if let placeName = manager.confirmedPlaceName, !placeName.isEmpty {
+        if let placeName = manager.confirmedPlacemark?.name, !placeName.isEmpty {
             Text(placeName)
             Spacer()
             NavigationLink(
@@ -120,7 +193,7 @@ private extension SaveGridContentModal {
             Text(Constants.Save.Modal.Fields.Location.remove)
                 .foregroundColor(.red)
                 .onTapGesture {
-                    manager.confirmedPlaceName = nil
+                    manager.confirmedPlacemark = nil
                 }
         } else {
             NavigationLink(
@@ -131,7 +204,7 @@ private extension SaveGridContentModal {
         }
     }
     
-    func inputField(field: Field, text: Binding<String>) -> some View {
+    func textField(for field: Field, text: Binding<String>) -> some View {
         VStack(alignment: .leading, spacing: 0) {
             Text(field.title)
                 .font(.title3)
@@ -154,10 +227,38 @@ private extension SaveGridContentModal {
                     .strokeBorder(.gray)
             }
             .padding(.vertical, 10)
-            if field.isMandatory, isVisibleInputError {
-                Text(Constants.Save.Modal.Fields.Name.errorMessage)
+            if field.isMandatory, let inputError {
+                Text(inputError.message)
                     .font(.caption)
                     .foregroundColor(.red)
+            }
+        }
+    }
+    
+    @ViewBuilder
+    func pickerField<Selection: Hashable>(
+        for field: Field,
+        binding: Binding<Selection>,
+        labelString: String,
+        @ViewBuilder buildOptions: () -> ForEach<[Selection], Selection, Text>
+    ) -> some View {
+        VStack(alignment: .leading, spacing: 10) {
+            Text(field.title)
+                .font(.title3)
+                .fontWeight(.medium)
+            Menu {
+                Picker(selection: binding) {
+                    buildOptions()
+                } label: {}
+            } label: {
+                Text(labelString)
+            }
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .padding(.vertical, 12)
+            .padding(.horizontal)
+            .background {
+                RoundedRectangle(cornerRadius: 10, style: .continuous)
+                    .strokeBorder(.gray)
             }
         }
     }
@@ -171,10 +272,27 @@ extension SaveGridContentModal {
         case mapDetail
     }
     
+    enum InputError {
+        case emptyName
+        case nameAlreadyExists
+        
+        var message: String {
+            switch self {
+            case .emptyName:
+                return Constants.Save.Modal.Fields.Name.emptyNameError
+            case .nameAlreadyExists:
+                return Constants.Save.Modal.Fields.Name.nameExistsError
+            }
+        }
+    }
+    
     enum Field {
         case name
         case notes
         case location
+        case gridLuck
+        case gridLocation
+        case gridYear
         
         var title: String {
             switch self {
@@ -184,6 +302,12 @@ extension SaveGridContentModal {
                 return Constants.Save.Modal.Fields.Notes.title
             case .location:
                 return Constants.Save.Modal.Fields.Location.title
+            case .gridLuck:
+                return Constants.ChinesePicker.luckText
+            case .gridLocation:
+                return Constants.ChinesePicker.locationText
+            case .gridYear:
+                return Constants.ChinesePicker.yearText
             }
         }
         
@@ -195,6 +319,8 @@ extension SaveGridContentModal {
                 return Constants.Save.Modal.Fields.Notes.imageName
             case .location:
                 return Constants.Save.Modal.Fields.Location.imageName
+            case .gridLuck, .gridLocation, .gridYear:
+                return ""
             }
         }
         
@@ -204,7 +330,7 @@ extension SaveGridContentModal {
                 return Constants.Save.Modal.Fields.Name.placeholder
             case .notes:
                 return Constants.Save.Modal.Fields.Notes.placeholder
-            case .location:
+            case .location, .gridLuck, .gridLocation, .gridYear:
                 return ""
             }
         }
@@ -212,13 +338,28 @@ extension SaveGridContentModal {
         var isMandatory: Bool {
             self == .name
         }
+        
+        // MARK: Helpers
+        
+        func getYearRange() -> ClosedRange<Int> {
+            let currentDate = Date()
+        
+            var dateComponents = DateComponents()
+            dateComponents.year = 200
+            let futureDate = Calendar.current.date(byAdding: dateComponents, to: currentDate) ?? currentDate
+
+            let currentYear = Calendar.current.component(.year, from: currentDate)
+            let futureYear = Calendar.current.component(.year, from: futureDate)
+            return currentYear ... futureYear
+        }
     }
 }
 
 struct SaveGridContentModal_Previews: PreviewProvider {
     static var previews: some View {
         SaveGridContentModal(
-            onSaveAction: { _, _, _ in },
+            gridUserInput: .init(),
+            onSaveAction: { _, _, _, _, _ in },
             onDismissAction: {}
         )
     }

@@ -11,7 +11,7 @@ import Combine
 class SearchLocationManager: NSObject, ObservableObject {
     @Published var mapView: MKMapView = .init()
     @Published var searchText: String = ""
-    @Published var confirmedPlaceName: String?
+    @Published var confirmedPlacemark: CLPlacemark?
     @Published var fetchedPlaces: [CLPlacemark]?
     @Published var error: SearchLocationManagerError?
     
@@ -57,6 +57,11 @@ class SearchLocationManager: NSObject, ObservableObject {
         guard let location else { return }
         pickedLocation = location
         setMapViewCoordinate(location.coordinate)
+    }
+    
+    func setConfirmedLocation(_ location: CLLocation?) {
+        setPickedLocation(location)
+        confirmedPlacemark = pickedPlacemark
     }
     
     func reset() {

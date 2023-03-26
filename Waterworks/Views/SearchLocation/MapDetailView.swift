@@ -51,7 +51,7 @@ private extension MapDetailView {
             .padding(.vertical, 10)
             
             Button {
-                manager.confirmedPlaceName = manager.pickedPlacemark?.name
+                manager.confirmedPlacemark = manager.pickedPlacemark
                 navigationPath.removeLast(2)
             } label: {
                 Text(Constants.SearchLocation.Map.confirmLocation)

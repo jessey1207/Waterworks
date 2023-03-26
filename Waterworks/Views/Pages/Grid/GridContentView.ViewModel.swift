@@ -13,18 +13,16 @@ extension GridContentView {
         @Published var isSaved: Bool
         @Published var sheet: Sheet?
         
-        enum Sheet: String, Identifiable {
-            case save
-            
-            var id: String { rawValue }
-        }
+        let mode: Mode
         
         init(
             userInput: GridUserInput,
-            isRotated: Bool
+            isRotated: Bool,
+            mode: Mode
         ) {
             self.isRotated = isRotated
             self.isSaved = LocalStorage.savedConfigurations.contains(where: { $0.userInput == userInput })
+            self.mode = mode
         }
     }
 }
@@ -54,5 +52,22 @@ extension GridContentView.ViewModel {
         LocalStorage.savedConfigurations.append(configuration)
         isSaved = true
         sheet = nil
+    }
+}
+
+// MARK: - Types
+
+extension GridContentView.ViewModel {
+    enum Mode {
+        /// Allows user to change the grid input and save configuration.
+        case edit
+        /// Disables grid input and saving. Allows grid rotating and adding.
+        case view
+    }
+    
+    enum Sheet: String, Identifiable {
+        case save
+        
+        var id: String { rawValue }
     }
 }
