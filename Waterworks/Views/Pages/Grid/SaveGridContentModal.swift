@@ -26,6 +26,8 @@ struct SaveGridContentModal: View {
     @State private var name: String = ""
     @State private var notes: String = ""
     
+    private let initialName: String
+    
     init(
         manager: SearchLocationManager = .init(),
         isVisibleGridUserInputFields: Bool = false,
@@ -42,6 +44,7 @@ struct SaveGridContentModal: View {
         self.notes = notes
         self.onSaveAction = onSaveAction
         self.onDismissAction = onDismissAction
+        self.initialName = name
     }
     
     var body: some View {
@@ -88,9 +91,8 @@ private extension SaveGridContentModal {
                 if name.isEmpty {
                     focusedField = nil
                     inputError = .emptyName
-                } else if !isVisibleGridUserInputFields,
-                            LocalStorage.savedConfigurations.contains(where: { $0.name == name }) {
-                    // Only check when saving a new config i.e grid user input fields not visible
+                } else if name != initialName, LocalStorage.savedConfigurations.contains(where: { $0.name == name }) {
+                    // Name already exists in saved configurations
                     focusedField = nil
                     inputError = .nameAlreadyExists
                 } else {

@@ -138,6 +138,20 @@ enum Constants {
             static let cancel: String = "Cancel"
         }
         
+        enum Alert {
+            static let title: String = "Important"
+            static let messagePrefix: String = "The following saved configurations\n will be deleted:\n\n"
+            static let messageSuffix: String = "\nAre you sure?"
+            static func listItem(name: String) -> String {
+                "- \(name)\n"
+            }
+            
+            enum Buttons {
+                static let yes: String = "Yes"
+                static let no: String = "No"
+            }
+        }
+        
         enum Button {
             static let size: CGFloat = isPad ? 28.0 : 24.0
             static let padding: CGFloat = isPad ? 14.0 : 10.0
