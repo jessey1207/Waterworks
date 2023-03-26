@@ -14,7 +14,7 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             ZStack {
-                PageView(currentPage: currentPage)
+                PageView(viewModel: .init(currentPage: currentPage))
                 HamburgerMenuView(currentPage: $currentPage, isVisible: $isVisibleHamburgerMenu)
             }
             .navigationBarTitle("", displayMode: .inline)

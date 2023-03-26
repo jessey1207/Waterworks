@@ -12,6 +12,7 @@ struct SavedConfiguration: Identifiable {
     let name: String
     let userInput: GridUserInput
     let location: CLLocation?
+    let placeName: String?
     let notes: String
     
     var id: String { name }
@@ -20,11 +21,13 @@ struct SavedConfiguration: Identifiable {
         name: String,
         userInput: GridUserInput,
         location: CLLocation?,
+        placeName: String?,
         notes: String
     ) {
         self.name = name
         self.userInput = userInput
         self.location = location
+        self.placeName = placeName
         self.notes = notes
     }
     
@@ -41,6 +44,7 @@ struct SavedConfiguration: Identifiable {
             else { return nil }
             return .init(latitude: latitude, longitude: longitude)
         }()
+        self.placeName = item.placeName
         self.notes = item.notes
     }
 }

@@ -69,16 +69,18 @@ class LocalStorage {
         let name: String
         let userInput: GridUserInputItem
         let location: LocationItem?
+        let placeName: String?
         let notes: String
         
-        init(from savedConfiguration: SavedConfiguration) {
-            self.name = savedConfiguration.name
-            self.userInput = .init(from: savedConfiguration.userInput)
+        init(from configuration: SavedConfiguration) {
+            self.name = configuration.name
+            self.userInput = .init(from: configuration.userInput)
             self.location = .init(
-                latitude: savedConfiguration.location?.coordinate.latitude,
-                longitude: savedConfiguration.location?.coordinate.longitude
+                latitude: configuration.location?.coordinate.latitude,
+                longitude: configuration.location?.coordinate.longitude
             )
-            self.notes = savedConfiguration.notes
+            self.placeName = configuration.placeName
+            self.notes = configuration.notes
         }
         
         struct GridUserInputItem: Codable {
