@@ -21,24 +21,20 @@ struct PageView: View {
                 .edgesIgnoringSafeArea(.top)
         case .saved:
             List {
-                // MARK: Favourites
-                Section {
-                    // TODO: -
-                } header: {
-                    savedListHeaderView(title: "Favourites")
+                if !viewModel.favouritedConfigurations.isEmpty {
+                    savedListSection(
+                        configurations: viewModel.favouritedConfigurations,
+                        headerTitle: Constants.Save.FavouriteButton.listName
+                    )
                 }
-                
-                // MARK: Others
-                Section {
-                    ForEach(viewModel.savedConfigurations) { configuration in
-                        NavigationLink {
-                            SavedConfigurationDetailView(configuration: configuration)
-                        } label: {
-                            savedListRowView(for: configuration)
-                        }
-                    }
-                } header: {
-                    savedListHeaderView(title: "Others")
+                if !viewModel.unfavouritedConfigurations.isEmpty {
+                    // Only show "Others" title if there is favourites
+                    savedListSection(
+                        configurations: viewModel.unfavouritedConfigurations,
+                        headerTitle: viewModel.favouritedConfigurations.isEmpty
+                        ? Constants.Save.Button.listNameSaved
+                        : Constants.Save.Button.listNameOthers
+                    )
                 }
             }
             .listStyle(.insetGrouped)
@@ -47,12 +43,46 @@ struct PageView: View {
                 viewModel.onAppearSavedPage()
             }
         case .favourites:
-            EmptyView()
+            List {
+                if !viewModel.favouritedConfigurations.isEmpty {
+                    savedListSection(
+                        configurations: viewModel.favouritedConfigurations,
+                        headerTitle: Constants.Save.FavouriteButton.listName
+                    )
+                }
+            }
+            .listStyle(.insetGrouped)
+            .background(viewModel.currentPage.backgroundColor.opacity(0.25))
+            .onAppear {
+                viewModel.onAppearSavedPage()
+            }
         }
     }
 }
 
 private extension PageView {
+    func savedListSection(
+        configurations: [SavedConfiguration],
+        headerTitle: String
+    ) -> some View {
+        Section {
+            ForEach(configurations) { configuration in
+                NavigationLink {
+                    SavedConfigurationDetailView(configuration: configuration) {
+                        viewModel.onDelete(configuration: configuration)
+                    }
+                } label: {
+                    savedListRowView(for: configuration)
+                }
+            }
+            .onDelete { indexSet in
+                viewModel.onDelete(indexSet: indexSet)
+            }
+        } header: {
+            savedListHeaderView(title: headerTitle)
+        }
+    }
+    
     func savedListHeaderView(title: String) -> some View {
         Text(title)
             .font(.subheadline)

@@ -14,6 +14,7 @@ struct SavedConfiguration: Identifiable {
     let location: CLLocation?
     let placeName: String?
     let notes: String
+    let isFavourited: Bool
     
     var id: String { name }
     
@@ -22,13 +23,15 @@ struct SavedConfiguration: Identifiable {
         userInput: GridUserInput,
         location: CLLocation?,
         placeName: String?,
-        notes: String
+        notes: String,
+        isFavourited: Bool = false
     ) {
         self.name = name
         self.userInput = userInput
         self.location = location
         self.placeName = placeName
         self.notes = notes
+        self.isFavourited = isFavourited
     }
     
     init(from item: LocalStorage.SavedConfigurationItem) {
@@ -46,5 +49,17 @@ struct SavedConfiguration: Identifiable {
         }()
         self.placeName = item.placeName
         self.notes = item.notes
+        self.isFavourited = item.isFavourited
+    }
+    
+    var toggledFavouriteConfiguration: Self {
+        .init(
+            name: name,
+            userInput: userInput,
+            location: location,
+            placeName: placeName,
+            notes: notes,
+            isFavourited: !isFavourited
+        )
     }
 }

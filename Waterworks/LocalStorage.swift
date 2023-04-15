@@ -71,6 +71,7 @@ class LocalStorage {
         let location: LocationItem?
         let placeName: String?
         let notes: String
+        let isFavourited: Bool
         
         init(from configuration: SavedConfiguration) {
             self.name = configuration.name
@@ -81,6 +82,7 @@ class LocalStorage {
             )
             self.placeName = configuration.placeName
             self.notes = configuration.notes
+            self.isFavourited = configuration.isFavourited
         }
         
         struct GridUserInputItem: Codable {

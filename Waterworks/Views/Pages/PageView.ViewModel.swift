@@ -17,12 +17,38 @@ extension PageView {
             self.currentPage = currentPage
             self.savedConfigurations = localStorageConfigurationsSorted
         }
-        
-        func onAppearSavedPage() {
-            savedConfigurations = localStorageConfigurationsSorted
-        }
     }
 }
+
+// MARK: - Internal
+
+extension PageView.ViewModel {
+    var favouritedConfigurations: [SavedConfiguration] {
+        savedConfigurations.filter { $0.isFavourited }
+    }
+    
+    var unfavouritedConfigurations: [SavedConfiguration] {
+        savedConfigurations.filter { !$0.isFavourited }
+    }
+    
+    func onAppearSavedPage() {
+        savedConfigurations = localStorageConfigurationsSorted
+    }
+    
+    func onDelete(indexSet: IndexSet) {
+        indexSet.forEach { index in
+            let removedConfiguration = savedConfigurations.remove(at: index)
+            onDelete(configuration: removedConfiguration)
+        }
+    }
+    
+    func onDelete(configuration: SavedConfiguration) {
+        savedConfigurations.removeAll(where: { $0.name == configuration.name })
+        LocalStorage.savedConfigurations.removeAll(where: { $0.name == configuration.name })
+    }
+}
+
+// MARK: - Private
 
 private extension PageView.ViewModel {
     var localStorageConfigurationsSorted: [SavedConfiguration] {
