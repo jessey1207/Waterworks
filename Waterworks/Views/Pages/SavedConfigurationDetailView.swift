@@ -8,13 +8,18 @@
 import SwiftUI
 
 struct SavedConfigurationDetailView: View {
+    @Environment(\.dismiss) private var dismiss
+    
     @State var configuration: SavedConfiguration
+    @State private var isPresentedDeleteAlert: Bool = false
+    @State private var isPresentedEditSheet: Bool = false
     
-    @State private var isVisibleEditSheet: Bool = false
     private let searchLocationManager: SearchLocationManager = .init()
+    private let onDeleteAction: () -> Void
     
-    init(configuration: SavedConfiguration) {
-        self.configuration = configuration
+    init(configuration: SavedConfiguration, onDeleteAction: @escaping () -> Void) {
+        self._configuration = .init(wrappedValue: configuration)
+        self.onDeleteAction = onDeleteAction
         searchLocationManager.setPickedLocation(configuration.location)
     }
     
@@ -31,27 +36,70 @@ struct SavedConfigurationDetailView: View {
                 if !configuration.notes.isEmpty {
                     notesView
                 }
+                Button {
+                    isPresentedDeleteAlert = true
+                } label: {
+                    Text(Constants.Delete.title)
+                        .foregroundColor(.red)
+                        .frame(maxWidth: .infinity)
+                }
+
             }
             .padding()
         }
         .navigationTitle(configuration.name)
         .toolbar {
-            editButton
+            toolbar
         }
-        .sheet(isPresented: $isVisibleEditSheet) {
+        .sheet(isPresented: $isPresentedEditSheet) {
             editSheet
+        }
+        .alert(isPresented: $isPresentedDeleteAlert) {
+            Alert(
+                title: Text(Constants.Delete.Alert.title),
+                message:  Text(Constants.Delete.Alert.message),
+                primaryButton: .cancel(Text(Constants.Delete.Alert.Buttons.no)),
+                secondaryButton: .destructive(Text(Constants.Delete.Alert.Buttons.yes)) {
+                    onDelete()
+                }
+            )
         }
     }
 }
 
 private extension SavedConfigurationDetailView {
     @ToolbarContentBuilder
-    var editButton: some ToolbarContent {
-        ToolbarItem(placement: .navigationBarTrailing) {
-            Button(Constants.Save.Modal.edit) {
-                searchLocationManager.setConfirmedLocation(configuration.location)
-                isVisibleEditSheet = true
+    var toolbar: some ToolbarContent {
+        ToolbarItemGroup(placement: .navigationBarTrailing) {
+            favouriteButton
+            editButton
+        }
+    }
+    
+    var favouriteButton: some View {
+        Button {
+            withAnimation {
+                onTapFavouriteButton()
             }
+        } label: {
+            Image(
+                systemName: configuration.isFavourited
+                ? Constants.Save.FavouriteButton.favouritedImageName
+                : Constants.Save.FavouriteButton.unfavouritedImageName
+            )
+            .resizable()
+            .aspectRatio(contentMode: .fit)
+            .frame(
+                width: Constants.Save.FavouriteButton.size,
+                height: Constants.Save.FavouriteButton.size
+            )
+        }
+    }
+    
+    var editButton: some View {
+        Button(Constants.Save.Modal.edit) {
+            searchLocationManager.setConfirmedLocation(configuration.location)
+            isPresentedEditSheet = true
         }
     }
     
@@ -110,7 +158,7 @@ private extension SavedConfigurationDetailView {
                 ))
             },
             onDismissAction: {
-                isVisibleEditSheet = false
+                isPresentedEditSheet = false
             }
         )
     }
@@ -123,7 +171,20 @@ private extension SavedConfigurationDetailView {
         // Update view
         configuration = newConfiguration
         searchLocationManager.setPickedLocation(newConfiguration.location)
-        isVisibleEditSheet = false
+        isPresentedEditSheet = false
+    }
+    
+    func onTapFavouriteButton() {
+        let updatedConfiguration = configuration.toggledFavouriteConfiguration
+        LocalStorage.savedConfigurations.removeAll(where: { $0.name == configuration.name })
+        LocalStorage.savedConfigurations.append(updatedConfiguration)
+        configuration = updatedConfiguration
+        searchLocationManager.setPickedLocation(updatedConfiguration.location)
+    }
+    
+    func onDelete() {
+        onDeleteAction()
+        dismiss()
     }
 }
 
@@ -137,6 +198,6 @@ struct SavedConfigurationDetailView_Previews: PreviewProvider {
                 placeName: "Place",
                 notes: "note"
             )
-        )
+        ) {}
     }
 }

@@ -105,6 +105,20 @@ enum Constants {
         }
     }
     
+    enum Delete {
+        static let title: String = "Delete"
+        
+        enum Alert {
+            static let title: String = "Warning"
+            static let message: String = "This configuration will be deleted.\nAre you sure?"
+            
+            enum Buttons {
+                static let yes: String = "Yes"
+                static let no: String = "No"
+            }
+        }
+    }
+    
     enum Save {
         enum Modal {
             static let navigationTitle: String = "Save configuration"
@@ -153,10 +167,20 @@ enum Constants {
         }
         
         enum Button {
+            static let listNameSaved: String = "Saved"
+            static let listNameOthers: String = "Others"
             static let size: CGFloat = isPad ? 28.0 : 24.0
             static let padding: CGFloat = isPad ? 14.0 : 10.0
             static let savedImageName: String = "suit.heart.fill"
             static let unsavedImageName: String = "suit.heart"
+        }
+        
+        enum FavouriteButton {
+            static let listName: String = "Favourites"
+            static let size: CGFloat = isPad ? 28.0 : 24.0
+            static let padding: CGFloat = isPad ? 14.0 : 10.0
+            static let favouritedImageName: String = "star.fill"
+            static let unfavouritedImageName: String = "star"
         }
     }
 }
