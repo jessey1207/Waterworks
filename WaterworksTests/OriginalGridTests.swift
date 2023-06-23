@@ -23,7 +23,7 @@ final class OriginalGridTests: XCTestCase {
             (.甲, .卯, .乙),
             (.辰, .巽, .巳),
             (.unknown, .unknown, .unknown),
-            (.成, .乾, .亥),
+            (.戌, .乾, .亥),
             (.庚, .酉, .辛),
             (.丑, .艮, .寅),
             (.丙, .午, .丁)
@@ -44,7 +44,7 @@ final class OriginalGridTests: XCTestCase {
             (.甲, .卯, .乙),
             (.辰, .巽, .巳),
             (.unknown, .unknown, .unknown),
-            (.成, .乾, .亥),
+            (.戌, .乾, .亥),
             (.庚, .酉, .辛),
             (.丑, .艮, .寅),
             (.丙, .午, .丁)
