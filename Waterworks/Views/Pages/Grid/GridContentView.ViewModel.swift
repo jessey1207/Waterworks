@@ -9,7 +9,7 @@ import Foundation
 
 extension GridContentView {
     class ViewModel: ObservableObject {
-        @Published var isRotated: Bool
+        @Published var rotatedPoint: CardinalPoint
         @Published var isSaved: Bool
         @Published var sheet: Sheet?
         @Published var isPresentedUnsaveAlert: Bool = false
@@ -20,10 +20,9 @@ extension GridContentView {
         
         init(
             userInput: GridUserInput,
-            isRotated: Bool,
             mode: Mode
         ) {
-            self.isRotated = isRotated
+            self.rotatedPoint = userInput.direction.cardinalPoint
             self.isSaved = LocalStorage.savedConfigurations.contains(where: { $0.userInput == userInput })
             self.mode = mode
             self.userInput = userInput
@@ -52,6 +51,7 @@ extension GridContentView.ViewModel {
     
     func didUpdateUserInput(_ userInput: GridUserInput) {
         isSaved = LocalStorage.savedConfigurations.contains(where: { $0.userInput == userInput })
+        rotatedPoint = userInput.direction.cardinalPoint
     }
     
     func didTapSaveButton(userInput: GridUserInput) {

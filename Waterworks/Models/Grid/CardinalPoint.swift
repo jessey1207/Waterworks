@@ -7,30 +7,23 @@
 
 import Foundation
 
-enum CardinalPoint: CaseIterable {
-    case SE, S, SW, E, W, NE, N, NW
-    case unknown
+enum CardinalPoint: Int, CaseIterable {
+    case SE = 0
+    case S = 1
+    case SW = 2
+    case E = 3
+    case W = 5
+    case NE = 6
+    case N = 7
+    case NW = 8
+    case unknown = -1
 
     var gridIndex: Int? {
         switch self {
-        case .SE:
-            return 0
-        case .S:
-            return 1
-        case .SW:
-            return 2
-        case .E:
-            return 3
-        case .W:
-            return 5
-        case .NE:
-            return 6
-        case .N:
-            return 7
-        case .NW:
-            return 8
         case .unknown:
             return nil
+        default:
+            return rawValue
         }
     }
 

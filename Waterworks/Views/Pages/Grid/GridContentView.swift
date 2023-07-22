@@ -13,14 +13,12 @@ struct GridContentView: View {
     
     init(
         userInput: GridUserInput = .init(),
-        isRotated: Bool = false,
         mode: ViewModel.Mode = .edit
     ) {
         self.userInput = userInput
         self._viewModel = .init(
             wrappedValue: .init(
                 userInput: userInput,
-                isRotated: isRotated,
                 mode: mode
             )
         )
@@ -71,9 +69,9 @@ private extension GridContentView {
                 .disabled(viewModel.mode != .edit)
             GridView(
                 userInput: userInput,
-                rotated: $viewModel.isRotated
+                rotatedPoint: $viewModel.rotatedPoint
             )
-            actionButtons
+            addButton
             legendView
                 .padding(.top, 20)
         }
@@ -104,18 +102,12 @@ private extension GridContentView {
         }
     }
     
-    var actionButtons: some View {
-        HStack(spacing: 40) {
-            RotateButton(
-                userInput: userInput,
-                rotated: $viewModel.isRotated
-            )
-            Button(action: {
-                userInput.isAdding.toggle()
-            }) {
-                Text(userInput.isAdding ? Constants.Buttons.doNotAdd : Constants.Buttons.add)
-                    .font(.title)
-            }
+    var addButton: some View {
+        Button(action: {
+            userInput.isAdding.toggle()
+        }) {
+            Text(userInput.isAdding ? Constants.Buttons.doNotAdd : Constants.Buttons.add)
+                .font(.title)
         }
         .disabled(userInput.isInvalid)
         .animation(.linear(duration: 0.2), value: userInput.isAdding)

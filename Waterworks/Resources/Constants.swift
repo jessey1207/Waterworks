@@ -63,7 +63,7 @@ enum Constants {
         static let padding: CGFloat = isPad ? 40.0 : 30.0
 
         enum Arrows {
-            static let size: CGFloat = isPad ? 25.0 : 15.0
+            static let size: CGFloat = isPad ? 30 : 20.0
 
             enum ImageNames {
                 static let up = "arrowtriangle.up.fill"
