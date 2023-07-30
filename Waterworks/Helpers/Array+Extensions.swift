@@ -11,7 +11,7 @@ extension Array {
     /// Returns a rearranged array to replicate the action of rotating from one ``CardinalPoint`` to another.
     func rotated(from current: CardinalPoint, to target: CardinalPoint) -> Self {
         var mutable = self
-        for _ in 0..<current.getRotationCounts(to: target) {
+        for _ in 0..<current.getRotateCount(to: target) {
             mutable.rotateOnce()
         }
         return mutable
@@ -32,10 +32,10 @@ extension Array {
     }
 }
 
-private extension CardinalPoint {
+extension CardinalPoint {
     /// Calculates how many rotations it takes to get to the target ``CardinalPoint``.
     /// - Warning: Calculations are based on **anti-clockwise** rotations.
-    func getRotationCounts(to target: CardinalPoint) -> Int {
+    func getRotateCount(to target: CardinalPoint) -> Int {
         guard let currentIndex = normalizedRotationIndex,
               let targetIndex = target.normalizedRotationIndex
         else { return 0 }

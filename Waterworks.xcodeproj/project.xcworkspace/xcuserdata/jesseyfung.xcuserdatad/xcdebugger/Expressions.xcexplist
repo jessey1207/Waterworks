@@ -22,16 +22,24 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "closure #1 in PickerView.body.getter:PickerView.swift">
+         contextName = "GridView.ViewModel.locationItems.getter:GridView.ViewModel.swift">
       </ContextState>
       <ContextState
-         contextName = "GridView.ViewModel.locationItems.getter:GridView.ViewModel.swift">
+         contextName = "closure #1 in PickerView.body.getter:PickerView.swift">
       </ContextState>
       <ContextState
          contextName = "OriginalGrid.init():OriginalGrid.swift">
       </ContextState>
       <ContextState
          contextName = "GridView.ViewModel.directionItems.getter:GridView.ViewModel.swift">
+      </ContextState>
+      <ContextState
+         contextName = "closure #2 in closure #2 in closure #2 in CompassViewModelTests.testRotations():CompassViewModelTests.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "compassLabels.move(fromOffsets: .init(integersIn: compassLabels.indices), toOffset: 0)">
+            </PersistentString>
+         </PersistentStrings>
       </ContextState>
    </ContextStates>
 </VariablesViewState>

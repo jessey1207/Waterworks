@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SwiftUI
 
 private let isPad = UIDevice.current.userInterfaceIdiom == .pad
 
@@ -48,7 +49,17 @@ enum Constants {
     
     enum Compass {
         static let imageName: String = "Compass"
-        static let size: CGFloat = isPad ? 100.0 : 65.0
+        static let size: CGFloat = isPad ? 140.0 : 90.0
+        static let fontSize: CGFloat = isPad ? 14.0 : 11.0
+        static let imageScale: Image.Scale = isPad ? .medium : .small
+        static let leadingPadding = isPad ? 25.0 : 20.0 
+        static let bottomPadding = isPad ? 10.0 : -5.0
+        
+        static let circleSize: CGFloat = isPad ? 30.0 : 15.0
+        static let circleOffsetCorner: CGFloat = isPad ? 18.0 : 10.0
+        static let textOffsetCorner: CGFloat = isPad ? 18.0 : 15.0
+        static let circleOffsetAxis: CGFloat = isPad ? 23.0 : 14.0
+        static let textOffsetAxis: CGFloat = isPad ? 24.0 : 18.0
     }
 
     enum ChinesePicker {

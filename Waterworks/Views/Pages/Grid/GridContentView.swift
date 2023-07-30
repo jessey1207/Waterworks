@@ -67,6 +67,7 @@ private extension GridContentView {
         VStack(spacing: 20) {
             PickerView(userInput: userInput)
                 .disabled(viewModel.mode != .edit)
+                .padding(.bottom, -14)
             GridView(
                 userInput: userInput,
                 rotatedPoint: $viewModel.rotatedPoint
@@ -77,14 +78,13 @@ private extension GridContentView {
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .scrollInLandscapeMode()
-        Image(Constants.Compass.imageName)
-            .resizable()
-            .scaledToFit()
+        
+        CompassView(viewModel: viewModel.compassViewModel)
             .frame(width: Constants.Compass.size, height: Constants.Compass.size)
-            .background(Color.white.opacity(0.5))
-            .padding(.leading, 10)
-            .padding(.bottom, 10)
+            .padding(.leading, Constants.Compass.leadingPadding)
+            .padding(.bottom, Constants.Compass.bottomPadding)
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottomLeading)
+            
     }
     
     @ViewBuilder

@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Combine
 
 extension GridContentView {
     class ViewModel: ObservableObject {
@@ -13,10 +14,12 @@ extension GridContentView {
         @Published var isSaved: Bool
         @Published var sheet: Sheet?
         @Published var isPresentedUnsaveAlert: Bool = false
+        @Published var compassViewModel: CompassView.ViewModel
         
         let mode: Mode
         
         private let userInput: GridUserInput
+        private var bag: Set<AnyCancellable> = []
         
         init(
             userInput: GridUserInput,
@@ -26,6 +29,18 @@ extension GridContentView {
             self.isSaved = LocalStorage.savedConfigurations.contains(where: { $0.userInput == userInput })
             self.mode = mode
             self.userInput = userInput
+            self.compassViewModel = .init(
+                userInput: userInput,
+                rotatedPoint: userInput.direction.cardinalPoint
+            )
+            
+            $rotatedPoint.sink { [weak self] rotatedPoint in
+                self?.compassViewModel = .init(
+                    userInput: userInput,
+                    rotatedPoint: rotatedPoint
+                )
+            }
+            .store(in: &bag)
         }
     }
 }

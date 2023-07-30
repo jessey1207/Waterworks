@@ -37,6 +37,7 @@
 		945CF97329CF08630091EABA /* SavedConfigurationDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 945CF97229CF08630091EABA /* SavedConfigurationDetailView.swift */; };
 		9484E5792917A17800F50B0A /* YearTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9484E5782917A17800F50B0A /* YearTests.swift */; };
 		9484E57D29187F3E00F50B0A /* UIScreen+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9484E57C29187F3E00F50B0A /* UIScreen+Extensions.swift */; };
+		948C077D2A75127F00CEB012 /* CompassView.ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 948C077C2A75127F00CEB012 /* CompassView.ViewModel.swift */; };
 		948F20442A6BD7FD000E7B64 /* ArrayExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 948F20432A6BD7FD000E7B64 /* ArrayExtensionsTests.swift */; };
 		94C9E052298CF4E4009351C1 /* Strength.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94C9E051298CF4E4009351C1 /* Strength.swift */; };
 		94C9E057298DBDA5009351C1 /* Font+Custom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94C9E056298DBDA5009351C1 /* Font+Custom.swift */; };
@@ -62,8 +63,10 @@
 		94CEE762280E906900064407 /* Luck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94CEE761280E906900064407 /* Luck.swift */; };
 		94CEE764280E907100064407 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94CEE763280E907100064407 /* Location.swift */; };
 		94CEE769280EAFE900064407 /* GridView.ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94CEE768280EAFE900064407 /* GridView.ViewModel.swift */; };
+		94D6ECA52A75F2BB00617FF5 /* CompassViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94D6ECA42A75F2BB00617FF5 /* CompassViewModelTests.swift */; };
 		94DF02AC2971867000048176 /* GridCombinationsTests+Combinations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94DF02AB2971867000048176 /* GridCombinationsTests+Combinations.swift */; };
 		94DF02AF2971877800048176 /* GridCombinationsTests+Years.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94DF02AE2971877800048176 /* GridCombinationsTests+Years.swift */; };
+		94E744992A4865B3003BD97C /* CompassView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E744982A4865B3003BD97C /* CompassView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -116,6 +119,7 @@
 		945CF97229CF08630091EABA /* SavedConfigurationDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedConfigurationDetailView.swift; sourceTree = "<group>"; };
 		9484E5782917A17800F50B0A /* YearTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YearTests.swift; sourceTree = "<group>"; };
 		9484E57C29187F3E00F50B0A /* UIScreen+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScreen+Extensions.swift"; sourceTree = "<group>"; };
+		948C077C2A75127F00CEB012 /* CompassView.ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompassView.ViewModel.swift; sourceTree = "<group>"; };
 		948F20432A6BD7FD000E7B64 /* ArrayExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayExtensionsTests.swift; sourceTree = "<group>"; };
 		94C9E051298CF4E4009351C1 /* Strength.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Strength.swift; sourceTree = "<group>"; };
 		94C9E056298DBDA5009351C1 /* Font+Custom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Font+Custom.swift"; sourceTree = "<group>"; };
@@ -143,8 +147,10 @@
 		94CEE761280E906900064407 /* Luck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Luck.swift; sourceTree = "<group>"; };
 		94CEE763280E907100064407 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		94CEE768280EAFE900064407 /* GridView.ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridView.ViewModel.swift; sourceTree = "<group>"; };
+		94D6ECA42A75F2BB00617FF5 /* CompassViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompassViewModelTests.swift; sourceTree = "<group>"; };
 		94DF02AB2971867000048176 /* GridCombinationsTests+Combinations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GridCombinationsTests+Combinations.swift"; sourceTree = "<group>"; };
 		94DF02AE2971877800048176 /* GridCombinationsTests+Years.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GridCombinationsTests+Years.swift"; sourceTree = "<group>"; };
+		94E744982A4865B3003BD97C /* CompassView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompassView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -239,6 +245,8 @@
 				94C9E05A2996E293009351C1 /* HamburgerMenu */,
 				94C9E0632996FAC6009351C1 /* ContentView.swift */,
 				94C9E05D2996E98E009351C1 /* ContentView+Page.swift */,
+				94E744982A4865B3003BD97C /* CompassView.swift */,
+				948C077C2A75127F00CEB012 /* CompassView.ViewModel.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -252,6 +260,7 @@
 				9448334D29165EC300822D28 /* OriginalGridTests.swift */,
 				9484E5782917A17800F50B0A /* YearTests.swift */,
 				948F20432A6BD7FD000E7B64 /* ArrayExtensionsTests.swift */,
+				94D6ECA42A75F2BB00617FF5 /* CompassViewModelTests.swift */,
 			);
 			path = WaterworksTests;
 			sourceTree = "<group>";
@@ -502,6 +511,7 @@
 				94C9E06C29973EDF009351C1 /* Strings.swift in Sources */,
 				94CEE75D280DB27800064407 /* GridItemModel.swift in Sources */,
 				94260DBA29C71E3A0050001C /* MapDetailView.swift in Sources */,
+				94E744992A4865B3003BD97C /* CompassView.swift in Sources */,
 				94C9E057298DBDA5009351C1 /* Font+Custom.swift in Sources */,
 				94260DB529C6BA660050001C /* SearchLocationManager.swift in Sources */,
 				94C9E0592996E030009351C1 /* HamburgerMenuView.swift in Sources */,
@@ -523,6 +533,7 @@
 				94419068280EE9B300C839C0 /* Array+Extensions.swift in Sources */,
 				9441906F28103C7900C839C0 /* Arrow.swift in Sources */,
 				9426E7AA280C508300B34534 /* Direction.swift in Sources */,
+				948C077D2A75127F00CEB012 /* CompassView.ViewModel.swift in Sources */,
 				9426E79D280C4BD500B34534 /* GridContentView.swift in Sources */,
 				94260DB729C719AD0050001C /* MapView.swift in Sources */,
 				94CEE759280D97C200064407 /* GridItemView.swift in Sources */,
@@ -560,6 +571,7 @@
 				9448334E29165EC300822D28 /* OriginalGridTests.swift in Sources */,
 				948F20442A6BD7FD000E7B64 /* ArrayExtensionsTests.swift in Sources */,
 				9448334C2916560B00822D28 /* GridFormulaTests.swift in Sources */,
+				94D6ECA52A75F2BB00617FF5 /* CompassViewModelTests.swift in Sources */,
 				9484E5792917A17800F50B0A /* YearTests.swift in Sources */,
 				9441905E280ED06900C839C0 /* GridCombinationsTests.swift in Sources */,
 				94DF02AF2971877800048176 /* GridCombinationsTests+Years.swift in Sources */,
