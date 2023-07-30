@@ -6,27 +6,41 @@
 //
 
 import Foundation
+import Combine
 
 extension GridContentView {
     class ViewModel: ObservableObject {
-        @Published var isRotated: Bool
+        @Published var rotatedPoint: CardinalPoint
         @Published var isSaved: Bool
         @Published var sheet: Sheet?
         @Published var isPresentedUnsaveAlert: Bool = false
+        @Published var compassViewModel: CompassView.ViewModel
         
         let mode: Mode
         
         private let userInput: GridUserInput
+        private var bag: Set<AnyCancellable> = []
         
         init(
             userInput: GridUserInput,
-            isRotated: Bool,
             mode: Mode
         ) {
-            self.isRotated = isRotated
+            self.rotatedPoint = userInput.direction.cardinalPoint
             self.isSaved = LocalStorage.savedConfigurations.contains(where: { $0.userInput == userInput })
             self.mode = mode
             self.userInput = userInput
+            self.compassViewModel = .init(
+                userInput: userInput,
+                rotatedPoint: userInput.direction.cardinalPoint
+            )
+            
+            $rotatedPoint.sink { [weak self] rotatedPoint in
+                self?.compassViewModel = .init(
+                    userInput: userInput,
+                    rotatedPoint: rotatedPoint
+                )
+            }
+            .store(in: &bag)
         }
     }
 }
@@ -52,6 +66,7 @@ extension GridContentView.ViewModel {
     
     func didUpdateUserInput(_ userInput: GridUserInput) {
         isSaved = LocalStorage.savedConfigurations.contains(where: { $0.userInput == userInput })
+        rotatedPoint = userInput.direction.cardinalPoint
     }
     
     func didTapSaveButton(userInput: GridUserInput) {
