@@ -53,17 +53,17 @@ enum CardinalPoint: Int, CaseIterable {
     var chineseTranslation: String {
         switch self {
         case .SE:
-            return "东南"
+            return "東南"
         case .S:
             return "南"
         case .SW:
             return "西南"
         case .E:
-            return "东"
+            return "東"
         case .W:
             return "西"
         case .NE:
-            return "东北"
+            return "東北"
         case .N:
             return "北"
         case .NW:
