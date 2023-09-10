@@ -121,14 +121,14 @@ struct PickerView: View {
     
     private func getYearRange() -> ClosedRange<Int> {
         let currentDate = Date()
-    
-        var dateComponents = DateComponents()
-        dateComponents.year = 200
-        let futureDate = Calendar.current.date(byAdding: dateComponents, to: currentDate) ?? currentDate
-
-        let currentYear = Calendar.current.component(.year, from: currentDate)
+        
+        let pastDate = Calendar.current.date(byAdding: .year, value: -100, to: currentDate) ?? currentDate
+        let futureDate = Calendar.current.date(byAdding: .year, value: 200, to: currentDate) ?? currentDate
+        
+        let pastYear = Calendar.current.component(.year, from: pastDate)
         let futureYear = Calendar.current.component(.year, from: futureDate)
-        return currentYear ... futureYear
+        
+        return pastYear ... futureYear
     }
 }
 
