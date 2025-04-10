@@ -16,13 +16,19 @@ struct Year {
 
     var heavenStem: HeavenStem {
         let allHeavenStems = HeavenStem.allCases
-        let index = (number - 2020) % 10
+        var index = (number - 2020) % 10
+        while index < 0 {
+            index += 10
+        }
         return allHeavenStems[index]
     }
     
     var earthBranch: EarthBranch {
         let allEarthBranches = EarthBranch.allCases
-        let index = (number - 2020) % 12
+        var index = (number - 2020) % 12
+        while index < 0 {
+            index += 12
+        }
         return allEarthBranches[index]
     }
 }
