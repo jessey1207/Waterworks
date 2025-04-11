@@ -71,19 +71,45 @@ class GridCombinationsTests: XCTestCase {
         // Find all combinations
         Luck.allCases.filter({ $0 != .unknown }).forEach { luck in
             Location.allCases.filter({ $0 != .unknown }).forEach { location in
-                // Set up grid
+                // Set up initial grid
                 userInput.luck = luck
                 userInput.location = location
-                setupGrid(userInput: userInput, rotated: true)
+                setupGrid(userInput: userInput)
                 
-                // Assert grid items
-                XCTAssertEqual(baseNumbers, Combinations(rawValue: "\(luck)\(location)")!.baseNumbersRotated)
-                XCTAssertEqual(locationNumbers, Combinations(rawValue: "\(luck)\(location)")!.locationNumbersRotated)
-                XCTAssertEqual(directionNumbers, Combinations(rawValue: "\(luck)\(location)")!.directionNumbersRotated)
-                XCTAssertEqual(cardinalCharacters, Combinations(rawValue: "\(luck)\(location)")!.cardinalCharactersRotated)
+                // Remember initial numbers
+                let initialBaseNumbers = baseNumbers
+                let initialLocationNumbers = locationNumbers
+                let initialDirectionNumbers = directionNumbers
+                let initialCardinalCharacters = cardinalCharacters
                 
                 // Reset
                 resetGrid()
+                
+                // Set up grid for all rotation possibilities
+                CardinalPoint.allCases.filter { $0 != .unknown }.forEach { rotationPoint in
+                    setupGrid(userInput: userInput, rotatedPoint: rotationPoint)
+                    
+                    // Assert rotated grid items
+                    XCTAssertEqual(
+                        baseNumbers,
+                        initialBaseNumbers.rotated(from: userInput.direction.cardinalPoint, to: rotationPoint)
+                    )
+                    XCTAssertEqual(
+                        locationNumbers,
+                        initialLocationNumbers.rotated(from: userInput.direction.cardinalPoint, to: rotationPoint)
+                    )
+                    XCTAssertEqual(
+                        directionNumbers,
+                        initialDirectionNumbers.rotated(from: userInput.direction.cardinalPoint, to: rotationPoint)
+                    )
+                    XCTAssertEqual(
+                        cardinalCharacters,
+                        initialCardinalCharacters.rotated(from: userInput.direction.cardinalPoint, to: rotationPoint)
+                    )
+                    
+                    // Reset
+                    resetGrid()
+                }
             }
         }
     }
@@ -132,8 +158,11 @@ class GridCombinationsTests: XCTestCase {
     
     // MARK: - Helpers
     
-    private func setupGrid(userInput: GridUserInput, rotated: Bool = false) {
-        sut = .init(userInput: userInput, rotated: rotated)
+    private func setupGrid(userInput: GridUserInput, rotatedPoint: CardinalPoint? = nil) {
+        sut = .init(
+            userInput: userInput,
+            rotatedPoint: rotatedPoint ?? userInput.direction.cardinalPoint
+        )
         gridIndices.forEach { index in
             baseNumbers.append(sut.baseNumber(at: index))
             locationNumbers.append(sut.locationNumber(at: index))

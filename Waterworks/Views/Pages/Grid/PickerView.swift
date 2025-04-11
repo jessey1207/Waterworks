@@ -11,16 +11,18 @@ struct PickerView: View {
     @ObservedObject var userInput: GridUserInput
     
     var body: some View {
-        VStack(spacing: 16) {
+        VStack(spacing: 0) {
             directionPickers
             yearPickers
         }
     }
     
     private var directionPickers: some View {
-        HStack(spacing: 50) {
+        HStack(spacing: 0) {
             luckPicker
+                .padding(.trailing, 30)
             locationPicker
+                .padding(.trailing, 30 - 12)
             directionText
         }
     }
@@ -35,7 +37,7 @@ struct PickerView: View {
     // MARK: - Direction pickers
 
     private var luckPicker: some View {
-        HStack {
+        HStack(spacing: 0) {
             Menu {
                 Picker(selection: $userInput.luck) {
                     ForEach(Luck.allCases) {
@@ -45,6 +47,7 @@ struct PickerView: View {
             } label: {
                 Text(String(userInput.luck.rawValue))
                     .font(.custom(.title))
+                    .padding(12)
             }
             Text(Constants.ChinesePicker.luckText)
                 .font(.custom(.title))
@@ -53,7 +56,7 @@ struct PickerView: View {
     }
 
     private var locationPicker: some View {
-        HStack {
+        HStack(spacing: 0) {
             Text(Constants.ChinesePicker.locationText)
                 .font(.custom(.title))
                 .foregroundColor(.custom(.brownPrimary))
@@ -66,25 +69,27 @@ struct PickerView: View {
             } label: {
                 Text(String(userInput.location.rawValue))
                     .font(.custom(.title))
+                    .padding(12)
             }
         }
     }
 
     private var directionText: some View {
-        HStack {
+        HStack(spacing: 0) {
             Text(Constants.ChinesePicker.directionText)
                 .font(.custom(.title))
                 .foregroundColor(.custom(.brownPrimary))
             Text(userInput.direction.rawValue)
                 .font(.custom(.title))
                 .foregroundColor(.gray)
+                .padding(12)
         }
     }
 
     // MARK: - Year pickers
 
     private var yearPicker: some View {
-        HStack {
+        HStack(spacing: 0) {
             Menu {
                 Picker(selection: $userInput.year.number) {
                     ForEach(getYearRange(), id: \.self) {
@@ -95,6 +100,7 @@ struct PickerView: View {
                 Text(String(userInput.year.number))
                     .font(.custom(.title))
                     .frame(minWidth: 45)
+                    .padding(12)
             }
             Text(Constants.ChinesePicker.yearText)
                 .font(.custom(.title))
@@ -115,14 +121,14 @@ struct PickerView: View {
     
     private func getYearRange() -> ClosedRange<Int> {
         let currentDate = Date()
-    
-        var dateComponents = DateComponents()
-        dateComponents.year = 200
-        let futureDate = Calendar.current.date(byAdding: dateComponents, to: currentDate) ?? currentDate
-
-        let currentYear = Calendar.current.component(.year, from: currentDate)
+        
+        let pastDate = Calendar.current.date(byAdding: .year, value: -100, to: currentDate) ?? currentDate
+        let futureDate = Calendar.current.date(byAdding: .year, value: 200, to: currentDate) ?? currentDate
+        
+        let pastYear = Calendar.current.component(.year, from: pastDate)
         let futureYear = Calendar.current.component(.year, from: futureDate)
-        return currentYear ... futureYear
+        
+        return pastYear ... futureYear
     }
 }
 

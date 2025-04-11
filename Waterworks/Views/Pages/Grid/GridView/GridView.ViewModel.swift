@@ -11,15 +11,15 @@ extension GridView {
     class ViewModel: ObservableObject {
         @Published var userInput: GridUserInput
 
-        private let rotated: Bool
+        private let rotatedPoint: CardinalPoint
         private let originalGrid = OriginalGrid()
         
         init(
             userInput: GridUserInput,
-            rotated: Bool
+            rotatedPoint: CardinalPoint
         ) {
             self.userInput = userInput
-            self.rotated = rotated
+            self.rotatedPoint = rotatedPoint
         }
         
         /// Retrieves the base number to be displayed.
@@ -87,24 +87,26 @@ extension GridView {
             return baseItems[index].number == associatedBaseNumber
         }
         
+        func cardinalPoint(at index: Int) -> CardinalPoint {
+            // Index 4 has no direction
+            guard index != 4, let cardinalPoint = CardinalPoint(rawValue: index) else { return rotatedPoint }
+            return cardinalPoint
+        }
+        
         // MARK: - Private properties
         
         private var yearItems: [GridItemModel] {
             let items = GridFormula.clockwise.generateGridItems(
                 center: userInput.year.gridNumber
             )
-            return rotated
-            ? items.rearranged(for: userInput.direction)
-            : items
+            return items.rotated(from: userInput.direction.cardinalPoint, to: rotatedPoint)
         }
         
         private var baseItems: [GridItemModel] {
             let items = GridFormula.clockwise.generateGridItems(
                 center: userInput.luck.rawValue
             )
-            return rotated
-            ? items.rearranged(for: userInput.direction)
-            : items
+            return items.rotated(from: userInput.direction.cardinalPoint, to: rotatedPoint)
         }
         
         private var locationItems: [GridItemModel]? {
@@ -137,9 +139,7 @@ extension GridView {
             ? GridFormula.clockwise.generateGridItems(center: baseNumberContainingLocation)
             : GridFormula.anticlockwise.generateGridItems(center: baseNumberContainingLocation)
             
-            return rotated
-            ? items.rearranged(for: userInput.direction)
-            : items
+            return items.rotated(from: userInput.direction.cardinalPoint, to: rotatedPoint)
         }
         
         private var directionItems: [GridItemModel]? {
@@ -172,9 +172,7 @@ extension GridView {
             ? GridFormula.clockwise.generateGridItems(center: baseNumberContainingDirection)
             : GridFormula.anticlockwise.generateGridItems(center: baseNumberContainingDirection)
             
-            return rotated
-            ? items.rearranged(for: userInput.direction)
-            : items
+            return items.rotated(from: userInput.direction.cardinalPoint, to: rotatedPoint)
         }
         
         private var cardinalItems: [String] {
@@ -182,9 +180,7 @@ extension GridView {
                 .filter({ $0 != .unknown })
                 .map { $0.chineseRepresentation }
             items.insert("", at: CardinalPoint.allCases.count / 2) // middle item has no cardinal point
-            return rotated
-            ? items.rearranged(for: userInput.direction)
-            : items
+            return items.rotated(from: userInput.direction.cardinalPoint, to: rotatedPoint)
         }
         
         // MARK: Helpers
@@ -217,9 +213,7 @@ extension GridView {
             let items = original.rotation == .clockwise
             ? GridFormula.clockwise.generateGridItems(center: addingLocation.addNumber)
             : GridFormula.anticlockwise.generateGridItems(center: addingLocation.addNumber)
-            return rotated
-            ? items.rearranged(for: userInput.direction)
-            : items
+            return items.rotated(from: userInput.direction.cardinalPoint, to: rotatedPoint)
         }
         
         private func addedItems(center: Int, original: Direction) -> [GridItemModel]? {
@@ -227,9 +221,7 @@ extension GridView {
             let items = original.rotation == .clockwise
             ? GridFormula.clockwise.generateGridItems(center: addingDirection.addNumber)
             : GridFormula.anticlockwise.generateGridItems(center: addingDirection.addNumber)
-            return rotated
-            ? items.rearranged(for: userInput.direction)
-            : items
+            return items.rotated(from: userInput.direction.cardinalPoint, to: rotatedPoint)
         }
     }
 }

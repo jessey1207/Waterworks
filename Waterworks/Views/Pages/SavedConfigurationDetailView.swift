@@ -114,7 +114,6 @@ private extension SavedConfigurationDetailView {
         VStack {
             GridContentView(
                 userInput: configuration.userInput,
-                isRotated: false,
                 mode: .view
             )
         }

@@ -9,23 +9,26 @@ import SwiftUI
 
 struct GridView: View {
     @ObservedObject private var viewModel: ViewModel
-    @Binding var rotated: Bool
+    @Binding var rotatedPoint: CardinalPoint
 
     init(
         userInput: GridUserInput,
-        rotated: Binding<Bool>
+        rotatedPoint: Binding<CardinalPoint>
     ) {
         viewModel = .init(
             userInput: userInput,
-            rotated: rotated.wrappedValue
+            rotatedPoint: rotatedPoint.wrappedValue
         )
-        self._rotated = rotated
+        self._rotatedPoint = rotatedPoint
     }
     
     var body: some View {
         LazyVGrid(columns: layout, spacing: Constants.Grid.spacing) {
             ForEach(0..<9, id: \.self) { index in
                 gridItem(index: index)
+                    .onTapGesture {
+                        rotatedPoint = viewModel.cardinalPoint(at: index)
+                    }
             }
         }
         .frame(maxWidth: maxWidth)
@@ -36,7 +39,7 @@ struct GridView: View {
         .animation(.easeInOut, value: viewModel.userInput.luck)
         .animation(.easeInOut, value: viewModel.userInput.location)
         .animation(.easeInOut, value: viewModel.userInput.year.number)
-        .animation(.easeInOut, value: rotated)
+        .animation(.easeInOut, value: rotatedPoint)
     }
 
     private let layout = Array(
@@ -81,7 +84,7 @@ struct GridView: View {
     private var arrowsView: some View {
         ArrowsView(
             userInput: viewModel.userInput,
-            rotated: $rotated
+            rotatedPoint: $rotatedPoint
         )
     }
 }
@@ -91,17 +94,17 @@ struct GridView_Previews: PreviewProvider {
         Group {
             GridView(
                 userInput: GridUserInput(),
-                rotated: .constant(false)
+                rotatedPoint: .constant(.E)
             )
             .previewDisplayName("Picker")
             GridView(
                 userInput: GridUserInput(),
-                rotated: .constant(true)
+                rotatedPoint: .constant(.E)
             )
             .previewDisplayName("Picker-rotated")
             GridView(
                 userInput: GridUserInput(),
-                rotated: .constant(false)
+                rotatedPoint: .constant(.E)
             )
             .preferredColorScheme(.dark)
             .previewLayout(.fixed(width: 568, height: 320))
